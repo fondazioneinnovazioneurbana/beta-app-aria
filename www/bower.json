@@ -1,0 +1,28 @@
+{
+  "name": "apparia",
+  "authors": [
+    "info@digitigrafo.it <info@digitigrafo.it>"
+  ],
+  "description": "App Aria",
+  "main": "index.html",
+  "license": "AGPL",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "framework7": "^2.0.7",
+    "normalize.css": "^8.0.0",
+    "jquery": "^3.3.1"
+  },
+  "keywords": [
+    "iqa",
+    "aria",
+    "ambiente"
+  ]
+}
