@@ -75,4 +75,39 @@ function checkConnection() {
         return true
     }
 }
+var createCORSRequest = function(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // Most browsers.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // IE8 & IE9
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+};
+
+var url = 'https://apps.arpae.it/REST/qa_modello/20181016';
+var method = 'GET';
+var xhr = createCORSRequest(method, url);
+
+xhr.onload = function() {
+ var responseText = xhr.responseText;
+    display_results("h3", responseText);
+ console.log(responseText);
+ // process the response.
+};
+
+xhr.onerror = function() {
+        display_results("h3", 'There was an error!');
+  console.log('There was an error!');
+};
+
+
+xhr.send();
+
 /*///////////////fine utilities//////////////*/
