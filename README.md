@@ -53,9 +53,16 @@ https://github.com/framework7io/framework7-template-single-view
 
 - aggiungere anche la piattaforma browser di cordova in modo da debuggare più rapidamente
 
-- mergiare l'index attuale con il template
+- unire l'index attuale con il template
 
-- avere il toaster che ti avverte in caso non abbia una connessione.
+git tag v01.01
+commit deaa132b7619c139d42e490281449affa755fe93
+
+- impostare la data odierna in cima
+
+- creare la schermata colorata mentre fa il check dellaconnessione *questo è da disattivare nella versione webapp*
+
+- avere il toaster che ti avverte in caso non abbia una connessione *questo è da disattivare nella versione webapp*
 
 
 ##Raggiungere il risultato B:

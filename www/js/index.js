@@ -27,22 +27,10 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
-        this.receivedEvent('deviceready');
-        //display_results("h1", "evvai");
         checkConnection();
     },
 
-    // Update DOM on a Received Event
-    receivedEvent: function (id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
+  
 };
 
 app.initialize();
@@ -66,12 +54,12 @@ function checkConnection() {
     states[Connection.CELL] = 'Cell generic connection';
     states[Connection.NONE] = 'No network connection';
     if (states[networkState] == 'Unknown connection' || states[networkState] == 'No network connection') {
-        display_results("h1", "noo");
+       // display_results("h1", "noo");
         //alert('Non sei connesso ad internet, connettiti ad una rete per procedere.');
         return false
 
     } else {
-        display_results("h1", "ok");
+        //display_results("h1", "ok");
         return true
     }
 }
@@ -98,9 +86,15 @@ var today = new Date();
 var mese = today.getMonth() + 1;
 var annon = today.getYear();
 var annok = annon.toString();
+// data per la query alle API arpa per IQA
 var dataarpa = "20" + annok.slice(1) + mese.toString() + today.getDate();
 
-display_results("h2", "La data di oggi: " + dataarpa);
+// data per umani
+var mesi=["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
+
+display_results(".datatop h1 span#day", today.getDate());
+display_results(".datatop h1 span#month", mesi[today.getMonth()]);
+display_results(".datatop h1 span#year", "20" + annok.slice(1));
 
 
 var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?projection={"dati.istat_037006":1}';
