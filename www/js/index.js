@@ -75,36 +75,50 @@ function checkConnection() {
         return true
     }
 }
-var createCORSRequest = function(method, url) {
-  var xhr = new XMLHttpRequest();
-  if ("withCredentials" in xhr) {
-    // Most browsers.
-    xhr.open(method, url, true);
-  } else if (typeof XDomainRequest != "undefined") {
-    // IE8 & IE9
-    xhr = new XDomainRequest();
-    xhr.open(method, url);
-  } else {
-    // CORS not supported.
-    xhr = null;
-  }
-  return xhr;
+var createCORSRequest = function (method, url) {
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr) {
+        // Most browsers.
+        xhr.open(method, url, true);
+    } else if (typeof XDomainRequest != "undefined") {
+        // IE8 & IE9
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+    } else {
+        // CORS not supported.
+        xhr = null;
+    }
+    return xhr;
 };
 
-var url = 'https://apps.arpae.it/REST/qa_modello/20181016';
+//var dataarpa = 20181010
+
+/*ogni volta setto la data di oggi*/
+var today = new Date();
+var mese = today.getMonth() + 1;
+var annon = today.getYear();
+var annok = annon.toString();
+var dataarpa = "20"+annok.slice(1) + mese.toString() + today.getDate();
+
+//display_results("h2", "La data di oggi: " + dataarpa);
+
+
+var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?projection={"dati.istat_037006":1}';
+//var urlC="https://www.arpae.it/qualita-aria/bollettino-qa/json"
+
 var method = 'GET';
 var xhr = createCORSRequest(method, url);
 
-xhr.onload = function() {
- var responseText = xhr.responseText;
+xhr.onload = function () {
+    var responseText = xhr.responseText;
     display_results("h3", responseText);
- console.log(responseText);
- // process the response.
+    console.log(responseText);
+    // process the response.
 };
 
-xhr.onerror = function() {
-        display_results("h3", 'There was an error!');
-  console.log('There was an error!');
+xhr.onerror = function () {
+    display_results("h3", 'There was an error!');
+    console.log('There was an error!');
 };
 
 

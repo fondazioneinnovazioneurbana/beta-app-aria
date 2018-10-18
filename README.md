@@ -2,9 +2,8 @@ Applicazione per il laboratorio partecipato di Bologna sulla qualità dell'aria.
 
 Primi obiettivi:
 A-sapere giornalmente l'IQA
-B-sapere le stazioni di fondo il valore peggiore
-C-avere una frase di approfondimento ogni giorno
-
+B-avere una frase di approfondimento ogni giorno
+C-sapere le stazioni di fondo il valore peggiore
 
 Sviluppo:
 Applicazione ibrida per android ed ios.
@@ -23,7 +22,7 @@ Tutto il progetto web è in www. Dentro a www usare "bower install", che scarich
     "jquery": "^3.3.1"
   }
 
-Raggiungere il primo risultato A:
+##Raggiungere il primo risultato A:
 
 1- avere lo splashscreen ed una app che si avvia
 Doc plugin: https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-splashscreen/index.html
@@ -31,15 +30,28 @@ Doc plugin: https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-s
 2- accedere al network.
 Doc plugin: https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-network-information/index.html
 
-3- avere il toaster che ti avverte in caso il tuo network non funzionasse.
-
 3- adattare la Policy sulle risorse:
 Stappata:
  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
 
 4- scrivere la richiesta CORS
+https://www.test-cors.org/#?client_method=GET&client_credentials=false&client_postdata=%0A&server_url=https%3A%2F%2Fapps.arpae.it%2FREST%2Fqa_modello%2F20181016&server_enable=true&server_status=200&server_credentials=false&server_tabs=remote&client_headers=%0A
+https://www.html5rocks.com/en/tutorials/cors/#toc-making-a-cors-request
 
-5- esporre il dato
+5- avere la data di oggi da mettere nella richiesta REST
 
-Raggiungere il risultato B:
+Verificato che lato server le API ci premettono di avere il dato, passiamo alla grafica, che i contenuti anche se grezzi, ci sono!
+
+git tag: ok i contenuti base.
+_______________________________________________________
+
+###Da qui in poi si passa in grafica con Framework7;
+
+template di partenza: single
+https://github.com/framework7io/framework7-template-single-view
+
+1- avere il toaster che ti avverte in caso non abbia una connessione.
+
+
+##Raggiungere il risultato B:
 
