@@ -74,6 +74,13 @@ div.block.rainbow {
     animation-direction: alternate;
     animation-delay: 5s;
 }
+div.block#noconnesso, div.block#connesso{
+    margin: 0;
+    padding-top:16px;
+}
+.hide{
+    display:none;
+}
 
 img.iconcina {
     max-width: 35px;

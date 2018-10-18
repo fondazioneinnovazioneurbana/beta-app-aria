@@ -64,8 +64,11 @@ commit deaa132b7619c139d42e490281449affa755fe93
 
 - creare la schermata colorata mentre fa il check della connessione *questo è da disattivare nella versione webapp*
 
-- avere il toaster che ti avverte in caso non abbia una connessione *questo è da disattivare nella versione webapp*
+- schermata in caso non abbia una connessione *questo è da disattivare nella versione webapp*
 
+- schermata in caso abbia una connessione e dia quindi il risultato 
+
+git tag v01.02
 
 ##Raggiungere il risultato B:
 

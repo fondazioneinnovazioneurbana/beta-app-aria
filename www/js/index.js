@@ -30,7 +30,7 @@ var app = {
         checkConnection();
     },
 
-  
+
 };
 
 app.initialize();
@@ -54,7 +54,10 @@ function checkConnection() {
     states[Connection.CELL] = 'Cell generic connection';
     states[Connection.NONE] = 'No network connection';
     if (states[networkState] == 'Unknown connection' || states[networkState] == 'No network connection') {
-       // display_results("h1", "noo");
+
+        setTimeout(function () {
+           // noconnessione();
+        }, 9000);
         //alert('Non sei connesso ad internet, connettiti ad una rete per procedere.');
         return false
 
@@ -90,7 +93,7 @@ var annok = annon.toString();
 var dataarpa = "20" + annok.slice(1) + mese.toString() + today.getDate();
 
 // data per umani
-var mesi=["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
+var mesi = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
 
 display_results(".datatop h1 span#day", today.getDate());
 display_results(".datatop h1 span#month", mesi[today.getMonth()]);
@@ -106,16 +109,32 @@ var xhr = createCORSRequest(method, url);
 xhr.onload = function () {
     var responseText = xhr.responseText;
     display_results("h3", responseText);
+             setTimeout(function () {
+            connesso();
+        }, 9000);
     console.log(responseText);
     // process the response.
 };
 
 xhr.onerror = function () {
-    display_results("h3", 'There was an error!');
+    //display_results("h3", 'There was an error!');
     console.log('There was an error!');
 };
 
 
 xhr.send();
 
+
+
 /*///////////////fine utilities//////////////*/
+
+function noconnessione() {
+    $("div.block.rainbow ").css("background-color", "grey")
+    $("#noconnesso").removeClass("hide");
+    display_results("h1", "Errore");
+}
+
+function connesso() {
+    $("div.block.rainbow ").css("background-color", "#00E676")
+    $("#connesso").removeClass("hide");
+}
