@@ -100,7 +100,7 @@ var annon = today.getYear();
 var annok = annon.toString();
 var dataarpa = "20" + annok.slice(1) + mese.toString() + today.getDate();
 
-//display_results("h2", "La data di oggi: " + dataarpa);
+display_results("h2", "La data di oggi: " + dataarpa);
 
 
 var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?projection={"dati.istat_037006":1}';
