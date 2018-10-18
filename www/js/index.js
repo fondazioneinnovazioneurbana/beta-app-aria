@@ -98,7 +98,7 @@ var today = new Date();
 var mese = today.getMonth() + 1;
 var annon = today.getYear();
 var annok = annon.toString();
-var dataarpa = "20"+annok.slice(1) + mese.toString() + today.getDate();
+var dataarpa = "20" + annok.slice(1) + mese.toString() + today.getDate();
 
 //display_results("h2", "La data di oggi: " + dataarpa);
 

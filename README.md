@@ -42,7 +42,8 @@ https://www.html5rocks.com/en/tutorials/cors/#toc-making-a-cors-request
 
 Verificato che lato server le API ci premettono di avere il dato, passiamo alla grafica, che i contenuti anche se grezzi, ci sono!
 
-git tag: ok i contenuti base.
+::::::::::: git tag v01.00
+commit 35c41b4491a360d2f1ec439e30bb5c6943cdc0c5
 _______________________________________________________
 
 ###Da qui in poi si passa in grafica con Framework7;
@@ -50,7 +51,11 @@ _______________________________________________________
 template di partenza: single
 https://github.com/framework7io/framework7-template-single-view
 
-1- avere il toaster che ti avverte in caso non abbia una connessione.
+- aggiungere anche la piattaforma browser di cordova in modo da debuggare più rapidamente
+
+- mergiare l'index attuale con il template
+
+- avere il toaster che ti avverte in caso non abbia una connessione.
 
 
 ##Raggiungere il risultato B:
