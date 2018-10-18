@@ -16,39 +16,73 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
 body {
-    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    background-attachment:fixed;
+    -webkit-touch-callout: none;
+    /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;
+    /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;
+    /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color: #E4E4E4;
     font-family: Helvetica, Arial, sans-serif;
-    font-size:1em;
-    height:100%;
-    margin:0px;
-    padding:0px;
-    width:100%;
+    font-size: 1em;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
 }
+
+
+/*background-image: linear-gradient(#B2FF59, #FFEA00 15%, #FFC600 25%, #FF5722 50%, #9E005D 100%);
+ */
+
+@keyframes example {
+    0% {
+        background-color: #00E676;
+    }
+    10% {
+        background-color: #B2FF59;
+    }
+    25% {
+        background-color: #FFEA00;
+    }
+    50% {
+        background-color: #FFC600;
+    }
+    75% {
+        background-color: #FF5722;
+    }
+    100% {
+        background-color: #9E005D;
+    }
+}
+
+/* The element to apply the animation to */
+
+div.block.rainbow {
+    height: 85%;
+    margin: 0;
+    background-color: #00E676;
+    animation-name: example;
+    animation-duration: 5s;
+    animation-direction: alternate;
+    animation-delay: 5s;
+}
+
 img.iconcina {
     max-width: 35px;
 }
+
 .md .block.datatop {
     margin: 0;
 }
+
 .md .navbar {
     text-transform: capitalize;
     background: #000;

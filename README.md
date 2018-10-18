@@ -3,7 +3,7 @@ Applicazione per il laboratorio partecipato di Bologna sulla qualità dell'aria.
 Primi obiettivi:
 A-sapere giornalmente l'IQA
 B-avere una frase di approfondimento ogni giorno
-C-sapere le stazioni di fondo il valore peggiore
+C-sapere delle stazioni di fondo il valore peggiore degli inquinanti
 
 Sviluppo:
 Applicazione ibrida per android ed ios.
@@ -60,7 +60,9 @@ commit deaa132b7619c139d42e490281449affa755fe93
 
 - impostare la data odierna in cima
 
-- creare la schermata colorata mentre fa il check dellaconnessione *questo è da disattivare nella versione webapp*
+- fatta una paginetta informazioni
+
+- creare la schermata colorata mentre fa il check della connessione *questo è da disattivare nella versione webapp*
 
 - avere il toaster che ti avverte in caso non abbia una connessione *questo è da disattivare nella versione webapp*
 
