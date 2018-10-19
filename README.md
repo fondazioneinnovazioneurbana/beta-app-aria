@@ -6,7 +6,7 @@ B-avere una frase di approfondimento ogni giorno
 C-sapere delle stazioni di fondo il valore peggiore degli inquinanti
 
 Sviluppo:
-Applicazione ibrida per android ed ios.
+Applicazione ibrida per web, android ed ios.
 
     $cordova create appAria it.fondazioneinnovazioneurbana.apparia appAria
 
@@ -21,6 +21,21 @@ Tutto il progetto web è in www. Dentro a www usare "bower install", che scarich
     "normalize.css": "^8.0.0",
     "jquery": "^3.3.1"
   }
+
+Per buildare l'app bisogna avere gli SDK appropiati e il .bash_profile adatto.
+
+    $cordova platforms add browser
+    $cordova platforms add android
+    $cordova platforms add ios
+
+Poi
+    $cordova run browser
+    $cordova run android
+    $cordova run ios
+
+Al momento della pubblicazione è necessario pacchettizzarla non in debug e firmarla per caricarla nei rispettivi store.
+
+#Tappe della sviluppo
 
 ##Raggiungere il primo risultato A:
 
@@ -69,6 +84,9 @@ commit deaa132b7619c139d42e490281449affa755fe93
 - schermata in caso abbia una connessione e dia quindi il risultato 
 
 git tag v01.02
+commit feecb36414ac49b1ef36a2edaa760f9bdecf0677
+
+-pulire la risposta xml dell'IAQ, crearsi una scala ed avere il feedback utente: colore ed aggettivo.
 
 ##Raggiungere il risultato B:
 

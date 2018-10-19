@@ -108,12 +108,15 @@ var xhr = createCORSRequest(method, url);
 
 xhr.onload = function () {
     var responseText = xhr.responseText;
-    display_results("h3", responseText);
+    
              setTimeout(function () {
             connesso();
         }, 9000);
     console.log(responseText);
     // process the response.
+    var obj = jQuery.parseJSON(responseText);
+    
+    display_results("h3", obj.dati.istat_037006.iqa);
 };
 
 xhr.onerror = function () {
