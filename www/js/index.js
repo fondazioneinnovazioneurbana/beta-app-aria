@@ -56,7 +56,7 @@ function checkConnection() {
     if (states[networkState] == 'Unknown connection' || states[networkState] == 'No network connection') {
 
         setTimeout(function () {
-           // noconnessione();
+            // noconnessione();
         }, 9000);
         //alert('Non sei connesso ad internet, connettiti ad una rete per procedere.');
         return false
@@ -85,6 +85,7 @@ var createCORSRequest = function (method, url) {
 //var dataarpa = 20181010
 
 /*ogni volta setto la data di oggi*/
+var iqa = 0;
 var today = new Date();
 var mese = today.getMonth() + 1;
 var annon = today.getYear();
@@ -108,15 +109,16 @@ var xhr = createCORSRequest(method, url);
 
 xhr.onload = function () {
     var responseText = xhr.responseText;
-    
-             setTimeout(function () {
-            connesso();
-        }, 9000);
+
+    setTimeout(function () {
+        connesso();
+    }, 9000);
     console.log(responseText);
     // process the response.
     var obj = jQuery.parseJSON(responseText);
-    
-    display_results("h3", obj.dati.istat_037006.iqa);
+    iqa = obj.dati.istat_037006.iqa;
+    //display_results("h3", obj.dati.istat_037006.iqa);
+    stampaaggettivoiqa();
 };
 
 xhr.onerror = function () {
@@ -127,17 +129,48 @@ xhr.onerror = function () {
 
 xhr.send();
 
-
+function changebackground(bck, color) {
+    $(bck).css("background-color", color);
+}
 
 /*///////////////fine utilities//////////////*/
 
 function noconnessione() {
-    $("div.block.rainbow ").css("background-color", "grey")
+    $("div.block.rainbow ").css("background-color", "#E1E1E1")
     $("#noconnesso").removeClass("hide");
     display_results("h1", "Errore");
 }
 
 function connesso() {
-    $("div.block.rainbow ").css("background-color", "#00E676")
+    //$("div.block.rainbow ").css("background-color", "#00E676")
     $("#connesso").removeClass("hide");
+}
+// scala iqa https://www.arpae.it/dettaglio_generale.asp?id=938&idlivello=134&disab_redirautom_mob=1
+
+function stampaaggettivoiqa() {
+    switch (true) {
+        case (iqa < 50):
+            display_results("#aggettivoiqa", "buona");
+            changebackground("div.block.rainbow", "#00E676");
+            break;
+        case (50 <= iqa <= 99):
+            display_results("#aggettivoiqa", "accettabile");
+            changebackground("div.block.rainbow", "#FFEA00");
+            break;
+        case (100 <= iqa <= 149):
+            display_results("#aggettivoiqa", "mediocre");
+                        changebackground("div.block.rainbow", "#FFC600");
+            break;
+        case (150 <= iqa <= 199):
+            display_results("#aggettivoiqa", "scadente");
+                        changebackground("div.block.rainbow", "#FF5722");
+            break;
+        case (iqa >= 200):
+            display_results("#aggettivoiqa", "pessima");
+                        changebackground("div.block.rainbow", "#9E005D");
+            break;
+        default:
+            console.log("iqa nd");
+            break;
+    };
 }

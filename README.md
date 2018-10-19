@@ -86,7 +86,14 @@ commit deaa132b7619c139d42e490281449affa755fe93
 git tag v01.02
 commit feecb36414ac49b1ef36a2edaa760f9bdecf0677
 
--pulire la risposta xml dell'IAQ, crearsi una scala ed avere il feedback utente: colore ed aggettivo.
+-pulire la risposta xml dell'IAQ
+
+- crearsi una scala ed avere il feedback utente: colore ed aggettivo.
+riferimento: https://www.arpae.it/dettaglio_generale.asp?id=938&idlivello=134&disab_redirautom_mob=1
+
+- segnaposto per frase e sotto frase
+
+git tag v01.03
 
 ##Raggiungere il risultato B:
 

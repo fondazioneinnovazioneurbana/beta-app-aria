@@ -94,3 +94,14 @@ img.iconcina {
     text-transform: capitalize;
     background: #000;
 }
+/*frasi*/
+.block.block-strong.sotto {
+    padding: 16px 0;
+}
+#fraseiqa {
+    font-family: monospace;
+    font-weight: 400;
+}
+#sottofraseiqa {
+    font-weight: 400;
+}
