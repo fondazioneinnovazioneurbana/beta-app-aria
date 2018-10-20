@@ -56,7 +56,7 @@ function checkConnection() {
     if (states[networkState] == 'Unknown connection' || states[networkState] == 'No network connection') {
 
         setTimeout(function () {
-            // noconnessione();
+            //noconnessione();
         }, 9000);
         //alert('Non sei connesso ad internet, connettiti ad una rete per procedere.');
         return false
@@ -159,18 +159,32 @@ function stampaaggettivoiqa() {
             break;
         case (100 <= iqa <= 149):
             display_results("#aggettivoiqa", "mediocre");
-                        changebackground("div.block.rainbow", "#FFC600");
+            changebackground("div.block.rainbow", "#FFC600");
             break;
         case (150 <= iqa <= 199):
             display_results("#aggettivoiqa", "scadente");
-                        changebackground("div.block.rainbow", "#FF5722");
+            changebackground("div.block.rainbow", "#FF5722");
             break;
         case (iqa >= 200):
             display_results("#aggettivoiqa", "pessima");
-                        changebackground("div.block.rainbow", "#9E005D");
+            changebackground("div.block.rainbow", "#9E005D");
             break;
         default:
             console.log("iqa nd");
             break;
     };
 }
+
+/* test frasi online*/
+// https://www.joomla.it/articoli-della-community.feed?type=rss
+
+$.get("https://www.joomla.it/articoli-della-community.feed?type=rss", function (data) {
+    $(data).find("entry").each(function () { // or "item" or whatever suits your feed
+        var el = $(this);
+
+        console.log("------------------------");
+        console.log("title      : " + el.find("title").text());
+        console.log("author     : " + el.find("author").text());
+        console.log("description: " + el.find("description").text());
+    });
+});

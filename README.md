@@ -3,7 +3,9 @@
 Primi obiettivi:
 
 A-sapere giornalmente l'IQA
+
 B-avere una frase di approfondimento ogni giorno
+
 C-sapere dalle stazioni di fondo il valore peggiore degli inquinanti
 
 Sviluppo:
@@ -53,6 +55,10 @@ Doc plugin: https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-n
     <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
 
 4- scrivere la richiesta CORS
+
+https://www.test-cors.org/#?client_method=GET&client_credentials=false&server_url=https%3A%2F%2Fapps.arpae.it%2FREST%2Fqa_modello%2F20181018%3Fprojection%3D%7B%22dati.istat_037006%22%3A1%7D&server_enable=true&server_status=200&server_credentials=false&server_tabs=remote
+
+
 https://www.test-cors.org/#?client_method=GET&client_credentials=false&client_postdata=%0A&server_url=https%3A%2F%2Fapps.arpae.it%2FREST%2Fqa_modello%2F20181016&server_enable=true&server_status=200&server_credentials=false&server_tabs=remote&client_headers=%0A
 https://www.html5rocks.com/en/tutorials/cors/#toc-making-a-cors-request
 
@@ -89,7 +95,7 @@ commit deaa132b7619c139d42e490281449affa755fe93
 git tag v01.02
 commit feecb36414ac49b1ef36a2edaa760f9bdecf0677
 
--pulire la risposta xml dell'IAQ
+- pulire la risposta json dell'IQA
 
 - crearsi una scala ed avere il feedback utente: colore ed aggettivo.
 riferimento: https://www.arpae.it/dettaglio_generale.asp?id=938&idlivello=134&disab_redirautom_mob=1
@@ -97,6 +103,18 @@ riferimento: https://www.arpae.it/dettaglio_generale.asp?id=938&idlivello=134&di
 - segnaposto per frase e sotto frase
 
 git tag v01.03
+commit 8dc5dc6e5708b8398a49f600394117983136141f
 
 ## Raggiungere il risultato B:
 
+Abbiamo un foglio di calcolo in cui ci hanno passato le frasi divise nei 5 aggettivi dell'IQA.
+Le frasi online sono feed RSS ed hanno: data, titolo e contenuto (con fonte). 
+Le frasi offline sono JSON ed hanno: titolo e contenuto (con fonte) e in localstorage le 5 liste degli indici delle frasi già usate (a raggiungimento della lunghezza massima si azzerano).
+Il nostro script deve: guardare se in un feed RSS c'è la frase di oggi. Se si scriverla.
+Se no andare nelle liste di frasi in locale e darne una della tipologia giusta e senza riperterle finchè le ha finite.
+
+## Raggiungere il risultato C:
+
+Test di CORS lato server: https://www.test-cors.org/#?client_method=GET&client_credentials=false&server_url=https%3A%2F%2Fwww.arpae.it%2Fqualita-aria%2Fbollettino-qa%2Fjson&server_enable=true&server_status=200&server_credentials=false&server_tabs=remote
+
+Intanto grafica
