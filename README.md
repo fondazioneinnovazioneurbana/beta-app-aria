@@ -1,11 +1,13 @@
-Applicazione per il laboratorio partecipato di Bologna sulla qualità dell'aria.
+# Applicazione per il laboratorio partecipato di Bologna sulla qualità dell'aria.
 
 Primi obiettivi:
+
 A-sapere giornalmente l'IQA
 B-avere una frase di approfondimento ogni giorno
-C-sapere delle stazioni di fondo il valore peggiore degli inquinanti
+C-sapere dalle stazioni di fondo il valore peggiore degli inquinanti
 
 Sviluppo:
+
 Applicazione ibrida per web, android ed ios.
 
     $cordova create appAria it.fondazioneinnovazioneurbana.apparia appAria
@@ -16,11 +18,11 @@ Plugin installati:
     $cordova plugin add cordova-plugin-network-information
 
 Tutto il progetto web è in www. Dentro a www usare "bower install", che scaricherà le dipendenze.
-"dependencies": {
-    "framework7": "^2.0.7",
-    "normalize.css": "^8.0.0",
-    "jquery": "^3.3.1"
-  }
+    "dependencies": {
+        "framework7": "^2.0.7",
+        "normalize.css": "^8.0.0",
+        "jquery": "^3.3.1"
+     }
 
 Per buildare l'app bisogna avere gli SDK appropiati e il .bash_profile adatto.
 
@@ -29,15 +31,17 @@ Per buildare l'app bisogna avere gli SDK appropiati e il .bash_profile adatto.
     $cordova platforms add ios
 
 Poi
+
     $cordova run browser
     $cordova run android
     $cordova run ios
 
 Al momento della pubblicazione è necessario pacchettizzarla non in debug e firmarla per caricarla nei rispettivi store.
 
-#Tappe della sviluppo
 
-##Raggiungere il primo risultato A:
+# Tappe della sviluppo
+
+## Raggiungere il primo risultato A:
 
 1- avere lo splashscreen ed una app che si avvia
 Doc plugin: https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-splashscreen/index.html
@@ -46,8 +50,7 @@ Doc plugin: https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-s
 Doc plugin: https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-network-information/index.html
 
 3- adattare la Policy sulle risorse:
-Stappata:
- <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
 
 4- scrivere la richiesta CORS
 https://www.test-cors.org/#?client_method=GET&client_credentials=false&client_postdata=%0A&server_url=https%3A%2F%2Fapps.arpae.it%2FREST%2Fqa_modello%2F20181016&server_enable=true&server_status=200&server_credentials=false&server_tabs=remote&client_headers=%0A
@@ -61,7 +64,7 @@ Verificato che lato server le API ci premettono di avere il dato, passiamo alla 
 commit 35c41b4491a360d2f1ec439e30bb5c6943cdc0c5
 _______________________________________________________
 
-###Da qui in poi si passa in grafica con Framework7;
+### Da qui in poi si passa in grafica con Framework7;
 
 template di partenza: single
 https://github.com/framework7io/framework7-template-single-view
@@ -95,5 +98,5 @@ riferimento: https://www.arpae.it/dettaglio_generale.asp?id=938&idlivello=134&di
 
 git tag v01.03
 
-##Raggiungere il risultato B:
+## Raggiungere il risultato B:
 
