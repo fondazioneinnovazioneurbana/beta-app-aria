@@ -113,6 +113,9 @@ Le frasi offline sono JSON ed hanno: titolo e contenuto (con fonte) e in localst
 Il nostro script deve: guardare se in un feed RSS c'è la frase di oggi. Se si scriverla.
 Se no andare nelle liste di frasi in locale e darne una della tipologia giusta e senza riperterle finchè le ha finite.
 
+git commit
+commit 0260b524261818c3c32945d4b572ec81759797da
+
 ## Raggiungere il risultato C:
 
 Test di CORS lato server: https://www.test-cors.org/#?client_method=GET&client_credentials=false&server_url=https%3A%2F%2Fwww.arpae.it%2Fqualita-aria%2Fbollettino-qa%2Fjson&server_enable=true&server_status=200&server_credentials=false&server_tabs=remote
