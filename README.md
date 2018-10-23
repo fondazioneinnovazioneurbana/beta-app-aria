@@ -120,4 +120,20 @@ commit 0260b524261818c3c32945d4b572ec81759797da
 
 Test di CORS lato server: https://www.test-cors.org/#?client_method=GET&client_credentials=false&server_url=https%3A%2F%2Fwww.arpae.it%2Fqualita-aria%2Fbollettino-qa%2Fjson&server_enable=true&server_status=200&server_credentials=false&server_tabs=remote
 
-Intanto grafica
+Intanto grafica C delle tabelle degli inquinanti
+Gli istogrammi orizzontali sono in css, senza librerie grafiche aggiunte.
+
+git tag v01.04
+commit 8e412b861e40be76a80620c7d4949ba49017756f
+
+## Sviluppo logica delle frasi del giorno:
+
+Aggiungo 5 file json, uno per aggettivo.
+mi segno un indice a cui sono ed un array con la sequenza che seguo e la lunghezza dell'oggetto delle frasi.
+quindi di ognuna alla prima occorrenza mi segno in local storage queste tre cose suddette.
+poi in ordine controllo: 
+se la lunghezza dell'oggetto delle frasi è uguale a prima; 
+se sì apposto, sennò cancello quello che mi son segnata e riprendo la funzione da capo;
+quindi mi leggo a che punto sono, in base al punto in cui sono arrivata nell'array scrivo la frase successiva e mi segno di nuovo l'indice in cui sono.
+
+

@@ -156,6 +156,7 @@ function stampaaggettivoiqa() {
         case (50 <= iqa <= 99):
             display_results("#aggettivoiqa", "accettabile");
             changebackground("div.block.rainbow", "#FFEA00");
+            scrivifrase("accettabile");
             break;
         case (100 <= iqa <= 149):
             display_results("#aggettivoiqa", "mediocre");
@@ -175,7 +176,7 @@ function stampaaggettivoiqa() {
     };
 }
 
-/* test frasi online*/
+/* test frasi online */
 // https://www.joomla.it/articoli-della-community.feed?type=rss
 
 $.get("https://www.joomla.it/articoli-della-community.feed?type=rss", function (data) {
@@ -188,3 +189,132 @@ $.get("https://www.joomla.it/articoli-della-community.feed?type=rss", function (
         console.log("description: " + el.find("description").text());
     });
 });
+
+/* test frasi offline http://api.jquery.com/jquery.ajax/  */
+
+var nbuona = 0;
+var arraybuona = [];
+var indicearraybuona = 0;
+
+var naccettabile = 0;
+var arrayaccettabile = [];
+var indicearrayaccettabile = 0;
+
+var nmediocre = 0;
+var arraymediocre = [];
+var indicearraymediocre = 0;
+
+var nscadente = 0;
+var arrayscadente = [];
+var indicearrayscadente = 0;
+
+var npessima = 0;
+var arraypessima = [];
+var indicearraypessima = 0;
+
+function scrivifrase(argomento) {
+    $.ajax({
+        'async': true,
+        'global': false,
+        'url': "/frasi/" + argomento + ".json",
+        'dataType': "json",
+        'success': function (data) {
+            //console.log(data.resources.length);
+            //console.log(data.resources);
+            frasi = $(data.resources);
+            //console.log(frasi[2].name);
+
+            if (localStorage.getItem(argomento)) {
+                // console.log("esiste");
+                var compara = 0;
+                compara = parseInt(localStorage.getItem(argomento)) - 1;
+                if (data.resources.length != localStorage.getItem(argomento)) {
+                    console.log("fineciclo1");
+                    localStorage.clear();
+                    scrivifrase(argomento);
+                } else {
+                    var dovesono = 0;
+                    var dovevado = [];
+                    var andiamo = 0;
+
+                    dovesono = localStorage.getItem("mioindice" + argomento);
+                    dovesono = parseInt(dovesono) + 1;
+                    dovevado = localStorage.getItem("sequenza" + argomento);
+                    dovevado = dovevado.split(',').map(function (item) {
+                        return parseInt(item, 10);
+                    });
+                    var compara = 0;
+                    compara = parseInt(localStorage.getItem(argomento)-1);
+                    console.log(compara);
+                    console.log(dovesono);
+                    //console.log(dovesono + " array " + dovevado);
+                    andiamo = dovevado[dovesono];
+                    //console.log(andiamo);
+                    localStorage.setItem("mioindice" + argomento, dovesono);
+                    //scrivo
+                    display_results("#fraseiqa", frasi[andiamo].name);
+                    display_results("#sottofraseiqa", frasi[andiamo].content);
+                    if (dovesono == compara) {
+                        console.log("fineciclo2");
+                        localStorage.clear();
+                        scrivifrase(argomento);
+                    }
+
+                }
+
+            } else {
+                //console.log("non esiste");
+                // scrivo le 3 cose che mi servono: lunghezza, sequenza, mioindice
+
+                frasi = $(data.resources);
+                localStorage.setItem(argomento, data.resources.length);
+
+                var N = [];
+                N = Array.apply(null, {
+                    length: data.resources.length
+                }).map(Number.call, Number);
+                console.log(N);
+                arr = shuffle(N);
+                console.log(arr);
+
+                localStorage.setItem("sequenza" + argomento, arr);
+                localStorage.setItem("mioindice" + argomento, 0);
+                //scrivo
+                display_results("#fraseiqa", frasi[0].name);
+                display_results("#sottofraseiqa", frasi[0].content);
+            };
+        }
+    });
+
+};
+
+function arrayordinato(numero) {
+    // array ordinato
+    Array.apply(null, {
+        length: numero
+    }).map(Number.call, Number)
+}
+
+
+
+// https://bost.ocks.org/mike/shuffle/
+
+function shuffle(array) {
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
