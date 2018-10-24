@@ -136,14 +136,16 @@ function changebackground(bck, color) {
 /*///////////////fine utilities//////////////*/
 
 function noconnessione() {
-    $("div.block.rainbow ").css("background-color", "#E1E1E1")
+    $("div.block.rainbow ").css("background-color", "#E1E1E1");
     $("#noconnesso").removeClass("hide");
     display_results("h1", "Errore");
 }
 
 function connesso() {
-    //$("div.block.rainbow ").css("background-color", "#00E676")
+    $("div.block.rainbow ").css("min-height", "auto");
+        $("div.block.rainbow ").css("animation", "none");
     $("#connesso").removeClass("hide");
+    $("#tabellainquinanti").removeClass("hide");
 }
 // scala iqa https://www.arpae.it/dettaglio_generale.asp?id=938&idlivello=134&disab_redirautom_mob=1
 
@@ -216,7 +218,7 @@ function scrivifrase(argomento) {
     $.ajax({
         'async': true,
         'global': false,
-        'url': "/frasi/" + argomento + ".json",
+        'url': "frasi/" + argomento + ".json",
         'dataType': "json",
         'success': function (data) {
             //console.log(data.resources.length);

@@ -69,10 +69,9 @@ div.block.rainbow {
     height: auto;
     margin: 0;
     background-color: #00E676;
-    animation-name: example;
-    animation-duration: 5s;
-    animation-direction: alternate;
-    animation-delay: 5s;
+    animation: example 3s infinite;
+    animation-delay: 3s;
+    animation-timing-function:ease-out;
     min-height:89%;
 }
 div.block#noconnesso, div.block#connesso{
