@@ -1,33 +1,32 @@
-{
-    "description": "accettabile",
+﻿{
+    "description": "moderato",
     "resources": [{
             "type": "text",
-            "name" : "16 milardi di euro ti sembrano pochi?",
-            "content" : "In Europa il costo dovuto alle giornate di lavoro perse a causa di malattie legate all'inquinamento dell'aria è pari a quasi 16 miliardi di euro"
+            "name" : "Sii dolce con tutti, ma con i pedali della tua auto ancora di più.",
+            "content" : "Se viaggi in auto, utilizza uno stile di guida ecologico: mantieni una velocità uniforme e moderata ed evita le brusche frenate e le forti accelerazioni. Ridurrai consumi ed emissioni!"
         }, 
         {
             "type": "text",
-            "name" : "60.000 persone ti sembrano poche?",
-            "content" : "Sono oltre 60.000 le persone che nel nostro Paese muoiono prematuramente a causa dell'inquinamento atmosferico."
+            "name" : "Anche se è il tuo sogno nel cassetto, ancora non gareggi in Formula Uno!",
+            "content" : " Se viaggi in auto, utilizza uno stile di guida ecologico: mantieni una velocità uniforme e moderata ed evita le brusche frenate e le forti accelerazioni. Ridurrai consumi ed emissioni!"
         }, 
         {
             "type": "text",
-            "name" : "Lo sapevi che sono in vigore le misure antismog?",
-            "content" : "Dal 1 ottobre 2018 al 31 marzo 2019 dal lunedì al venerdì dalle 8.30 alle 18.30 sul territorio del Comune di Bologna non puoi circolare se hai un'auto diesel euro 1, 2, 3 o benzina euro 1. Puoi circolare sei hai un'auto a metano, gpl, elettrica o ibrida, se usi il servizio di car-sharing oppure se ci sono almeno 3 persone a bordo (car pooling). "
+            "name" : "Hai misurato la pressione prima di uscire?",
+            "content" : "È importante controllare la pressione dei pneumatici dell'auto almeno una volta al mese perché influenza molto i consumi e quindi le emissioni. "
         }, 
         {
             "type": "text",
-            "name" : "Serata romantica? Accendi la fantasia ma spegni il camino!",
-            "content" : "Se per 4 giorni consecutivi si superano i limiti di PM10, è vietato usare biomasse per il riscaldamento domestico (es. camini a legna, stufe a pellet) con classe di prestazione emissiva <3 stelle."
+            "name" : "La classe non è acqua!",
+            "content" : "Se stai cambiando auto, scegli un'auto di classe ambientale Euro 6, alimentazioni alternative al Diesel, auto ibride o elettriche. L'uso delle auto e in particolare di quelle che usano come combustibile il diesel, è tra i principali fattori che provocano l’innalzamento dei PM10 nell’aria."
         }, 
         {
             "type": "text",
-            "name" : "Tira fuori quel tuo vecchio maglione dall'armadio!",
-            "content" : "Se per 4 giorni consecutivi si superano i limiti di PM10, devi abbassare il riscaldamento fino a un massimo di 19°C in casa e di 17°C nei luoghi che ospitano attività produttive e artigianali."
-        }, {
+            "name" : "A meno che tu non sia su un'isola deserta, non mandare segnali di fumo!",
+            "content" : "Non bruciare nel tuo giardino nessun tipo di rifiuto (ad esempio legna, scarti vegetali, imballaggi, plastica, ecc.) perché produci e immetti nell'aria una grande quantità di sostanze tossiche."
+        },   {
             "type": "text",
-            "name" : "Aspetta prima di aprire le finestre! C'è un momento giusto per tutto.",
-            "content" : "In casa, per mantenere un ambiente salubre, è importante aprire almeno 2 volte al giorno le finestre per almeno 5-7 minuti, ma se abiti in zone molto trafficate o in generale in città è meglio arieggiare quando il traffico è meno intenso, ad esempio la mattina presto o la sera tardi."
-        }
-    ]
-}
+            "name" : "A meno che tu non sia su un'isola deserta, non mandare segnali di fumo!",
+            "content" : "Non bruciare nel tuo giardino nessun tipo di rifiuto (ad esempio legna, scarti vegetali, imballaggi, plastica, ecc.) perché produci e immetti nell'aria una grande quantità di sostanze tossiche."
+        } ]
+                  }

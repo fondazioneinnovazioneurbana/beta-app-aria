@@ -1,0 +1,28 @@
+﻿{
+    "description": "moderato",
+    "resources": [{
+            "type": "text",
+            "name" : "L'inverno ti mette a dura prova? I tortellini in brodo sono meglio del termosifone!",
+            "content" : "Ricorda di regolare il termostato a una temperatura mai superiore a 20°. Non sprecherai energia termica ed eviterai di immettere grandi quantità di anidride carbonica nell'aria."
+        }, 
+        {
+            "type": "text",
+            "name" : "L'unione fa la forza. Condividi l'auto con chi fa la tua stessa strada!",
+            "content" : " La qualità dell’aria che respiriamo dipende da tutti: con piccole attenzioni quotidiane, ognuno di noi può contribuire a migliorarla. Organizzati per non viaggiare mai da solo e per dividere l'auto con un collega, un amico o un vicino di casa che va nella tua stessa direzione. "
+        }, 
+        {
+            "type": "text",
+            "name" : "Non nascondiamo le polveri sotto il tappeto!",
+            "content" : "L’aria inquinata produce effetti negativi diretti a breve, medio e lungo termine per la salute di tutti, soprattutto di bambini, donne incinte, anziani, malati. Le Polveri sottili PM 2.5 ad es. penetrano nei polmoni e, viaggiando attraverso gli alveoli polmonari, possono causare patologie polmonari e cardiache.  "
+        }, 
+        {
+            "type": "text",
+            "name" : "600.000 persone ti sembrano poche?",
+            "content" : "Secondo l'Organizzazione Mondiale della Sanità (OMS) in Europa muoiono ogni anno 600.000 persone a causa dell’inquinamento."
+        }, 
+        {
+            "type": "text",
+            "name" : "33.000 persone ti sembrano poche?",
+            "content" : " Secondo l'Organizzazione Mondiale della Sanità (OMS) in Italia muoiono ogni anno 33.000 persone a causa dell’inquinamento.  "
+        }]
+}

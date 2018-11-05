@@ -153,23 +153,28 @@ function stampaaggettivoiqa() {
     switch (true) {
         case (iqa < 50):
             display_results("#aggettivoiqa", "buona");
+            //basso
             changebackground("div.block.rainbow", "#00E676");
             break;
         case (50 <= iqa <= 99):
             display_results("#aggettivoiqa", "accettabile");
+            //moderato
             changebackground("div.block.rainbow", "#FFEA00");
             scrivifrase("accettabile");
             break;
         case (100 <= iqa <= 149):
             display_results("#aggettivoiqa", "mediocre");
+            //medio
             changebackground("div.block.rainbow", "#FFC600");
             break;
         case (150 <= iqa <= 199):
             display_results("#aggettivoiqa", "scadente");
+            //alto
             changebackground("div.block.rainbow", "#FF5722");
             break;
         case (iqa >= 200):
             display_results("#aggettivoiqa", "pessima");
+            //molto alto
             changebackground("div.block.rainbow", "#9E005D");
             break;
         default:

@@ -1,0 +1,28 @@
+﻿{
+    "description": "moderato",
+    "resources": [{
+            "type": "text",
+            "name" : "139 persone ti sembrano poche?",
+            "content" : "Nel 2016 a Bologna sono stati 139 i decessi attribuibili all'inquinamento da PM2.5. Nello stesso periodo si sono verificati 16 morti per incidenti stradali, 9 per infortuni sul lavoro e 4 omicidi."
+        }, 
+        {
+            "type": "text",
+            "name" : "Per mesi ti è stata fedele. Non abbandonare la tua bici in cantina!",
+            "content" : " Se puoi, usa la bicicletta o il bike-sharing per i tuoi spostamenti anche durante le stagioni più fredde. Con l’equipaggiamento giusto è possibile! "
+        }, 
+        {
+            "type": "text",
+            "name" : "Se la tua serata ideale è babbucce, copertina e tisana ecco la scusa che aspettavi!",
+            "content" : "Ricorda di regolare il termostato a una temperatura mai superiore a 20°. Ogni anno consumiamo tonnellate di combustibili fossili per il riscaldamento delle abitazioni contribuendo alle emissioni di anidride carbonica che stanno raggiungendo i livelli più alti mai raggiunti in precedenza. "
+        }, 
+        {
+            "type": "text",
+            "name" : "Fallo al buio!",
+            "content" : "Ricordati di spegnere le luci quando non hai bisogno di luce artificiale: se spegni una lampada da 60 W per 5 ore al giorno, in un anno risparmi circa 80 kg di anidride carbonica."
+        }, 
+        {
+            "type": "text",
+            "name" : "Non puoi vivere senza Serie A? Portatela anche in casa!",
+            "content" : " Acquista una lavatrice o l'asciugatrice di classe "A". Le puoi riconoscere grazie ad apposite targhette presenti sull'elettrodomestico. Consumerai meno energia e immetterai nell'aria quantità minori di anidride carbonica.  "
+        }]
+}

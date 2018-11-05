@@ -1,0 +1,28 @@
+﻿{
+    "description": "basso",
+    "resources": [{
+            "type": "text",
+            "name" : "16 milardi di euro ti sembrano pochi?",
+            "content" : "In Europa il costo dovuto alle giornate di lavoro perse a causa di malattie legate all'inquinamento dell'aria è pari a quasi 16 miliardi di euro"
+        }, 
+        {
+            "type": "text",
+            "name" : "60.000 persone ti sembrano poche?",
+            "content" : "Sono oltre 60.000 le persone che nel nostro Paese muoiono prematuramente a causa dell'inquinamento atmosferico."
+        }, 
+        {
+            "type": "text",
+            "name" : "Lo sapevi che sono in vigore le misure antismog?",
+            "content" : "Dal 1 ottobre 2018 al 31 marzo 2019 dal lunedì al venerdì dalle 8.30 alle 18.30 sul territorio del Comune di Bologna non puoi circolare se hai un'auto diesel euro 1, 2, 3 o benzina euro 1. Puoi circolare sei hai un'auto a metano, gpl, elettrica o ibrida, se usi il servizio di car-sharing oppure se ci sono almeno 3 persone a bordo (car pooling). "
+        }, 
+        {
+            "type": "text",
+            "name" : "Serata romantica? Accendi la fantasia ma spegni il camino!",
+            "content" : "Se per 3 giorni consecutivi si superano i limiti di PM10, è vietato usare biomasse per il riscaldamento domestico (es. camini a legna, stufe a pellet) con classe di prestazione emissiva <3 stelle."
+        }, 
+        {
+            "type": "text",
+            "name" : "Tira fuori quel tuo vecchio maglione dall'armadio!",
+            "content" : "Se per 3 giorni consecutivi si superano i limiti di PM10, devi abbassare il riscaldamento fino a un massimo di 19°C in casa e di 17°C nei luoghi che ospitano attività produttive e artigianali."
+        }]
+}

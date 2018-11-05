@@ -41,8 +41,7 @@ body {
 
 /*background-image: linear-gradient(#B2FF59, #FFEA00 15%, #FFC600 25%, #FF5722 50%, #9E005D 100%);
  */
-
-@keyframes example {
+/*@keyframes example {
     0% {
         background-color: #00E676;
     }
@@ -61,6 +60,40 @@ body {
     100% {
         background-color: #9E005D;
     }
+}*/
+
+@keyframes example {
+    0% {
+        background-color: #00E676;
+    }
+    10% {
+        background-color: #B2FF59;
+    }
+    20% {
+        background-color: #FFEA00;
+    }
+    30% {
+        background-color: #FFC600;
+    }
+    40% {
+        background-color: #FF5722;
+    }
+    50% {
+        background-color: #9E005D;
+    }
+    60% {
+        background-color: #FF5722;
+    }
+    70% {
+        background-color: #FFC600;
+    }
+    80% {
+        background-color: #FFEA00;
+    }
+      90% {
+        background-color: #B2FF59;
+    }
+    
 }
 
 /* The element to apply the animation to */
@@ -69,8 +102,8 @@ div.block.rainbow {
     height: auto;
     margin: 0;
     background-color: #00E676;
-    animation: example 3s infinite;
-    animation-delay: 3s;
+    animation: example 6s infinite;
+    animation-delay: 4s;
     animation-timing-function:ease-out;
     min-height:89%;
 }
