@@ -87,11 +87,21 @@ var createCORSRequest = function (method, url) {
 /*ogni volta setto la data di oggi*/
 var iqa = 0;
 var today = new Date();
+var oggi= today.getDate();
+oggi=oggi.toString();
 var mese = today.getMonth() + 1;
 var annon = today.getYear();
 var annok = annon.toString();
+var mesek = mese.toString();
+
+if (oggi.length == 1) {
+    oggi = '0' + oggi;
+}
+if (mesek.length == 1) {
+    mesek = '0' + mesek;
+} 
 // data per la query alle API arpa per IQA
-var dataarpa = "20" + annok.slice(1) + mese.toString() + today.getDate();
+var dataarpa = "20" + annok.slice(1) + mesek + oggi;
 
 // data per umani
 var mesi = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
@@ -143,7 +153,7 @@ function noconnessione() {
 
 function connesso() {
     $("div.block.rainbow ").css("min-height", "auto");
-        $("div.block.rainbow ").css("animation", "none");
+    $("div.block.rainbow ").css("animation", "none");
     $("#connesso").removeClass("hide");
     $("#tabellainquinanti").removeClass("hide");
 }
@@ -251,7 +261,7 @@ function scrivifrase(argomento) {
                         return parseInt(item, 10);
                     });
                     var compara = 0;
-                    compara = parseInt(localStorage.getItem(argomento)-1);
+                    compara = parseInt(localStorage.getItem(argomento) - 1);
                     console.log(compara);
                     console.log(dovesono);
                     //console.log(dovesono + " array " + dovevado);
