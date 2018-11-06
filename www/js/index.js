@@ -262,8 +262,8 @@ function scrivifrase(argomento) {
                     });
                     var compara = 0;
                     compara = parseInt(localStorage.getItem(argomento) - 1);
-                    console.log(compara);
-                    console.log(dovesono);
+                    //console.log(compara);
+                    //console.log(dovesono);
                     //console.log(dovesono + " array " + dovevado);
                     andiamo = dovevado[dovesono];
                     //console.log(andiamo);
