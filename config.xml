@@ -34,7 +34,7 @@
         <preference name="SplashScreenDelay" value="3000" />
     </platform>
     <platform name="browser">
-        <preference name="SplashScreen" value="res/screen/android/screen-xhdpi-landscape.png" />
+        <preference name="SplashScreen" value="./screen-xhdpi-landscape.png" />
         <preference name="AutoHideSplashScreen" value="true" />
         <preference name="SplashScreenDelay" value="3000" />
         <preference name="SplashScreenBackgroundColor" value="#00E676" />

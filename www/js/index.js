@@ -27,7 +27,8 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
-        checkConnection();
+        //DANGER solo per browser senza check connessione, decommentare!
+        // checkConnection();
         // DANGER: solo per browser, dopo togliere!
         getdatigrezzi();
     },
@@ -58,14 +59,14 @@ function checkConnection() {
     if (states[networkState] == 'Unknown connection' || states[networkState] == 'No network connection') {
 
         setTimeout(function () {
-            //DANGER solo per browser senza check connessione, decommentare!
-            //noconnessione();
+            noconnessione();
         }, 9000);
         //alert('Non sei connesso ad internet, connettiti ad una rete per procedere.');
         return false;
 
     } else {
         //display_results("h1", "ok");
+        //DANGER solo per browser senza check connessione, decommentare!
         getdatigrezzi();
         return true;
     }
@@ -151,6 +152,8 @@ function changebackground(bck, color) {
 
 function noconnessione() {
     $("div.block.rainbow ").css("background-color", "#E1E1E1");
+    $("div.block.rainbow ").css("animation", "none");
+    $("#connesso").addClass("hide");
     $("#noconnesso").removeClass("hide");
     display_results("h1", "Errore");
 }
@@ -178,19 +181,22 @@ function stampaaggettivoiqa() {
             scrivifrase("moderato");
             break;
         case (100 <= iqa <= 149):
-            display_results("#aggettivoiqa", "mediocre");
+            display_results("#aggettivoiqa", "medio");
             //medio
             changebackground("div.block.rainbow", "#FFC600");
+            scrivifrase("medio");
             break;
         case (150 <= iqa <= 199):
-            display_results("#aggettivoiqa", "scadente");
+            display_results("#aggettivoiqa", "alto");
             //alto
             changebackground("div.block.rainbow", "#FF5722");
+            scrivifrase("alto");
             break;
         case (iqa >= 200):
-            display_results("#aggettivoiqa", "pessima");
+            display_results("#aggettivoiqa", "molto_alto");
             //molto alto
             changebackground("div.block.rainbow", "#9E005D");
+            scrivifrase("molto_alto");
             break;
         default:
             console.log("iqa nd");
@@ -201,7 +207,7 @@ function stampaaggettivoiqa() {
 /* test frasi online */
 // https://www.joomla.it/articoli-della-community.feed?type=rss
 
-/*$.get("https://www.joomla.it/articoli-della-community.feed?type=rss", function (data) {
+$.get("http://www.fondazioneinnovazioneurbana.it/bologna/rss/aria-rss?format=feed&type=rss", function (data) {
     $(data).find("entry").each(function () { // or "item" or whatever suits your feed
         var el = $(this);
 
@@ -210,7 +216,7 @@ function stampaaggettivoiqa() {
         console.log("author     : " + el.find("author").text());
         console.log("description: " + el.find("description").text());
     });
-});*/
+});
 
 /* test frasi offline http://api.jquery.com/jquery.ajax/  */
 
@@ -355,11 +361,11 @@ function getdatigrezzi() {
         //  data: data,
         type: "GET",
         success: function (a) {
-            console.log(a,1);
+            console.log(a, 1);
         },
         error: function (b) {
-            console.log(b,2);
-            
+            console.log(b, 2);
+
         }
     });
 
