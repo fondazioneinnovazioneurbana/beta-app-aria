@@ -142,6 +142,14 @@ quindi mi leggo a che punto sono, in base al punto in cui sono arrivata nell'arr
 
 * lettura dati grezzi commit 1496aaeab437125b715e536c7cce20fc7cb4b8c6
 
-* scrittura dei dati grezzi
+* colore preso da un gradiente tra i due stadi della scala di valori dell'IQA
+
+* condivisione sui social della frase
+
+* frasi da fonti online
+
+* frasi per uno specifico giorno da RSS
+
+* scrittura dei dati grezzi degli inquinanti
 
 

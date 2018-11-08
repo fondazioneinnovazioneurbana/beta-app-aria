@@ -59,7 +59,8 @@ function checkConnection() {
     if (states[networkState] == 'Unknown connection' || states[networkState] == 'No network connection') {
 
         setTimeout(function () {
-            noconnessione();
+            //DANGER solo per browser senza check connessione, decommentare!
+            // noconnessione();
         }, 9000);
         //alert('Non sei connesso ad internet, connettiti ad una rete per procedere.');
         return false;
@@ -164,6 +165,13 @@ function connesso() {
     $("#connesso").removeClass("hide");
     $("#tabellainquinanti").removeClass("hide");
 }
+
+//var colori per gratio, per calcolare valore del gradiente di sfondo
+var ratio = "";
+var baseratio = 0;
+var colorebasso = "";
+var colorealto = "";
+
 // scala iqa https://www.arpae.it/dettaglio_generale.asp?id=938&idlivello=134&disab_redirautom_mob=1
 
 function stampaaggettivoiqa() {
@@ -171,32 +179,41 @@ function stampaaggettivoiqa() {
         case (iqa < 50):
             display_results("#aggettivoiqa", "basso");
             //basso
-            changebackground("div.block.rainbow", "#00E676");
             scrivifrase("basso");
+            colorebasso = "00E676";
+            colorealto = "FFEA00";
+            baseratio = 0;
             break;
         case (50 <= iqa <= 99):
             display_results("#aggettivoiqa", "moderato");
             //moderato
-            changebackground("div.block.rainbow", "#FFEA00");
             scrivifrase("moderato");
+            colorebasso = "FFEA00";
+            colorealto = "FFC600";
+            baseratio = 50;
             break;
         case (100 <= iqa <= 149):
             display_results("#aggettivoiqa", "medio");
             //medio
-            changebackground("div.block.rainbow", "#FFC600");
             scrivifrase("medio");
+            colorebasso = "FFC600";
+            colorealto = "FF5722";
+            baseratio = 100;
             break;
         case (150 <= iqa <= 199):
             display_results("#aggettivoiqa", "alto");
             //alto
-            changebackground("div.block.rainbow", "#FF5722");
             scrivifrase("alto");
+            colorebasso = "FF5722";
+            colorealto = "9E005D";
+            baseratio = 150;
             break;
         case (iqa >= 200):
             display_results("#aggettivoiqa", "molto_alto");
             //molto alto
             changebackground("div.block.rainbow", "#9E005D");
             scrivifrase("molto_alto");
+            //
             break;
         default:
             console.log("iqa nd");
@@ -372,5 +389,30 @@ function getdatigrezzi() {
     /*   $.getJSON( url, function( json ) {
      console.log( "JSON Data: " + json );
     });*/
+    calcolagradiente()
+};
 
+function calcolagradiente() {
+    //numero intero
+    iqa = Math.trunc(iqa);
+    // console.log(ratio);
+    var color1 = colorealto;
+    var color2 = colorebasso;
+    ratio = [(iqa - baseratio) * 2] / 100;
+    //numero con solo una cifra decimale
+    ratio = Math.round(ratio * 10) / 10;
+    var hex = function (x) {
+        x = x.toString(16);
+        return (x.length == 1) ? '0' + x : x;
+    };
+
+    var r = Math.ceil(parseInt(color1.substring(0, 2), 16) * ratio + parseInt(color2.substring(0, 2), 16) * (1 - ratio));
+    var g = Math.ceil(parseInt(color1.substring(2, 4), 16) * ratio + parseInt(color2.substring(2, 4), 16) * (1 - ratio));
+    var b = Math.ceil(parseInt(color1.substring(4, 6), 16) * ratio + parseInt(color2.substring(4, 6), 16) * (1 - ratio));
+
+    var middle = hex(r) + hex(g) + hex(b);
+
+    console.log("rgb(" + r + "," + g + "," + b + ")");
+    $("div.block.rainbow ").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
+    //$("div.block.rainbow ").css("animation", "none");
 };
