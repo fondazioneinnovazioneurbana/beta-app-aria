@@ -28,6 +28,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         checkConnection();
+        getdatigrezzi();
     },
 
 
@@ -59,11 +60,12 @@ function checkConnection() {
             //noconnessione();
         }, 9000);
         //alert('Non sei connesso ad internet, connettiti ad una rete per procedere.');
-        return false
+        return false;
 
     } else {
         //display_results("h1", "ok");
-        return true
+        getdatigrezzi();
+        return true;
     }
 }
 var createCORSRequest = function (method, url) {
@@ -87,8 +89,8 @@ var createCORSRequest = function (method, url) {
 /*ogni volta setto la data di oggi*/
 var iqa = 0;
 var today = new Date();
-var oggi= today.getDate();
-oggi=oggi.toString();
+var oggi = today.getDate();
+oggi = oggi.toString();
 var mese = today.getMonth() + 1;
 var annon = today.getYear();
 var annok = annon.toString();
@@ -99,7 +101,7 @@ if (oggi.length == 1) {
 }
 if (mesek.length == 1) {
     mesek = '0' + mesek;
-} 
+}
 // data per la query alle API arpa per IQA
 var dataarpa = "20" + annok.slice(1) + mesek + oggi;
 
@@ -196,7 +198,7 @@ function stampaaggettivoiqa() {
 /* test frasi online */
 // https://www.joomla.it/articoli-della-community.feed?type=rss
 
-$.get("https://www.joomla.it/articoli-della-community.feed?type=rss", function (data) {
+/*$.get("https://www.joomla.it/articoli-della-community.feed?type=rss", function (data) {
     $(data).find("entry").each(function () { // or "item" or whatever suits your feed
         var el = $(this);
 
@@ -205,7 +207,7 @@ $.get("https://www.joomla.it/articoli-della-community.feed?type=rss", function (
         console.log("author     : " + el.find("author").text());
         console.log("description: " + el.find("description").text());
     });
-});
+});*/
 
 /* test frasi offline http://api.jquery.com/jquery.ajax/  */
 
@@ -335,3 +337,31 @@ function shuffle(array) {
 
     return array;
 }
+
+
+// secondo repo arpa: dati grezzi centraline
+
+function getdatigrezzi() {
+    console.log("dati grezzi");
+    //   var dati;
+    var url = "https://www.arpae.it/qualita-aria/bollettino-qa/json";
+
+    $.ajax({
+        dataType: "json",
+        url: url,
+        //  data: data,
+        type: "GET",
+        success: function (a) {
+            console.log(a,1);
+        },
+        error: function (b) {
+            console.log(b,2);
+            
+        }
+    });
+
+    /*   $.getJSON( url, function( json ) {
+     console.log( "JSON Data: " + json );
+    });*/
+
+};
