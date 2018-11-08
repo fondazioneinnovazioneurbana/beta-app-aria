@@ -28,6 +28,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         checkConnection();
+        // DANGER: solo per browser, dopo togliere!
         getdatigrezzi();
     },
 
@@ -57,6 +58,7 @@ function checkConnection() {
     if (states[networkState] == 'Unknown connection' || states[networkState] == 'No network connection') {
 
         setTimeout(function () {
+            //DANGER solo per browser senza check connessione, decommentare!
             //noconnessione();
         }, 9000);
         //alert('Non sei connesso ad internet, connettiti ad una rete per procedere.');
@@ -164,15 +166,16 @@ function connesso() {
 function stampaaggettivoiqa() {
     switch (true) {
         case (iqa < 50):
-            display_results("#aggettivoiqa", "buona");
+            display_results("#aggettivoiqa", "basso");
             //basso
             changebackground("div.block.rainbow", "#00E676");
+            scrivifrase("basso");
             break;
         case (50 <= iqa <= 99):
-            display_results("#aggettivoiqa", "accettabile");
+            display_results("#aggettivoiqa", "moderato");
             //moderato
             changebackground("div.block.rainbow", "#FFEA00");
-            scrivifrase("accettabile");
+            scrivifrase("moderato");
             break;
         case (100 <= iqa <= 149):
             display_results("#aggettivoiqa", "mediocre");

@@ -38,9 +38,12 @@ body {
     width: 100%;
 }
 
-
+.md body {
+    font-family: Helvetica, Arial, sans-serif !important;
+}
 /*background-image: linear-gradient(#B2FF59, #FFEA00 15%, #FFC600 25%, #FF5722 50%, #9E005D 100%);
  */
+
 /*@keyframes example {
     0% {
         background-color: #00E676;
@@ -61,6 +64,10 @@ body {
         background-color: #9E005D;
     }
 }*/
+
+@import url('https://fonts.googleapis.com/css?family=Space+Mono');
+
+
 
 @keyframes example {
     0% {
@@ -90,10 +97,10 @@ body {
     80% {
         background-color: #FFEA00;
     }
-      90% {
+    90% {
         background-color: #B2FF59;
     }
-    
+
 }
 
 /* The element to apply the animation to */
@@ -104,15 +111,18 @@ div.block.rainbow {
     background-color: #00E676;
     animation: example 6s infinite;
     animation-delay: 4s;
-    animation-timing-function:ease-out;
-    min-height:89%;
+    animation-timing-function: ease-out;
+    min-height: 89%;
 }
-div.block#noconnesso, div.block#connesso{
+
+div.block#noconnesso,
+div.block#connesso {
     margin: 0;
-    padding-top:16px;
+    padding: 16px 0 0 0;
 }
-.hide{
-    display:none;
+
+.hide {
+    display: none;
 }
 
 img.iconcina {
@@ -127,23 +137,29 @@ img.iconcina {
     text-transform: capitalize;
     background: #000;
 }
+
 /*frasi*/
+
 .block.block-strong.sotto {
     padding: 16px 0;
 }
+
 #fraseiqa {
-    font-family: monospace;
+    font-family: 'Space Mono', monospace;
     font-weight: 400;
 }
-#sottofraseiqa {
+
+h3, #sottofraseiqa {
     font-weight: 400;
 }
 
 /* inquinanti */
+
 #inquinanti {
     margin: 1em 0;
 }
-#concentra{
+
+#concentra {
     background-color: black;
     color: white;
     border-radius: 35px;
@@ -151,19 +167,23 @@ img.iconcina {
     display: inline-block;
     padding: 10px 30px;
 }
+
 .inq {
     border-bottom: solid 1px black;
     border-left: solid 1px black;
     margin: 1em 0 0 0;
 }
+
 #inquinanti div.tinq {
     padding: 0.6em;
     font-weight: 600;
 }
+
 .barra {
     height: 30px;
     margin: 0;
 }
+
 .barrain {
     height: 100%;
     background-color: grey;

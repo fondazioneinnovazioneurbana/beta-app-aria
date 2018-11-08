@@ -126,6 +126,7 @@ Gli istogrammi orizzontali sono in css, senza librerie grafiche aggiunte.
 git tag v01.04
 commit 8e412b861e40be76a80620c7d4949ba49017756f
 
+
 ## Sviluppo logica delle frasi del giorno:
 
 Aggiungo 5 file json, uno per aggettivo.
@@ -135,5 +136,12 @@ poi in ordine controllo:
 se la lunghezza dell'oggetto delle frasi è uguale a prima; 
 se sì apposto, sennò cancello quello che mi son segnata e riprendo la funzione da capo;
 quindi mi leggo a che punto sono, in base al punto in cui sono arrivata nell'array scrivo la frase successiva e mi segno di nuovo l'indice in cui sono.
+
+
+## Sviluppo delle diverse aree già illustrate:
+
+* lettura dati grezzi commit 1496aaeab437125b715e536c7cce20fc7cb4b8c6
+
+* scrittura dei dati grezzi
 
 
