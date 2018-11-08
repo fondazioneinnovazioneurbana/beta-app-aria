@@ -146,6 +146,8 @@ quindi mi leggo a che punto sono, in base al punto in cui sono arrivata nell'arr
 
 * condivisione sui social della frase
 
+* mettere degli hook per dividere il deploy android da browser e IOS 
+
 * frasi da fonti online
 
 * frasi per uno specifico giorno da RSS

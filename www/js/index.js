@@ -27,10 +27,11 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
-        //DANGER solo per browser senza check connessione, decommentare!
-        // checkConnection();
-        // DANGER: solo per browser, dopo togliere!
+        //DANGER solo per android, decommentare!
+        //checkConnection();
+        /* DANGER: solo per browser, dopo togliere!*/
         getdatigrezzi();
+        getdatiiqa();
     },
 
 
@@ -59,98 +60,106 @@ function checkConnection() {
     if (states[networkState] == 'Unknown connection' || states[networkState] == 'No network connection') {
 
         setTimeout(function () {
-            //DANGER solo per browser senza check connessione, decommentare!
-            // noconnessione();
+            noconnessione();
         }, 9000);
         //alert('Non sei connesso ad internet, connettiti ad una rete per procedere.');
         return false;
 
     } else {
         //display_results("h1", "ok");
-        //DANGER solo per browser senza check connessione, decommentare!
+        getdatiiqa();
         getdatigrezzi();
         return true;
     }
 }
-var createCORSRequest = function (method, url) {
-    var xhr = new XMLHttpRequest();
-    if ("withCredentials" in xhr) {
-        // Most browsers.
-        xhr.open(method, url, true);
-    } else if (typeof XDomainRequest != "undefined") {
-        // IE8 & IE9
-        xhr = new XDomainRequest();
-        xhr.open(method, url);
-    } else {
-        // CORS not supported.
-        xhr = null;
-    }
-    return xhr;
-};
 
-//var dataarpa = 20181010
 
-/*ogni volta setto la data di oggi*/
+
 var iqa = 0;
-var today = new Date();
-var oggi = today.getDate();
-oggi = oggi.toString();
-var mese = today.getMonth() + 1;
-var annon = today.getYear();
-var annok = annon.toString();
-var mesek = mese.toString();
 
-if (oggi.length == 1) {
-    oggi = '0' + oggi;
-}
-if (mesek.length == 1) {
-    mesek = '0' + mesek;
-}
-// data per la query alle API arpa per IQA
-var dataarpa = "20" + annok.slice(1) + mesek + oggi;
+function getdatiiqa() {
+    var createCORSRequest = function (method, url) {
+        var xhr = new XMLHttpRequest();
+        if ("withCredentials" in xhr) {
+            // Most browsers.
+            xhr.open(method, url, true);
+        } else if (typeof XDomainRequest != "undefined") {
+            // IE8 & IE9
+            xhr = new XDomainRequest();
+            xhr.open(method, url);
+        } else {
+            // CORS not supported.
+            xhr = null;
+        }
+        return xhr;
+    };
 
-// data per umani
-var mesi = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
+    //var dataarpa = 20181010
 
-display_results(".datatop h1 span#day", today.getDate());
-display_results(".datatop h1 span#month", mesi[today.getMonth()]);
-display_results(".datatop h1 span#year", "20" + annok.slice(1));
+    /*ogni volta setto la data di oggi*/
+
+    var today = new Date();
+    var oggi = today.getDate();
+    oggi = oggi.toString();
+    var mese = today.getMonth() + 1;
+    var annon = today.getYear();
+    var annok = annon.toString();
+    var mesek = mese.toString();
+
+    if (oggi.length == 1) {
+        oggi = '0' + oggi;
+    }
+    if (mesek.length == 1) {
+        mesek = '0' + mesek;
+    }
+    // data per la query alle API arpa per IQA
+    var dataarpa = "20" + annok.slice(1) + mesek + oggi;
+
+    // data per umani
+    var mesi = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
+
+    display_results(".datatop h1 span#day", today.getDate());
+    display_results(".datatop h1 span#month", mesi[today.getMonth()]);
+    display_results(".datatop h1 span#year", "20" + annok.slice(1));
 
 
-var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?projection={"dati.istat_037006":1}';
-//var urlC="https://www.arpae.it/qualita-aria/bollettino-qa/json"
+    var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?projection={"dati.istat_037006":1}';
+    //var urlC="https://www.arpae.it/qualita-aria/bollettino-qa/json"
 
-var method = 'GET';
-var xhr = createCORSRequest(method, url);
+    var method = 'GET';
+    var xhr = createCORSRequest(method, url);
 
-xhr.onload = function () {
-    var responseText = xhr.responseText;
+    xhr.onload = function () {
+        var responseText = xhr.responseText;
 
-    setTimeout(function () {
-        connesso();
-    }, 9000);
-    console.log(responseText);
-    // process the response.
-    var obj = jQuery.parseJSON(responseText);
-    iqa = obj.dati.istat_037006.iqa;
-    //display_results("h3", obj.dati.istat_037006.iqa);
-    stampaaggettivoiqa();
+        setTimeout(function () {
+            connesso();
+        }, 9000);
+        console.log(responseText);
+        // process the response.
+        var obj = jQuery.parseJSON(responseText);
+        iqa = obj.dati.istat_037006.iqa;
+        console.log(iqa);
+       
+        stampaaggettivoiqa();
+    };
+
+    xhr.onerror = function () {
+        //display_results("h3", 'There was an error!');
+        console.log('There was an error!');
+    };
+
+
+    xhr.send();
 };
-
-xhr.onerror = function () {
-    //display_results("h3", 'There was an error!');
-    console.log('There was an error!');
-};
-
-
-xhr.send();
 
 function changebackground(bck, color) {
     $(bck).css("background-color", color);
-}
+};
 
 /*///////////////fine utilities//////////////*/
 
+// arriva dal check connection plugin per android
 function noconnessione() {
     $("div.block.rainbow ").css("background-color", "#E1E1E1");
     $("div.block.rainbow ").css("animation", "none");
@@ -159,6 +168,7 @@ function noconnessione() {
     display_results("h1", "Errore");
 }
 
+// arriva dal aver finito di stampare l'iqa
 function connesso() {
     $("div.block.rainbow ").css("min-height", "auto");
     $("div.block.rainbow ").css("animation", "none");
@@ -219,6 +229,7 @@ function stampaaggettivoiqa() {
             console.log("iqa nd");
             break;
     };
+     calcolagradiente();
 }
 
 /* test frasi online */
@@ -389,7 +400,7 @@ function getdatigrezzi() {
     /*   $.getJSON( url, function( json ) {
      console.log( "JSON Data: " + json );
     });*/
-    calcolagradiente()
+
 };
 
 function calcolagradiente() {
@@ -398,9 +409,10 @@ function calcolagradiente() {
     // console.log(ratio);
     var color1 = colorealto;
     var color2 = colorebasso;
-    ratio = [(iqa - baseratio) * 2] / 100;
+    ratio = [(iqa - baseratio) * 2] / 10;
+    ratio = Math.floor(ratio);
     //numero con solo una cifra decimale
-    ratio = Math.round(ratio * 10) / 10;
+    ratio = Math.round(ratio * 10) / 100;
     var hex = function (x) {
         x = x.toString(16);
         return (x.length == 1) ? '0' + x : x;
@@ -419,22 +431,29 @@ function calcolagradiente() {
 
 ///////////////share plugin ///////////////////
 
-// this is the complete list of currently supported params you can pass to the plugin (all optional)
-var options = {
-    message: 'share this', // not supported on some apps (Facebook, Instagram)
-    subject: 'the subject', // fi. for email
-    files: ['', ''], // an array of filenames either locally or remotely
-    url: 'https://www.website.com/foo/#bar?a=b',
-    chooserTitle: 'Pick an app', // Android only, you can override the default share sheet title,
-    appPackageName: 'com.apple.social.facebook' // Android only, you can provide id of the App you want to share with
-};
+function shareMeNow(message, subject, url) {
+    // this is the complete list of currently supported params you can pass to the plugin (all optional) 
+    var options = {
+        message: message ? entityToHtml(message) : '', // not supported on some apps (Facebook, Instagram) 
+        subject: subject ? entityToHtml(subject) : 'Share this:', // fi. for email 
+        //files: ['', ''], // an array of filenames either locally or remotely 
+        url: url || 'http://fondazioneinnovazioneurbana.it',
+    };
 
-var onSuccess = function (result) {
-    console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
-    console.log("Shared to app: " + result.app); // On Android result.app since plugin version 5.4.0 this is no longer empty. On iOS it's empty when sharing is cancelled (result.completed=false)
-};
+    var onSuccess = function (result) {
+        console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true 
+        console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false) 
+    };
 
-var onError = function (msg) {
-    console.log("Sharing failed with message: " + msg);
-};
+    var onError = function (msg) {
+        console.log("Sharing failed with message: " + msg);
+    };
 
+    window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+}
+
+$('button').click(function () {
+        console.log("bottone");
+    shareMeNow("ciao", "ecco", "#");
+
+});
