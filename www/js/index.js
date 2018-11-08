@@ -140,7 +140,7 @@ function getdatiiqa() {
         var obj = jQuery.parseJSON(responseText);
         iqa = obj.dati.istat_037006.iqa;
         console.log(iqa);
-       
+
         stampaaggettivoiqa();
     };
 
@@ -229,7 +229,7 @@ function stampaaggettivoiqa() {
             console.log("iqa nd");
             break;
     };
-     calcolagradiente();
+    calcolagradiente();
 }
 
 /* test frasi online */
@@ -377,6 +377,40 @@ function shuffle(array) {
 
 
 // secondo repo arpa: dati grezzi centraline
+/*  
+dalla 29 alla 25, pm10, no2, benzene, pm25    
+*/
+
+var datigrezzi = ""
+var stazioni = [29, 30, 31, 32, 33, 34, 35];
+var inquinantilist = ["pm10", "no2", "benzene", "pm25"]
+var pm10 = [];
+var no2 = [];
+var benzene = [];
+var pm25 = [];
+
+function stampainquinanti() {
+    //  datigrezzi[29].pm10
+    for (i = 0; i < stazioni.length; i++) {
+        var stazionep = stazioni[i];
+        var datogpm10 = datigrezzi[stazionep];
+        //for (i = 0; i < inquinantilist.length; i++) {
+            //var inquinante = inquinantilist[i];
+            console.log(stazionep);
+            //console.log(datogpm10);
+            console.log(inquinante);
+            datogpm10 = datogpm10.pm10;
+            datogpm10 = datogpm10.trim();
+            if (datogpm10 == "n.d.") {} else {
+                pm10.push(datogpm10);
+            };
+        
+    }
+    console.log(pm10);
+    var maggiorinq = Math.max.apply(null, pm10);
+    console.log(maggiorinq);
+    display_results("#pm10 .tinq > span", maggiorinq);
+};
 
 function getdatigrezzi() {
     console.log("dati grezzi");
@@ -389,7 +423,9 @@ function getdatigrezzi() {
         //  data: data,
         type: "GET",
         success: function (a) {
+            datigrezzi = a;
             console.log(a, 1);
+            stampainquinanti(pm10);
         },
         error: function (b) {
             console.log(b, 2);
@@ -397,9 +433,6 @@ function getdatigrezzi() {
         }
     });
 
-    /*   $.getJSON( url, function( json ) {
-     console.log( "JSON Data: " + json );
-    });*/
 
 };
 
@@ -453,7 +486,7 @@ function shareMeNow(message, subject, url) {
 }
 
 $('button').click(function () {
-        console.log("bottone");
+    console.log("bottone");
     shareMeNow("ciao", "ecco", "#");
 
 });
