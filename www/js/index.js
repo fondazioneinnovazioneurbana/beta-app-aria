@@ -378,7 +378,8 @@ function shuffle(array) {
 
 // secondo repo arpa: dati grezzi centraline
 /*  
-dalla 29 alla 25, pm10, no2, benzene, pm25    
+dalla 29 alla 25, pm10, no2, benzene, pm25  
+https://apps.arpae.it/qualita-aria/bollettino-qa-provinciale/bo
 */
 
 var datigrezzi = ""
@@ -388,6 +389,7 @@ var pm10 = [];
 var no2 = [];
 var benzene = [];
 var pm25 = [];
+ var iqapm10  ;
 
 function stampainquinanti() {
     //  datigrezzi[29].pm10
@@ -395,22 +397,61 @@ function stampainquinanti() {
         var stazionep = stazioni[i];
         var datogpm10 = datigrezzi[stazionep];
         //for (i = 0; i < inquinantilist.length; i++) {
-            //var inquinante = inquinantilist[i];
-            console.log(stazionep);
-            //console.log(datogpm10);
-            console.log(inquinante);
-            datogpm10 = datogpm10.pm10;
-            datogpm10 = datogpm10.trim();
-            if (datogpm10 == "n.d.") {} else {
-                pm10.push(datogpm10);
-            };
-        
+        //var inquinante = inquinantilist[i];
+        console.log(stazionep);
+        //console.log(datogpm10);
+        //console.log(inquinante);
+        datogpm10 = datogpm10.pm10;
+        datogpm10 = datogpm10.trim();
+        if (datogpm10 == "n.d.") {} else {
+            pm10.push(datogpm10);
+        };
+
     }
     console.log(pm10);
     var maggiorinq = Math.max.apply(null, pm10);
     console.log(maggiorinq);
-    display_results("#pm10 .tinq > span", maggiorinq);
+     iqapm10 = (maggiorinq / 50) * 100;
+    console.log(iqapm10);
+    stampaiqapm10()
 };
+
+function stampaiqapm10() {
+       display_results("#pm10 .tinq > span", iqapm10);
+    
+};
+
+function stampacoloreiqainquinante(inquinante, ){
+      switch (true) {
+        case (iqa < 50):
+            colorebasso = "00E676";
+            colorealto = "FFEA00";
+            baseratio = 0;
+            break;
+        case (50 <= iqa <= 99):
+            colorebasso = "FFEA00";
+            colorealto = "FFC600";
+            baseratio = 50;
+            break;
+        case (100 <= iqa <= 149):
+            colorebasso = "FFC600";
+            colorealto = "FF5722";
+            baseratio = 100;
+            break;
+        case (150 <= iqa <= 199):
+            colorebasso = "FF5722";
+            colorealto = "9E005D";
+            baseratio = 150;
+            break;
+        case (iqa >= 200):
+        
+            //
+            break;
+        default:
+            console.log("inquinanteiqa nd");
+            break;
+    };
+}
 
 function getdatigrezzi() {
     console.log("dati grezzi");
@@ -437,6 +478,8 @@ function getdatigrezzi() {
 };
 
 function calcolagradiente() {
+           
+    
     //numero intero
     iqa = Math.trunc(iqa);
     // console.log(ratio);

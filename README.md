@@ -152,6 +152,6 @@ quindi mi leggo a che punto sono, in base al punto in cui sono arrivata nell'arr
 
 * frasi per uno specifico giorno da RSS
 
-* scrittura dei dati grezzi degli inquinanti delle stazioni ( ID dalla 29 alla 35 )
+* scrittura dei dati grezzi degli inquinanti delle stazioni ( ID dalla 29 alla 35 ) e resa grafica 
 
 
