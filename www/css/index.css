@@ -17,6 +17,8 @@
  * under the License.
  */
 
+@import url('https://fonts.googleapis.com/css?family=Space+Mono');
+
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     /* make transparent link selection, adjust last value opacity 0 to 1.0 */
@@ -38,7 +40,7 @@ body {
     width: 100%;
 }
 
-.md body {
+.md body, .ios body {
     font-family: Helvetica, Arial, sans-serif !important;
 }
 /*background-image: linear-gradient(#B2FF59, #FFEA00 15%, #FFC600 25%, #FF5722 50%, #9E005D 100%);
@@ -65,9 +67,10 @@ body {
     }
 }*/
 
-@import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
-
+.panel {
+    width: 90%;
+}
 
 @keyframes example {
     0% {
@@ -131,19 +134,29 @@ img.iconcina {
 
 .md .block.datatop , .ios .block.datatop{
     margin: 0;
+    padding: 6px 16px;
 }
 
-.md .navbar, .ios navbar {
-    text-transform: capitalize;
-    background: #000;
+.md .navbar, .ios navbar , .md .toolbar, .ios .toolbar{
+    background: #000 !important;
 }
 .md .navbar .title, .ios .navbar .title{
 font-size: 23px;
 }
 
-.md .toolbar, .ios .toolbar {
-    background: black !important;
+.md .page, .ios .page{
+    background-color: #E1E1E1;
 }
+
+h1{font-weight: 400;}
+
+.md .navbar::after , .ios .navbar::after{
+    background: none;
+}
+.list .item-title{
+    font-size:23px;
+}
+
 
 /*frasi*/
 
