@@ -151,12 +151,14 @@ font-size: 23px;
 h1{font-weight: 400;}
 
 .md .navbar::after , .ios .navbar::after{
-    background: none;
+    background-color: none;
 }
 .list .item-title{
     font-size:23px;
 }
-
+.md .block-strong::after, .md .block-strong::before, .ios .block-strong::after, .ios .block-strong::before  {
+    background-color: none;
+}
 
 /*frasi*/
 
