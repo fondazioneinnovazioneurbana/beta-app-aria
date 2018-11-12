@@ -794,13 +794,13 @@ function calcolagradiente() {
 
 ///////////////share plugin ///////////////////
 
-function shareMeNow(message, subject, url) {
+function shareMeNow(message, subject, files, url) {
     // this is the complete list of currently supported params you can pass to the plugin (all optional) 
     var options = {
         message: message ? entityToHtml(message) : '', // not supported on some apps (Facebook, Instagram) 
         subject: subject ? entityToHtml(subject) : 'Share this:', // fi. for email 
-        //files: ['', ''], // an array of filenames either locally or remotely 
-        url: url || 'http://fondazioneinnovazioneurbana.it',
+        files: [], // o NO, an array of filenames either locally or remotely 
+        url: url || 'http://fondazioneinnovazioneurbana.it/labaria/',
     };
 
     var onSuccess = function (result) {
@@ -815,8 +815,8 @@ function shareMeNow(message, subject, url) {
     window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
 }
 
-$('button').click(function () {
+$('#shareiqa').click(function () {
     console.log("bottone");
-    shareMeNow("ciao", "ecco", "#");
+    shareMeNow("Che Aria è", "Lab Aria",["../ariademo.png"], "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
 
 });
