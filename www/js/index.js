@@ -28,7 +28,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         //DANGER solo per android, decommentare!
-         checkConnection();
+        checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
         //getdatigrezzi();
         //getdatiiqa();

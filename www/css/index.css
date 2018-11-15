@@ -223,5 +223,6 @@ h3, #sottofraseiqa {
 .md a , .ios a{
     color: #000;
     text-decoration: underline;
+    word-wrap: break-word;
 }
 .md li a , .ios li a { text-decoration: none;}

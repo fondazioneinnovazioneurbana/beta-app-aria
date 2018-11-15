@@ -159,3 +159,7 @@ quindi mi leggo a che punto sono, in base al punto in cui sono arrivata nell'arr
 * frasi da fonti online
 
 
+## build app
+
+	cordova build android --release --buildConfig=myBuildConfig.json
+
