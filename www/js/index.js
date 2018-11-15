@@ -28,10 +28,10 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         //DANGER solo per android, decommentare!
-        // checkConnection();
+         checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        getdatigrezzi();
-        getdatiiqa();
+        //getdatigrezzi();
+        //getdatiiqa();
     },
 
 
@@ -839,7 +839,7 @@ function shareMeNow(message, subject, files, url) {
     var options = {
         message: message ? entityToHtml(message) : '', // not supported on some apps (Facebook, Instagram) 
         subject: subject ? entityToHtml(subject) : 'Share this:', // fi. for email 
-        files: [], // o NO, an array of filenames either locally or remotely 
+        files: "", // o NO, an array of filenames either locally or remotely 
         url: url || 'http://fondazioneinnovazioneurbana.it/labaria/',
     };
 
@@ -857,7 +857,7 @@ function shareMeNow(message, subject, files, url) {
 
 $('#shareiqa').click(function () {
     console.log("bottone_share");
-    shareMeNow("Che Aria è", "Lab Aria", ["../ariademo.png"], "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
+    shareMeNow("Che Aria è", "Lab Aria", "../ariademo.png", "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
 
 });
 $('#altri').click(function () {
