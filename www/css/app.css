@@ -1,1 +1,14 @@
 /* Your app styles here */
+
+img.logoaria {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    max-width: 640px;
+}
+p.loghi{
+    margin-top:1em;
+}
+.page-content.crediti{
+    background-color:#fff;
+}

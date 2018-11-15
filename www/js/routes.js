@@ -15,6 +15,13 @@ routes = [
         path: '/laboratorioaria/',
         url: './pages/laboratorioaria.html',
   },
+    {
+        path: '/crediti/',
+        url: './pages/crediti.html',
+  },{
+        path: '/laboratorioaria/',
+        url: './pages/laboratorioaria.html',
+  },
   // Page Loaders & Router
     {
         path: '/page-loader-template7/:user/:userId/:posts/:postId/',

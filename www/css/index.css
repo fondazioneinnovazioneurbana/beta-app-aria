@@ -151,7 +151,7 @@ font-size: 23px;
 h1{font-weight: 400;}
 
 .md .navbar::after , .ios .navbar::after{
-    background-color: none;
+   background-color: rgba(0,0,0,0);
 }
 .list .item-title{
     font-size:23px;

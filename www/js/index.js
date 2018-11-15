@@ -28,7 +28,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         //DANGER solo per android, decommentare!
-        //checkConnection();
+       // checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
         getdatigrezzi();
         getdatiiqa();
@@ -517,22 +517,24 @@ function stampaaggettivoiqa() {
             break;
     };
     calcolagradiente();
+    frasedelgiorno();
 }
 
 /* test frasi online */
 // https://www.joomla.it/articoli-della-community.feed?type=rss
-
+function frasedelgiorno(){
 $.get("http://www.fondazioneinnovazioneurbana.it/bologna/rss/aria-rss?format=feed&type=rss", function (data) {
-    $(data).find("entry").each(function () { // or "item" or whatever suits your feed
+    $(data).find("item").each(function () { // or "item" or whatever suits your feed
         var el = $(this);
 
         console.log("------------------------");
         console.log("title      : " + el.find("title").text());
-        console.log("author     : " + el.find("author").text());
+        console.log("giorno     : " + el.find("pubDate").text());
         console.log("description: " + el.find("description").text());
     });
+    console.log(data);
 });
-
+};
 /* test frasi offline http://api.jquery.com/jquery.ajax/  */
 
 var nbuona = 0;
