@@ -33,7 +33,7 @@ body {
     /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color: #E4E4E4;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 1em;
+    font-size: 1.17em;
     height: 100%;
     margin: 0px;
     padding: 0px;
@@ -157,7 +157,7 @@ h1{font-weight: 400;}
     font-size:23px;
 }
 .md .block-strong::after, .md .block-strong::before, .ios .block-strong::after, .ios .block-strong::before  {
-    background-color: none;
+    background-color:  rgba(0,0,0,0);
 }
 
 /*frasi*/
@@ -181,13 +181,16 @@ h3, #sottofraseiqa {
     margin: 1em 0;
 }
 
-#concentra {
+#concentra , .blackbutton{
     background-color: black;
     color: white;
     border-radius: 35px;
     margin: 1em;
     display: inline-block;
     padding: 10px 30px;
+}
+.blackbutton{
+    margin:1em 0 !important;
 }
 
 .inq {
@@ -212,3 +215,13 @@ h3, #sottofraseiqa {
     width: 50%;
     display: inline-block;
 }
+.tabella {
+    margin-bottom: 1.5em;
+}
+/*link*/
+
+.md a , .ios a{
+    color: #000;
+    text-decoration: underline;
+}
+.md li a , .ios li a { text-decoration: none;}

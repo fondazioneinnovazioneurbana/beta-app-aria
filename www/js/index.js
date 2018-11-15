@@ -818,7 +818,10 @@ function shareMeNow(message, subject, files, url) {
 }
 
 $('#shareiqa').click(function () {
-    console.log("bottone");
+    console.log("bottone_share");
     shareMeNow("Che Aria è", "Lab Aria",["../ariademo.png"], "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
 
+});
+$('#altri').click(function () {
+  $('#tuttidati').toggleClass("hide")
 });

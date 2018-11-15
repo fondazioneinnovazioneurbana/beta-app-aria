@@ -19,8 +19,8 @@ routes = [
         path: '/crediti/',
         url: './pages/crediti.html',
   },{
-        path: '/laboratorioaria/',
-        url: './pages/laboratorioaria.html',
+        path: '/partecipa/',
+        url: './pages/partecipa.html',
   },
   // Page Loaders & Router
     {
