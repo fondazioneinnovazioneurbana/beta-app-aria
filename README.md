@@ -144,16 +144,18 @@ quindi mi leggo a che punto sono, in base al punto in cui sono arrivata nell'arr
 
 * colore preso da un gradiente tra i due stadi della scala di valori dell'IQA
 
-* condivisione sui social della frase
-
-* mettere degli hook per dividere il deploy android da browser e IOS 
-
-* frasi da fonti online
-
-* frasi per uno specifico giorno da RSS
+* pagina crediti commit e15d2cbc4ce938dcee5755e6563f288bccdc8f5b
 
 * scrittura dei dati grezzi degli inquinanti delle stazioni ( ID dalla 29 alla 35 ) e resa grafica 
 
-* pagina crediti 
+* condivisione sui social dell'immagine della frase
+
+* frasi per uno specifico giorno da RSS
+
+* mettere degli hook per dividere il deploy android da browser e IOS 
+
+
+
+* frasi da fonti online
 
 
