@@ -28,10 +28,10 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         //DANGER solo per android, decommentare!
-        checkConnection();
+        //checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        //getdatigrezzi();
-        //getdatiiqa();
+        getdatigrezzi();
+        getdatiiqa();
     },
 
 
@@ -863,3 +863,25 @@ $('#shareiqa').click(function () {
 $('#altri').click(function () {
     $('#tuttidati').toggleClass("hide")
 });
+
+
+function bottonipreferenze(){
+$('#portos').click(function () {
+    //   var dati;
+    var url = "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it";
+
+    $.ajax({
+        dataType: "html",
+        url: url,
+        //  data: data,
+        type: "GET",
+        success: function (a) {
+            console.log(a, 1);
+             console.log("bene");
+        },
+        error: function (b) {
+            console.log(b, 2);
+        }
+    });
+});
+};

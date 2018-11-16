@@ -40,9 +40,10 @@ body {
     width: 100%;
 }
 
-.md body, .ios body {
+.md body, .ios body , .md body p, .ios body p {
     font-family: Helvetica, Arial, sans-serif !important;
 }
+
 /*background-image: linear-gradient(#B2FF59, #FFEA00 15%, #FFC600 25%, #FF5722 50%, #9E005D 100%);
  */
 
