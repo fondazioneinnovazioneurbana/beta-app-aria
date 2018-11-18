@@ -31,7 +31,8 @@ var app = {
         //checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
         getdatigrezzi();
-        getdatiiqa();
+
+        frasedelgiorno();
     },
 
 
@@ -69,6 +70,7 @@ function checkConnection() {
         //display_results("h1", "ok");
         getdatiiqa();
         getdatigrezzi();
+        frasedelgiorno();
         return true;
     }
 }
@@ -139,7 +141,7 @@ function getdatiiqa() {
         // process the response.
         var obj = jQuery.parseJSON(responseText);
         iqa = obj.dati.istat_037006.iqa;
-        console.log(iqa);
+        //console.log(iqa);
 
         stampaaggettivoiqa();
     };
@@ -517,120 +519,138 @@ function stampaaggettivoiqa() {
             break;
     };
     calcolagradiente();
-    frasedelgiorno();
 }
 
 /* test frasi online */
+var altradata = new Date();
+var oggiRSS = altradata.toUTCString();
+var dataRSS = "";
+var titleRSS = "";
+var descriptionRSS = "";
+
+var arrayoggiRSS = [];
+var arraydataRSS = [];
+
+var prime15oRSS = [];
+var prime15dRSS = [];
+
 // https://www.joomla.it/articoli-della-community.feed?type=rss
 function frasedelgiorno() {
-    $.get("http://www.fondazioneinnovazioneurbana.it/bologna/rss/aria-rss?format=feed&type=rss", function (data) {
-        $(data).find("item").each(function () { // or "item" or whatever suits your feed
-            var el = $(this);
 
-            console.log("------------------------");
-            console.log("title      : " + el.find("title").text());
-            console.log("giorno     : " + el.find("pubDate").text());
-            console.log("description: " + el.find("description").text());
-        });
-        console.log(data);
-    });
-};
-/* test frasi offline http://api.jquery.com/jquery.ajax/  */
-
-var nbuona = 0;
-var arraybuona = [];
-var indicearraybuona = 0;
-
-var naccettabile = 0;
-var arrayaccettabile = [];
-var indicearrayaccettabile = 0;
-
-var nmediocre = 0;
-var arraymediocre = [];
-var indicearraymediocre = 0;
-
-var nscadente = 0;
-var arrayscadente = [];
-var indicearrayscadente = 0;
-
-var npessima = 0;
-var arraypessima = [];
-var indicearraypessima = 0;
-
-function scrivifrase(argomento) {
     $.ajax({
         'async': true,
         'global': false,
-        'url': "frasi/" + argomento + ".json",
-        'dataType': "json",
+        'url': "http://www.fondazioneinnovazioneurbana.it/bologna/rss/aria-rss?format=feed&type=rss",
+        'dataType': "xml",
         'success': function (data) {
-            //console.log(data.resources.length);
-            //console.log(data.resources);
-            frasi = $(data.resources);
-            //console.log(frasi[2].name);
+            dataRSS = $(data).find("item:first pubDate").text();
+            titleRSS = $(data).find("item:first title").text();
+            descriptionRSS = $(data).find("item:first description").text();
 
-            if (localStorage.getItem(argomento)) {
-                // console.log("esiste");
-                var compara = 0;
-                compara = parseInt(localStorage.getItem(argomento)) - 1;
-                if (data.resources.length != localStorage.getItem(argomento)) {
-                    console.log("fineciclo1");
-                    localStorage.clear();
-                    scrivifrase(argomento);
-                } else {
-                    var dovesono = 0;
-                    var dovevado = [];
-                    var andiamo = 0;
+            arrayoggiRSS = oggiRSS.split("");
+            arraydataRSS = dataRSS.split("");
+            prime15oRSS = arrayoggiRSS.slice(0, 16);
+            prime15dRSS = arraydataRSS.slice(0, 16);
 
-                    dovesono = localStorage.getItem("mioindice" + argomento);
-                    dovesono = parseInt(dovesono) + 1;
-                    dovevado = localStorage.getItem("sequenza" + argomento);
-                    dovevado = dovevado.split(',').map(function (item) {
-                        return parseInt(item, 10);
-                    });
-                    var compara = 0;
-                    compara = parseInt(localStorage.getItem(argomento) - 1);
-                    //console.log(compara);
-                    //console.log(dovesono);
-                    //console.log(dovesono + " array " + dovevado);
-                    andiamo = dovevado[dovesono];
-                    //console.log(andiamo);
-                    localStorage.setItem("mioindice" + argomento, dovesono);
-                    //scrivo
-                    display_results("#fraseiqa", frasi[andiamo].name);
-                    display_results("#sottofraseiqa", frasi[andiamo].content);
-                    if (dovesono == compara) {
-                        console.log("fineciclo2");
-                        localStorage.clear();
-                        scrivifrase(argomento);
-                    }
-
-                }
-
-            } else {
-                //console.log("non esiste");
-                // scrivo le 3 cose che mi servono: lunghezza, sequenza, mioindice
-
-                frasi = $(data.resources);
-                localStorage.setItem(argomento, data.resources.length);
-
-                var N = [];
-                N = Array.apply(null, {
-                    length: data.resources.length
-                }).map(Number.call, Number);
-                console.log(N);
-                arr = shuffle(N);
-                console.log(arr);
-
-                localStorage.setItem("sequenza" + argomento, arr);
-                localStorage.setItem("mioindice" + argomento, 0);
-                //scrivo
-                display_results("#fraseiqa", frasi[0].name);
-                display_results("#sottofraseiqa", frasi[0].content);
-            };
+            getdatiiqa();
         }
     });
 
+
+
+}
+
+function scrivifraseRSS() {
+
+    console.log("fraseRSS online!");
+    //scrivo
+    display_results("#fraseiqa", titleRSS);
+    display_results("#sottofraseiqa", descriptionRSS);
+}
+/* test frasi offline http://api.jquery.com/jquery.ajax/  */
+
+
+
+function scrivifrase(argomento) {
+
+    if (JSON.stringify(prime15oRSS) === JSON.stringify(prime15dRSS)) {
+        scrivifraseRSS();
+        return
+    } else {
+
+        $.ajax({
+            'async': true,
+            'global': false,
+            'url': "frasi/" + argomento + ".json",
+            'dataType': "json",
+            'success': function (data) {
+                //console.log(data.resources.length);
+                //console.log(data.resources);
+                frasi = $(data.resources);
+                //console.log(frasi[2].name);
+
+                if (localStorage.getItem(argomento)) {
+                    // console.log("esiste");
+                    var compara = 0;
+                    compara = parseInt(localStorage.getItem(argomento)) - 1;
+                    if (data.resources.length != localStorage.getItem(argomento)) {
+                        console.log("fineciclo1");
+                        localStorage.clear();
+                        scrivifrase(argomento);
+                    } else {
+                        var dovesono = 0;
+                        var dovevado = [];
+                        var andiamo = 0;
+
+                        dovesono = localStorage.getItem("mioindice" + argomento);
+                        dovesono = parseInt(dovesono) + 1;
+                        dovevado = localStorage.getItem("sequenza" + argomento);
+                        dovevado = dovevado.split(',').map(function (item) {
+                            return parseInt(item, 10);
+                        });
+                        var compara = 0;
+                        compara = parseInt(localStorage.getItem(argomento) - 1);
+                        //console.log(compara);
+                        //console.log(dovesono);
+                        //console.log(dovesono + " array " + dovevado);
+                        andiamo = dovevado[dovesono];
+                        //console.log(andiamo);
+                        localStorage.setItem("mioindice" + argomento, dovesono);
+                        //scrivo
+                        display_results("#fraseiqa", frasi[andiamo].name);
+                        display_results("#sottofraseiqa", frasi[andiamo].content);
+                        if (dovesono == compara) {
+                            console.log("fineciclo2");
+                            localStorage.clear();
+                            scrivifrase(argomento);
+                        }
+
+                    }
+
+                } else {
+                    //console.log("non esiste");
+                    // scrivo le 3 cose che mi servono: lunghezza, sequenza, mioindice
+
+                    frasi = $(data.resources);
+                    localStorage.setItem(argomento, data.resources.length);
+
+                    var N = [];
+                    N = Array.apply(null, {
+                        length: data.resources.length
+                    }).map(Number.call, Number);
+                    console.log(N);
+                    arr = shuffle(N);
+                    console.log(arr);
+
+                    localStorage.setItem("sequenza" + argomento, arr);
+                    localStorage.setItem("mioindice" + argomento, 0);
+                    //scrivo
+                    display_results("#fraseiqa", frasi[0].name);
+                    display_results("#sottofraseiqa", frasi[0].content);
+                };
+            }
+        });
+    };
 };
 
 function arrayordinato(numero) {
@@ -709,11 +729,11 @@ function stampainquinanti() {
 function stampaiqapm10() {
     display_results("#pm10 .tinq > span", iqapm10);
     stampacoloreiqainquinante(iqapm10);
-    console.log("iqa pm10 "+iqapm10);
+    console.log("iqa pm10 " + iqapm10);
 };
 
 function stampacoloreiqainquinante(inquinante) {
-     console.log("iqa inquinante "+inquinante);
+    console.log("iqa inquinante " + inquinante);
     switch (true) {
         case (inquinante < 50):
             calcolagradienteinquinante(inquinante, 0, "00E676", "FFEA00");
@@ -860,28 +880,30 @@ $('#shareiqa').click(function () {
     shareMeNow("Che Aria è", "Lab Aria", "../ariademo.png", "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
 
 });
+
+//bottone apri tab inquinanti
 $('#altri').click(function () {
     $('#tuttidati').toggleClass("hide")
 });
 
 
-function bottonipreferenze(){
-$('#portos').click(function () {
-    //   var dati;
-    var url = "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it";
+function bottonipreferenze() {
+    $('#portos').click(function () {
+        //   var dati;
+        var url = "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it";
 
-    $.ajax({
-        dataType: "html",
-        url: url,
-        //  data: data,
-        type: "GET",
-        success: function (a) {
-            console.log(a, 1);
-             console.log("bene");
-        },
-        error: function (b) {
-            console.log(b, 2);
-        }
+        $.ajax({
+            dataType: "html",
+            url: url,
+            //  data: data,
+            type: "GET",
+            success: function (a) {
+                console.log(a, 1);
+                console.log("bene");
+            },
+            error: function (b) {
+                console.log(b, 2);
+            }
+        });
     });
-});
 };
