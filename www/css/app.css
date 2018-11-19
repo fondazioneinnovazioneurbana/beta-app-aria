@@ -12,3 +12,18 @@ p.loghi{
 .page-content.crediti{
     /*background-color:#fff;*/
 }
+
+ul.pulsantoni li{
+    cursor: pointer;
+    padding: 10px 16px;
+    list-style: none;
+    border: solid 1px black;
+    margin: 0.5em;
+    width: 80%;
+    border-radius: 25px;
+    background: white;
+}
+ul.pulsantoni li.voted{
+    color: white;
+    background-color: black !important;
+}

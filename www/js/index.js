@@ -565,7 +565,8 @@ function scrivifraseRSS() {
     console.log("fraseRSS online!");
     //scrivo
     display_results("#fraseiqa", titleRSS);
-    display_results("#sottofraseiqa", descriptionRSS);
+    //display_results("#sottofraseiqa", descriptionRSS);
+    $("#sottofraseiqa").html(descriptionRSS);
 }
 /* test frasi offline http://api.jquery.com/jquery.ajax/  */
 
@@ -888,10 +889,17 @@ $('#altri').click(function () {
 
 
 function bottonipreferenze() {
+    
+    $("ul.pulsantoni li").click(function () {
+      $(this).addClass("voted");
+    });
+    
     $('#portos').click(function () {
         //   var dati;
         var url = "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it";
 
+       
+        //bisogna aggiungergli la classe voted e togliergli una classe che permette di rivotare.
         $.ajax({
             dataType: "html",
             url: url,
@@ -900,6 +908,7 @@ function bottonipreferenze() {
             success: function (a) {
                 console.log(a, 1);
                 console.log("bene");
+               
             },
             error: function (b) {
                 console.log(b, 2);
