@@ -758,7 +758,7 @@ function stampacoloreiqainquinante(inquinante) {
     };
 }
 
-function calcolagradienteinquinante(inq, baseratioq, colorq1, colorq2) {
+function calcolagradienteinquinante(inq, baseratioq, colorq2, colorq1) {
     // console.log(ratio);
     var ratioq = 0;
     console.log("baseinq " + baseratioq);
@@ -794,13 +794,6 @@ function calcolagradienteinquinante(inq, baseratioq, colorq1, colorq2) {
     //$("div.block.rainbow ").css("animation", "none");
 };
 
-
-
-
-
-
-
-
 function getdatigrezzi() {
     console.log("dati grezzi");
     //   var dati;
@@ -813,7 +806,7 @@ function getdatigrezzi() {
         type: "GET",
         success: function (a) {
             datigrezzi = a;
-            console.log(a, 1);
+            //console.log(a, 1);
             stampainquinanti(pm10);
         },
         error: function (b) {
@@ -898,17 +891,15 @@ function bottonipreferenze() {
         //   var dati;
         var url = "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it";
 
-       
-        //bisogna aggiungergli la classe voted e togliergli una classe che permette di rivotare.
+//bisogna aggiungergli la classe voted e togliergli una classe che permette di rivotare.
         $.ajax({
             dataType: "html",
             url: url,
             //  data: data,
             type: "GET",
             success: function (a) {
-                console.log(a, 1);
-                console.log("bene");
-               
+                //console.log(a, 1);
+                console.log("link x partecipa! ok");
             },
             error: function (b) {
                 console.log(b, 2);

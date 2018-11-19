@@ -12,6 +12,11 @@ p.loghi{
 .page-content.crediti{
     /*background-color:#fff;*/
 }
+/*per frase RSS */
+#sottofraseiqa > p:nth-child(1) {
+    margin: 0;
+    padding: 0;
+}
 
 ul.pulsantoni li{
     cursor: pointer;
