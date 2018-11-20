@@ -67,7 +67,7 @@ function checkConnection() {
 
     } else {
         //display_results("h1", "ok");
-
+        
         getdatigrezzi();
         frasedelgiorno();
         /* getdatiiqa();  in cascata a frasedelgiorno();*/
@@ -686,38 +686,7 @@ function shuffle(array) {
 /*  
 dalla 29 alla 35, pm10, no2, benzene, pm25  
 https://apps.arpae.it/qualita-aria/bollettino-qa-provinciale/bo
-
-sette centraline con 4 dati ciascuna
 */
-
-
-function calcolagradiente() {
-
-
-    //numero intero
-    iqa = Math.trunc(iqa);
-    // console.log(ratio);
-    var color1 = colorealto;
-    var color2 = colorebasso;
-    ratio = [(iqa - baseratio) * 2] / 10;
-    ratio = Math.floor(ratio);
-    //numero con solo una cifra decimale
-    ratio = Math.round(ratio * 10) / 100;
-    var hex = function (x) {
-        x = x.toString(16);
-        return (x.length == 1) ? '0' + x : x;
-    };
-
-    var r = Math.ceil(parseInt(color1.substring(0, 2), 16) * ratio + parseInt(color2.substring(0, 2), 16) * (1 - ratio));
-    var g = Math.ceil(parseInt(color1.substring(2, 4), 16) * ratio + parseInt(color2.substring(2, 4), 16) * (1 - ratio));
-    var b = Math.ceil(parseInt(color1.substring(4, 6), 16) * ratio + parseInt(color2.substring(4, 6), 16) * (1 - ratio));
-
-    var middle = hex(r) + hex(g) + hex(b);
-
-    console.log("rgb(" + r + "," + g + "," + b + ")");
-    $("div.block.rainbow ").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
-    //$("div.block.rainbow ").css("animation", "none");
-};
 
 var datigrezzi = ""
 var stazioni = [29, 30, 31, 32, 33, 34, 35];
@@ -728,34 +697,91 @@ var no2 = [];
 var benzene = [];
 var pm25 = [];
 var iqapm10;
-
 var datogpm10;
 var datogno2;
 var datogbenz;
 var datogpm25;
-var arraydipulizia = [];
-
-var datoppm10;
-var datopno2;
-var datopbenz;
-var datoppm25;
 
 //calcolo inquinanti https://www.arpae.it/dettaglio_generale.asp?id=3883&idlivello=2074 
 
-function stampacoloreiqainquinante(idstazione, nomeinq, inquinante) {
-    console.log("stampa iqa inquinante " + nomeinq + inquinante);
+function pulisciinquinante(grezzume){
+        switch (true) {
+        case ( grezzume == undefined):
+           grezzume = "n.d."
+                //print n-d
+            break;
+        default:
+
+            break;
+    };
+};
+
+function printinquinanti(idstazione,numstazione){
+     var filagrezza = datigrezzi[numstazione];
+    console.log("pm10 di"+idstazione+filagrezza.pm10);
+    
+    //mi scrive i 4 singoli inquinanti
+    //bisogna calcolare iqa singoli
+    
+    
+};
+
+//vecchio giro
+function stampainquinanti() {
+    //console.log("pm10 singolo29"+datigrezzi[29].pm10);
+    for (i = 0; i < stazioni.length; i++) {
+        var stazionep = stazioni[i];
+        var filagrezza = datigrezzi[stazionep];
+        //for (i = 0; i < inquinantilist.length; i++) {
+        //var inquinante = inquinantilist[i];
+        console.log("ciclo-stazione n*" + stazionep + "fila " + datogpm10,datogno2,datogbenz,datogpm25);
+        //console.log(datogpm10);
+        //console.log(inquinante);
+        datogpm10 = filagrezza.pm10;
+        datogno2 = filagrezza.no2;
+        datogbenz = filagrezza.benzene;
+        datogpm25 = filagrezza.pm25;
+        
+        datogpm10 = datogpm10.trim();
+        if (datogpm10 == "n.d.") {
+            
+        } else {
+            pm10.push(datogpm10);
+        };
+
+    }
+    // console.log(pm10);
+   trovamaggiore();
+};
+
+function trovamaggiore(){
+     var maggiorinq = Math.max.apply(null, pm10);
+    console.log(maggiorinq);
+    iqapm10 = (maggiorinq / 50) * 100;
+    console.log(iqapm10);
+    iqapm10 = Math.trunc(iqapm10);
+    stampaiqapm10();
+};
+
+function stampaiqapm10() {
+    display_results("#pm10 .tinq > span", iqapm10);
+    stampacoloreiqainquinante("pm10",iqapm10);
+};
+
+function stampacoloreiqainquinante(nomeinq,inquinante) {
+    console.log("stampa iqa inquinante "+nomeinq + inquinante);
     switch (true) {
         case (inquinante < 50):
-            calcolagradienteinquinante(idstazione, nomeinq, inquinante, 0, "00E676", "FFEA00");
+            calcolagradienteinquinante(inquinante, 0, "00E676", "FFEA00");
             break;
         case (50 <= inquinante <= 99):
-            calcolagradienteinquinante(idstazione, nomeinq, inquinante, 50, "FFEA00", "FFC600");
+            calcolagradienteinquinante(inquinante, 50, "FFEA00", "FFC600");
             break;
         case (100 <= inquinante <= 149):
-            calcolagradienteinquinante(idstazione, nomeinq, inquinante, 100, "FFC600", "FF5722");
+            calcolagradienteinquinante(inquinante, 100, "FFC600", "FF5722");
             break;
         case (150 <= inquinante <= 199):
-            calcolagradienteinquinante(idstazione, nomeinq, inquinante, 150, "FF5722", "9E005D");
+            calcolagradienteinquinante(inquinante, 150, "FF5722", "9E005D");
             break;
         case (inquinante >= 200):
 
@@ -767,7 +793,7 @@ function stampacoloreiqainquinante(idstazione, nomeinq, inquinante) {
     };
 }
 
-function calcolagradienteinquinante(idstazione, nomeinq, inq, baseratioq, colorq2, colorq1) {
+function calcolagradienteinquinante(inq, baseratioq, colorq2, colorq1) {
     // console.log(ratio);
     var ratioq = 0;
     //console.log("baseinq " + baseratioq);
@@ -798,108 +824,9 @@ function calcolagradienteinquinante(idstazione, nomeinq, inq, baseratioq, colorq
     //(x:100=inq:500) (inq*100)/500
 
     console.log("inq rgb(" + r + "," + g + "," + b + ")");
-    $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
-    $(idstazione + " ." + nomeinq + " .barrain").css("width", nsu500 + "%");
+    $("#barpm10 .barrain ").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
+    $("#barpm10 .barrain ").css("width", nsu500 + "%");
     //$("div.block.rainbow ").css("animation", "none");
-};
-
-function puliscipm10(idstaz) {
-    if (datogpm10 == NaN) {
-        display_results(idstaz + " .pm10 .tinq > span", "n.d.");
-        datogpm10 = "n.d.";
-        return
-    };
-    if (isNaN(datogpm10)) {
-        display_results(idstaz + " .pm10 .tinq > span", "n.d.");
-        datogpm10 = "n.d.";
-        return
-    };
-    if (datogpm10 == 0) {
-        display_results(idstaz + " .pm10 .tinq > span", 0);
-        datogpm10 = 0;
-        return
-    };
-}
-
-function puliscipm25(idstaz) {
-    if (datogpm25 == NaN) {
-        display_results(idstaz + " .pm10 .tinq > span", "n.d.");
-        datogpm25 = "n.d.";
-        return
-    };
-
-}
-/* scrivo il dato grezzo dei 4 */
-function printinquinanti(idstazione, numstazione) {
-    var filagrezza = datigrezzi[numstazione];
-    console.log(idstazione + "pm10" + filagrezza.pm10);
-    console.log(idstazione + "o2" + filagrezza.o2);
-    console.log(idstazione + "benzene" + filagrezza.benzene);
-    console.log(idstazione + "pm25" + filagrezza.pm25);
-
-    datogpm10 = filagrezza.pm10;
-    datogno2 = filagrezza.o2;
-    datogbenz = filagrezza.benzene;
-    datogpm25 = filagrezza.pm25;
-
-    datoppm10 = (datogpm10 / 50) * 100;
-    datoppm25 = (datogpm25 / 25) * 100;
-
-    datoppm10 = Math.trunc(datoppm10);
-
-    if (isNaN(datoppm25)) {
-        display_results(idstazione + " .pm10 .tinq > span", "n.d.");
-        stampacoloreiqainquinante(idstazione, "pm10", 0);
-        datoppm25 = "n.d.";
-        return
-    };
-    if (datoppm25 == 0) {
-        display_results(idstazione + " .pm10 .tinq > span", 0);
-        stampacoloreiqainquinante(idstazione, "pm10", datoppm10);
-        datoppm25 = 0;
-        return
-    };
-
-    //mi scrive i 4 singoli inquinanti
-    //bisogna calcolare iqa singoli
-    console.log("nessun caso speciale");
-    stampacoloreiqainquinante(idstazione, "pm10", datoppm10);
-
-    display_results(idstazione + " .pm10 .tinq > span", datoppm10);
-
-    console.log(idstazione, "pm10", datoppm10);
-};
-
-function printinquinanti2(idstazione, numstazione) {
-    var filagrezza = datigrezzi[numstazione];
-    console.log(idstazione + "pm25" + filagrezza.pm25);
-
-    datogpm25 = filagrezza.pm25;
-
-    //mi scrive i 4 singoli inquinanti
-    //bisogna calcolare iqa singoli
-
-    datoppm25 = (datogpm25 / 25) * 100;
-
-    datoppm25 = Math.trunc(datoppm25);
-
-    if (isNaN(datoppm25)) {
-        display_results(idstazione + " .pm2 .tinq > span", "n.d.");
-        stampacoloreiqainquinante(idstazione, "pm2", 0);
-        datoppm25 = "n.d.";
-        return
-    };
-    if (datoppm25 == 0) {
-        display_results(idstazione + " .pm2 .tinq > span", 0);
-        stampacoloreiqainquinante(idstazione, "pm2", datoppm25);
-        datoppm25 = 0;
-        return
-    };
-    console.log("nessun caso speciale");
-
-    stampacoloreiqainquinante(idstazione, "pm2", datoppm25);
-    display_results(idstazione + " .pm2 .tinq > span", datoppm25);
-    console.log(idstazione, "pm2", datoppm25);
 };
 
 function getdatigrezzi() {
@@ -915,25 +842,44 @@ function getdatigrezzi() {
         success: function (a) {
             datigrezzi = a;
             //console.log(a, 1);
-            printinquinanti("#molinella", 29);
-            printinquinanti("#porretta", 30);
-            printinquinanti("#bchiarini", 31);
-            printinquinanti("#bgiardini", 32);
-            printinquinanti("#imola", 33);
-            printinquinanti("#bfelice", 34);
-            printinquinanti("#slazzaro", 35);
-            printinquinanti2("#molinella", 29);
-            printinquinanti2("#porretta", 30);
-            printinquinanti2("#bchiarini", 31);
-            printinquinanti2("#bgiardini", 32);
-            printinquinanti2("#imola", 33);
-            printinquinanti2("#bfelice", 34);
-            printinquinanti2("#slazzaro", 35);
+            printinquinanti("#molinella",29);
+            stampainquinanti();
         },
         error: function (b) {
             console.log(b, 2);
+
         }
     });
+
+
+};
+
+function calcolagradiente() {
+
+
+    //numero intero
+    iqa = Math.trunc(iqa);
+    // console.log(ratio);
+    var color1 = colorealto;
+    var color2 = colorebasso;
+    ratio = [(iqa - baseratio) * 2] / 10;
+    ratio = Math.floor(ratio);
+    //numero con solo una cifra decimale
+    ratio = Math.round(ratio * 10) / 100;
+    var hex = function (x) {
+        x = x.toString(16);
+        return (x.length == 1) ? '0' + x : x;
+    };
+
+    var r = Math.ceil(parseInt(color1.substring(0, 2), 16) * ratio + parseInt(color2.substring(0, 2), 16) * (1 - ratio));
+    var g = Math.ceil(parseInt(color1.substring(2, 4), 16) * ratio + parseInt(color2.substring(2, 4), 16) * (1 - ratio));
+    var b = Math.ceil(parseInt(color1.substring(4, 6), 16) * ratio + parseInt(color2.substring(4, 6), 16) * (1 - ratio));
+
+    var middle = hex(r) + hex(g) + hex(b);
+
+    console.log("rgb(" + r + "," + g + "," + b + ")");
+    $("div.block.rainbow ").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
+    //$("div.block.rainbow ").css("animation", "none");
 };
 
 ///////////////share plugin ///////////////////
@@ -959,7 +905,6 @@ function shareMeNow(message, subject, files, url) {
     window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
 }
 
-
 $('#shareiqa').click(function () {
     console.log("bottone_share");
     shareMeNow("Che Aria è", "Lab Aria", "../ariademo.png", "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
@@ -973,16 +918,16 @@ $('#altri').click(function () {
 
 
 function bottonipreferenze() {
-
+    
     $("ul.pulsantoni li").click(function () {
-        $(this).addClass("voted");
+      $(this).addClass("voted");
     });
-
+    
     $('#portos').click(function () {
         //   var dati;
         var url = "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it";
 
-        //bisogna aggiungergli la classe voted e togliergli una classe che permette di rivotare.
+//bisogna aggiungergli la classe voted e togliergli una classe che permette di rivotare.
         $.ajax({
             dataType: "html",
             url: url,
