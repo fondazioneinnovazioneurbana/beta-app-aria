@@ -145,14 +145,14 @@ function getdatiiqa() {
         var obj = jQuery.parseJSON(responseText);
         iqa = obj.dati.istat_037006.iqa;
         //console.log(iqa);
-        pm10 = obj.dati.istat_037006.pm10;
+      /* pm10 = obj.dati.istat_037006.pm10;
         console.log("qui pm10iqa" + pm10);
         pm2 = obj.dati.istat_037006.pm25;
         console.log("qui pm2iqa" + pm2);
         ozono = obj.dati.istat_037006.o3;
         console.log("qui ozono" + o3);
         no2 = obj.dati.istat_037006.no2;
-        console.log("qui pm10iqa" + pm10);
+        console.log("qui pm10iqa" + pm10);*/
         stampaaggettivoiqa();
     };
 
@@ -857,7 +857,7 @@ function printinquinanti(idstazione, numstazione) {
 
     stampacoloreiqainquinante(idstazione, "pm10", datoppm10);
     display_results(idstazione + " .pm10 .tinq > span", datoppm10);
-    console.log(idstazione, "pm10", datoppm10);
+    //console.log(idstazione, "pm10", datoppm10);
 };
 
 function printinquinanti2(idstazione, numstazione) {
@@ -963,7 +963,49 @@ function printinquinanti4(idstazione, numstazione) {
     display_results(idstazione + " .no2 .tinq > span", datopno2);
     console.log(idstazione, "no2", datopno2);
 };
+function pulisciarray(arrayvoluto){
 
+    for (var i=0;i<arrayvoluto.length;i++)
+         {
+             var unoperuno=arrayvoluto[i];
+             console.log("unoperuno"+unoperuno);
+             if(unoperuno=="n.d."){
+                unoperuno=0;
+               //  console.log("nd!");
+                 unoperuno[i]=unoperuno;
+                }
+             if(isNaN(unoperuno)){
+                unoperuno=0;
+               //  console.log("uno!");
+                 unoperuno[i]=unoperuno;
+                }
+           arrayvoluto[i]=unoperuno;
+    }
+}
+
+
+// agg arg per id div
+function trovamaggiore(idiqainq,arrayinquinante) {
+    //trasforma in numeri!!
+
+   // console.log("array non pulito " + arrayinquinante);
+
+    pulisciarray(arrayinquinante);
+    
+    var maggiorinq = Math.max.apply(null, arrayinquinante);
+    // scriverlo come numero!
+
+    display_results(idiqainq+" div.tinq > span", maggiorinq);
+    console.log("maggioreinquinante " + maggiorinq);
+
+    //ricavo l'indice e l oprendo dai nomi e lo scrivo
+    var indicenome = arrayinquinante.indexOf(maggiorinq);
+    var testostazione = nomistazioni[indicenome];
+    display_results(idiqainq+" div.tstaz > span", testostazione);
+
+    console.log("maggioreindicenome " + indicenome);
+    console.log("maggioretestostazione " + testostazione);
+};
 
 function getdatigrezzi() {
     console.log("chiamo dati grezzi");
@@ -1007,10 +1049,10 @@ function getdatigrezzi() {
             printinquinanti4("#bfelice", 34);
             printinquinanti4("#slazzaro", 35);
             creanomistazioni();
-            trovamaggiore(arraypm10);
-            trovamaggiore(arraypm25);
-           // trovamaggiore(arrayo3);
-            //trovamaggiore(arrayno2);
+            trovamaggiore("#pm10",arraypm10);
+            trovamaggiore("#pm2",arraypm25);
+            trovamaggiore("#o3",arrayo3);
+            trovamaggiore("#no2",arrayno2);
         },
         error: function (b) {
             console.log(b, 2);
@@ -1018,49 +1060,7 @@ function getdatigrezzi() {
     });
 };
 
-function pulisciarray(arrayvoluto){
 
-    for (var i=0;i<arrayvoluto.length;i++)
-         {
-             var unoperuno=arrayvoluto[i];
-             console.log("unoperuno"+unoperuno);
-             if(unoperuno=="n.d."){
-                unoperuno=0;
-                 console.log("nd!");
-                 unoperuno[i]=unoperuno;
-                }
-             if(isNaN(unoperuno)){
-                unoperuno=0;
-                 console.log("uno!");
-                 unoperuno[i]=unoperuno;
-                }
-           arrayvoluto[i]=unoperuno;
-    }
-}
-
-
-// agg arg per id div
-function trovamaggiore(arrayinquinante) {
-    //trasforma in numeri!!
-
-    console.log("array non pulito " + arrayinquinante);
-
-    pulisciarray(arrayinquinante);
-    
-    var maggiorinq = Math.max.apply(null, arrayinquinante);
-    // scriverlo come numero!
-
-    display_results("#pm10 div", maggiorinq);
-    console.log("maggioreinquinante " + maggiorinq);
-
-    //ricavo l'indice e l oprendo dai nomi e lo scrivo
-    var indicenome = arrayinquinante.indexOf(maggiorinq);
-    var testostazione = nomistazioni[indicenome];
-    display_results("#pm10 div > span", testostazione);
-
-    console.log("maggioreindicenome " + indicenome);
-    console.log("maggioretestostazione " + testostazione);
-};
 ///////////////share plugin ///////////////////
 
 function shareMeNow(message, subject, files, url) {
