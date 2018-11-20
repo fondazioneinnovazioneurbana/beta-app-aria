@@ -985,7 +985,7 @@ function pulisciarray(arrayvoluto){
 
 
 // agg arg per id div
-function trovamaggiore(idiqainq,arrayinquinante) {
+function trovamaggiore(idiqainq,classiqa,arrayinquinante) {
     //trasforma in numeri!!
 
    // console.log("array non pulito " + arrayinquinante);
@@ -1002,6 +1002,7 @@ function trovamaggiore(idiqainq,arrayinquinante) {
     var indicenome = arrayinquinante.indexOf(maggiorinq);
     var testostazione = nomistazioni[indicenome];
     display_results(idiqainq+" div.tstaz > span", testostazione);
+    stampacoloreiqainquinante(idiqainq, classiqa, maggiorinq);
 
     console.log("maggioreindicenome " + indicenome);
     console.log("maggioretestostazione " + testostazione);
@@ -1049,10 +1050,10 @@ function getdatigrezzi() {
             printinquinanti4("#bfelice", 34);
             printinquinanti4("#slazzaro", 35);
             creanomistazioni();
-            trovamaggiore("#pm10",arraypm10);
-            trovamaggiore("#pm2",arraypm25);
-            trovamaggiore("#o3",arrayo3);
-            trovamaggiore("#no2",arrayno2);
+            trovamaggiore("#pm10","pm10", arraypm10);
+            trovamaggiore("#pm2","pm2",arraypm25);
+            trovamaggiore("#o3","o3",arrayo3);
+            trovamaggiore("#no2","no2",arrayno2);
         },
         error: function (b) {
             console.log(b, 2);
