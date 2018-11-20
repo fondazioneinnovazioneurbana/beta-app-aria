@@ -48,6 +48,26 @@ function stampainquinanti() {
     // console.log(pm10);
    trovamaggiore();
 };
+function puliscinumero(forsenumero) {
+    var i;
+    if (isNaN(unoperuno)) {
+        unoperuno = 0;
+        console.log("nan");
+    }
+    arrayinquinante[i] = unoperuno;
+};
+function pulisciarray(arrayvoluto){
+    var i;
+    for (i=0;i>arrayvoluto.length;i++)
+         {
+             var unoperuno=arrayvoluto[i]
+             unoperuno=Number(unoperuno);
+             if(isNaN(unoperuno)){
+                unoperuno=0;
+                }
+           arrayvoluto.push(unoperuno[i]);
+    }
+}
 
 function trovamaggiore(){
      var maggiorinq = Math.max.apply(null, pm10);

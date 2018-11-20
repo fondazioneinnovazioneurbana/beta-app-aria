@@ -828,35 +828,35 @@ function calcolagradienteinquinante(idstazione, nomeinq, inq, baseratioq, colorq
 /* scrivo il dato grezzo dei 4 */
 function printinquinanti(idstazione, numstazione) {
     var filagrezza = datigrezzi[numstazione];
-
+    //mi scrive i 4 singoli inquinanti
+    //bisogna calcolare iqa singoli
     datogpm10 = filagrezza.pm10;
+    datogpm10 = Number(datogpm10);
 
-    datoppm10 = (datogpm10 / 50) * 100;
 
-    datoppm10 = Math.trunc(datoppm10);
-
-    arraypm10.push(datoppm10);
-
-    if (isNaN(datoppm10)) {
+    if (isNaN(datogpm10)) {
         display_results(idstazione + " .pm10 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "pm10", 0);
         datoppm25 = "n.d.";
+        arraypm10.push(datoppm10);
         return
     };
-    if (datoppm10 == 0) {
+    if (datogpm10 == 0) {
         display_results(idstazione + " .pm10 .tinq > span", 0);
         stampacoloreiqainquinante(idstazione, "pm10", datoppm10);
         datoppm10 = 0;
+        arraypm10.push(datoppm10);
         return
     };
 
-    //mi scrive i 4 singoli inquinanti
-    //bisogna calcolare iqa singoli
-    console.log("nessun caso speciale");
+
+    //console.log("nessun caso speciale");
+    datoppm10 = (datogpm10 / 50) * 100;
+    datoppm10 = Math.trunc(datoppm10);
+    arraypm10.push(datoppm10);
+
     stampacoloreiqainquinante(idstazione, "pm10", datoppm10);
-
     display_results(idstazione + " .pm10 .tinq > span", datoppm10);
-
     console.log(idstazione, "pm10", datoppm10);
 };
 
@@ -865,30 +865,29 @@ function printinquinanti2(idstazione, numstazione) {
     console.log(idstazione + "pm25" + filagrezza.pm25);
 
     datogpm25 = filagrezza.pm25;
-
+    datogpm25 = Number(datogpm25);
     //mi scrive i 4 singoli inquinanti
     //bisogna calcolare iqa singoli
 
-    datoppm25 = (datogpm25 / 25) * 100;
-
-    datoppm25 = Math.trunc(datoppm25);
-
-    arraypm25.push(datoppm25);
-
-    if (isNaN(datoppm25)) {
+    if (isNaN(datogpm25)) {
         display_results(idstazione + " .pm2 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "pm2", 0);
         datoppm25 = "n.d.";
+        arraypm25.push(datoppm25);
         return
     };
-    if (datoppm25 == 0) {
+    if (datogpm25 == 0) {
         display_results(idstazione + " .pm2 .tinq > span", 0);
-        stampacoloreiqainquinante(idstazione, "pm2", datoppm25);
+        stampacoloreiqainquinante(idstazione, "pm2", 0);
         datoppm25 = 0;
+        arraypm25.push(datoppm25);
         return
     };
-    console.log("nessun caso speciale");
+    //console.log("nessun caso speciale");
+    datoppm25 = (datogpm25 / 25) * 100;
+    datoppm25 = Math.trunc(datoppm25);
 
+    arraypm25.push(datoppm25);
     stampacoloreiqainquinante(idstazione, "pm2", datoppm25);
     display_results(idstazione + " .pm2 .tinq > span", datoppm25);
     console.log(idstazione, "pm2", datoppm25);
@@ -897,29 +896,37 @@ function printinquinanti2(idstazione, numstazione) {
 function printinquinanti3(idstazione, numstazione) {
     var filagrezza = datigrezzi[numstazione];
     datogo3 = filagrezza.o3mediaorariamax;
+    datogo3 = datogo3.trim();
+    datogo3 = Number(datogo3);
 
     //mi scrive i 4 singoli inquinanti
     //bisogna calcolare iqa singoli
 
-    datopo3 = (datogo3 / 120) * 100;
-
-    datopo3 = Math.trunc(datopo3);
-
-    arrayo3.push(datopo3);
-
-    if (isNaN(datopo3)) {
+    if (isNaN(datogo3)) {
         display_results(idstazione + " .o3 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "o3", 0);
         datopo3 = "n.d.";
+        arrayo3.push(datopo3);
         return
     };
-    if (datopo3 == 0) {
+    if (datogo3 == 0) {
         display_results(idstazione + " .o3 .tinq > span", 0);
         stampacoloreiqainquinante(idstazione, "o3", datopo3);
         datopo3 = 0;
+        arrayo3.push(datopo3);
         return
     };
-    console.log("nessun caso speciale");
+    if (datogo3 === undefined) {
+        display_results(idstazione + " .o3 .tinq > span", "n.d.");
+        stampacoloreiqainquinante(idstazione, "o3", 0);
+        datopo3 = "n.d.";
+        arrayo3.push(datopo3);
+        return
+    };
+    //console.log("nessun caso speciale");
+    arrayo3.push(datopo3);
+    datopo3 = (datogo3 / 120) * 100;
+    datopo3 = Math.trunc(datopo3);
 
     stampacoloreiqainquinante(idstazione, "o3", datopo3);
     display_results(idstazione + " .o3 .tinq > span", datopo3);
@@ -929,31 +936,29 @@ function printinquinanti3(idstazione, numstazione) {
 function printinquinanti4(idstazione, numstazione) {
     var filagrezza = datigrezzi[numstazione];
     datogno2 = filagrezza.no2;
-
+    datogno2 = Number(datogno2);
     //mi scrive i 4 singoli inquinanti
     //bisogna calcolare iqa singoli
 
-    datopno2 = (datogno2 / 200) * 100;
-
-    datopno2 = Math.trunc(datopno2);
-
-    arrayno2.push(datopno2);
-
-
-    if (isNaN(datopno2)) {
+    if (isNaN(datogno2)) {
         display_results(idstazione + " .no2 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "no2", 0);
         datopno2 = "n.d.";
+        arrayno2.push(datopno2);
         return
     };
-    if (datopno2 == 0) {
+    if (datogno2 == 0) {
         display_results(idstazione + " .no2 .tinq > span", 0);
         stampacoloreiqainquinante(idstazione, "no2", datopno2);
         datopno2 = 0;
+        arrayno2.push(datopno2);
         return
     };
-    console.log("nessun caso speciale");
+    datopno2 = (datogno2 / 200) * 100;
+    datopno2 = Math.trunc(datopno2);
 
+    //console.log("nessun caso speciale");
+    arrayno2.push(datopno2);
     stampacoloreiqainquinante(idstazione, "no2", datopno2);
     display_results(idstazione + " .no2 .tinq > span", datopno2);
     console.log(idstazione, "no2", datopno2);
@@ -1003,8 +1008,8 @@ function getdatigrezzi() {
             printinquinanti4("#slazzaro", 35);
             creanomistazioni();
             trovamaggiore(arraypm10);
-            // trovamaggiore(arraypm25);
-            //trovamaggiore(arrayo3);
+            trovamaggiore(arraypm25);
+           // trovamaggiore(arrayo3);
             //trovamaggiore(arrayno2);
         },
         error: function (b) {
@@ -1013,13 +1018,39 @@ function getdatigrezzi() {
     });
 };
 
+function pulisciarray(arrayvoluto){
 
+    for (var i=0;i<arrayvoluto.length;i++)
+         {
+             var unoperuno=arrayvoluto[i];
+             console.log("unoperuno"+unoperuno);
+             if(unoperuno=="n.d."){
+                unoperuno=0;
+                 console.log("nd!");
+                 unoperuno[i]=unoperuno;
+                }
+             if(isNaN(unoperuno)){
+                unoperuno=0;
+                 console.log("uno!");
+                 unoperuno[i]=unoperuno;
+                }
+           arrayvoluto[i]=unoperuno;
+    }
+}
+
+
+// agg arg per id div
 function trovamaggiore(arrayinquinante) {
     //trasforma in numeri!!
 
+    console.log("array non pulito " + arrayinquinante);
+
+    pulisciarray(arrayinquinante);
+    
     var maggiorinq = Math.max.apply(null, arrayinquinante);
-    // scriverlo
-    //display_results("h1", "Errore");
+    // scriverlo come numero!
+
+    display_results("#pm10 div", maggiorinq);
     console.log("maggioreinquinante " + maggiorinq);
 
     //ricavo l'indice e l oprendo dai nomi e lo scrivo
