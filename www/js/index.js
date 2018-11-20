@@ -28,11 +28,10 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         //DANGER solo per android, decommentare!
-        //checkConnection();
+        checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        getdatigrezzi();
-
-        frasedelgiorno();
+        //getdatigrezzi();
+        //frasedelgiorno();
     },
 
 
@@ -68,9 +67,10 @@ function checkConnection() {
 
     } else {
         //display_results("h1", "ok");
-        getdatiiqa();
+        
         getdatigrezzi();
         frasedelgiorno();
+        /* getdatiiqa();  in cascata a frasedelgiorno();*/
         return true;
     }
 }
@@ -465,7 +465,7 @@ function connesso() {
     $("#tabellainquinanti").removeClass("hide");
 }
 
-//var colori per gratio, per calcolare valore del gradiente di sfondo
+//var colori per ratio, per calcolare valore del gradiente di sfondo
 var ratio = "";
 var baseratio = 0;
 var colorebasso = "";
@@ -565,12 +565,11 @@ function scrivifraseRSS() {
     console.log("fraseRSS online!");
     //scrivo
     display_results("#fraseiqa", titleRSS);
-    //display_results("#sottofraseiqa", descriptionRSS);
     $("#sottofraseiqa").html(descriptionRSS);
 }
 /* test frasi offline http://api.jquery.com/jquery.ajax/  */
 
-
+// frase RSS prima di tutto!, la funzione è chiamata anche prima del iqa sennò arriva tutto in ritardo
 
 function scrivifrase(argomento) {
 
@@ -661,8 +660,6 @@ function arrayordinato(numero) {
     }).map(Number.call, Number)
 }
 
-
-
 // https://bost.ocks.org/mike/shuffle/
 
 function shuffle(array) {
@@ -685,15 +682,15 @@ function shuffle(array) {
     return array;
 }
 
-
 // secondo repo arpa: dati grezzi centraline
 /*  
-dalla 29 alla 25, pm10, no2, benzene, pm25  
+dalla 29 alla 35, pm10, no2, benzene, pm25  
 https://apps.arpae.it/qualita-aria/bollettino-qa-provinciale/bo
 */
 
 var datigrezzi = ""
 var stazioni = [29, 30, 31, 32, 33, 34, 35];
+var nomistaz = []
 var inquinantilist = ["pm10", "no2", "benzene", "pm25"]
 var pm10 = [];
 var no2 = [];
@@ -708,18 +705,24 @@ function stampainquinanti() {
         var datogpm10 = datigrezzi[stazionep];
         //for (i = 0; i < inquinantilist.length; i++) {
         //var inquinante = inquinantilist[i];
-        console.log(stazionep);
+        console.log("ciclo-stazioni" + stazionep);
         //console.log(datogpm10);
         //console.log(inquinante);
         datogpm10 = datogpm10.pm10;
         datogpm10 = datogpm10.trim();
-        if (datogpm10 == "n.d.") {} else {
+        if (datogpm10 == "n.d.") {
+            
+        } else {
             pm10.push(datogpm10);
         };
 
     }
-    console.log(pm10);
-    var maggiorinq = Math.max.apply(null, pm10);
+    // console.log(pm10);
+   trovamaggiore();
+};
+
+function trovamaggiore(){
+     var maggiorinq = Math.max.apply(null, pm10);
     console.log(maggiorinq);
     iqapm10 = (maggiorinq / 50) * 100;
     console.log(iqapm10);
@@ -729,12 +732,11 @@ function stampainquinanti() {
 
 function stampaiqapm10() {
     display_results("#pm10 .tinq > span", iqapm10);
-    stampacoloreiqainquinante(iqapm10);
-    console.log("iqa pm10 " + iqapm10);
+    stampacoloreiqainquinante("pm10",iqapm10);
 };
 
-function stampacoloreiqainquinante(inquinante) {
-    console.log("iqa inquinante " + inquinante);
+function stampacoloreiqainquinante(nomeinq,inquinante) {
+    console.log("stampa iqa inquinante "+nomeinq + inquinante);
     switch (true) {
         case (inquinante < 50):
             calcolagradienteinquinante(inquinante, 0, "00E676", "FFEA00");

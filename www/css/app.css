@@ -2,9 +2,9 @@
 
 img.logoaria {
     width: 100%;
-    min-width: 100%;
     height: auto;
     max-width: 640px;
+    display: block;
 }
 p.loghi{
     margin-top:1em;
