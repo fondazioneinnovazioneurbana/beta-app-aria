@@ -28,10 +28,10 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         //DANGER solo per android, decommentare!
-        //checkConnection();
+        checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        getdatigrezzi();
-        frasedelgiorno();
+        //getdatigrezzi();
+        //frasedelgiorno();
     },
 
 
@@ -1088,7 +1088,7 @@ function shareMeNow(message, subject, files, url) {
 
 $('#shareiqa').click(function () {
     console.log("bottone_share");
-    shareMeNow("Che Aria è", "Lab Aria", "../ariademo.png", "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
+    shareMeNow("Che Aria è", "Lab Aria", ["../ariademo.png"], "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
 
 });
 
