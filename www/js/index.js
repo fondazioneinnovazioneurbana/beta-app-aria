@@ -729,12 +729,13 @@ function calcolagradiente() {
 
 var datigrezzi = ""
 var stazioni = [29, 30, 31, 32, 33, 34, 35];
-var nomistaz = []
-var inquinantilist = ["pm10", "no2", "benzene", "pm25"]
-var pm10 = [];
-var no2 = [];
-var benzene = [];
-var pm25 = [];
+var bottonistazioni = $("#tuttidati .blackbutton");
+var nomistazioni = [];
+var arraypm10 = [];
+var arrayno2 = [];
+var arrayo3 = [];
+var arraypm25 = [];
+
 var iqapm10;
 
 var datogpm10;
@@ -746,6 +747,19 @@ var datoppm10;
 var datopno2;
 var datopo3;
 var datoppm25;
+
+
+function creanomistazioni() {
+    var i;
+    var singolonome;
+    for (i = 0; i < bottonistazioni.length; i++) {
+        singolonome = $(bottonistazioni[i]);
+        singolonome = $(singolonome).text().trim();
+        nomistazioni.push(singolonome);
+
+    }
+    //console.log(nomistazioni);
+};
 
 //calcolo inquinanti https://www.arpae.it/dettaglio_generale.asp?id=3883&idlivello=2074 
 
@@ -814,19 +828,14 @@ function calcolagradienteinquinante(idstazione, nomeinq, inq, baseratioq, colorq
 /* scrivo il dato grezzo dei 4 */
 function printinquinanti(idstazione, numstazione) {
     var filagrezza = datigrezzi[numstazione];
-    console.log(idstazione + "pm10" + filagrezza.pm10);
-    console.log(idstazione + "o2" + filagrezza.o2);
-    console.log(idstazione + "benzene" + filagrezza.benzene);
-    console.log(idstazione + "pm25" + filagrezza.pm25);
 
     datogpm10 = filagrezza.pm10;
-    datogno2 = filagrezza.o2;
-    datogbenz = filagrezza.benzene;
-    datogpm25 = filagrezza.pm25;
 
     datoppm10 = (datogpm10 / 50) * 100;
 
     datoppm10 = Math.trunc(datoppm10);
+
+    arraypm10.push(datoppm10);
 
     if (isNaN(datoppm10)) {
         display_results(idstazione + " .pm10 .tinq > span", "n.d.");
@@ -864,6 +873,8 @@ function printinquinanti2(idstazione, numstazione) {
 
     datoppm25 = Math.trunc(datoppm25);
 
+    arraypm25.push(datoppm25);
+
     if (isNaN(datoppm25)) {
         display_results(idstazione + " .pm2 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "pm2", 0);
@@ -894,6 +905,8 @@ function printinquinanti3(idstazione, numstazione) {
 
     datopo3 = Math.trunc(datopo3);
 
+    arrayo3.push(datopo3);
+
     if (isNaN(datopo3)) {
         display_results(idstazione + " .o3 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "o3", 0);
@@ -923,6 +936,9 @@ function printinquinanti4(idstazione, numstazione) {
     datopno2 = (datogno2 / 200) * 100;
 
     datopno2 = Math.trunc(datopno2);
+
+    arrayno2.push(datopno2);
+
 
     if (isNaN(datopno2)) {
         display_results(idstazione + " .no2 .tinq > span", "n.d.");
@@ -985,6 +1001,11 @@ function getdatigrezzi() {
             printinquinanti4("#imola", 33);
             printinquinanti4("#bfelice", 34);
             printinquinanti4("#slazzaro", 35);
+            creanomistazioni();
+            trovamaggiore(arraypm10);
+            // trovamaggiore(arraypm25);
+            //trovamaggiore(arrayo3);
+            //trovamaggiore(arrayno2);
         },
         error: function (b) {
             console.log(b, 2);
@@ -992,6 +1013,23 @@ function getdatigrezzi() {
     });
 };
 
+
+function trovamaggiore(arrayinquinante) {
+    //trasforma in numeri!!
+
+    var maggiorinq = Math.max.apply(null, arrayinquinante);
+    // scriverlo
+    //display_results("h1", "Errore");
+    console.log("maggioreinquinante " + maggiorinq);
+
+    //ricavo l'indice e l oprendo dai nomi e lo scrivo
+    var indicenome = arrayinquinante.indexOf(maggiorinq);
+    var testostazione = nomistazioni[indicenome];
+    display_results("#pm10 div > span", testostazione);
+
+    console.log("maggioreindicenome " + indicenome);
+    console.log("maggioretestostazione " + testostazione);
+};
 ///////////////share plugin ///////////////////
 
 function shareMeNow(message, subject, files, url) {
