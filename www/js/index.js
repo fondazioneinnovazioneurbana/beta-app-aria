@@ -28,10 +28,10 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         //DANGER solo per android, decommentare!
-        checkConnection();
+        //checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        //getdatigrezzi();
-        //frasedelgiorno();
+        getdatigrezzi();
+        frasedelgiorno();
     },
 
 
@@ -1069,7 +1069,7 @@ function shareMeNow(message, subject, files, url) {
     var options = {
         message: message ? entityToHtml(message) : '', // not supported on some apps (Facebook, Instagram) 
         subject: subject ? entityToHtml(subject) : 'Share this:', // fi. for email 
-        files: "", // o NO, an array of filenames either locally or remotely 
+        files: files, // o NO, an array of filenames either locally or remotely 
         url: url || 'http://fondazioneinnovazioneurbana.it/labaria/',
     };
 

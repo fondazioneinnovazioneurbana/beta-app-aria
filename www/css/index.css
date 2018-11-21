@@ -142,14 +142,14 @@ img.iconcina {
     background: #000 !important;
 }
 .md .navbar .title, .ios .navbar .title{
-font-size: 23px;
+font-size: 25px;
 }
 
 .md .page, .ios .page{
     background-color: #E1E1E1;
 }
 
-h1{font-weight: 400;}
+h1{font-weight: 500;font-size: 30px;}
 
 .md .navbar::after , .ios .navbar::after{
    background-color: rgba(0,0,0,0);
@@ -161,19 +161,37 @@ h1{font-weight: 400;}
     background-color:  rgba(0,0,0,0);
 }
 
+.md .theme-dark .page, .page.md .theme-dark,.ios .theme-dark .page, .page.ios .theme-dark {
+    background: black !important;
+}
+.md .block, .ios .block  {
+    margin: 20px 0 32px 0;
+    padding: 0 16px;
+}
 /*frasi*/
 
 .block.block-strong.sotto {
-    padding: 16px 0;
+    padding:0 0 1em 0;;
 }
-
+.rigacorta {
+    box-shadow: none;
+    border: solid 1px black;
+}
+.rigacortapage {
+    margin-top: -1em;
+}
+#tabellainquinanti {
+    margin-top: -1em;
+}
 #fraseiqa {
     font-family: 'Space Mono', monospace;
     font-weight: 400;
+    line-height: 1.5;
 }
 
 h3, #sottofraseiqa {
     font-weight: 400;
+    line-height: 1.2;
 }
 
 /* inquinanti */
@@ -188,7 +206,8 @@ h3, #sottofraseiqa {
     border-radius: 35px;
     margin: 1em;
     display: inline-block;
-    padding: 10px 30px;
+    padding: 10px 20px;
+    font-size: 16px;
 }
 .blackbutton{
     margin:1em 0 !important;

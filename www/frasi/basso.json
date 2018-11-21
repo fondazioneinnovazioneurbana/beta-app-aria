@@ -2,7 +2,7 @@
     "description": "basso",
     "resources": [{
             "type": "text",
-            "name" : "16 milardi di euro ti sembrano pochi?",
+            "name" : "16 miliardi di euro ti sembrano pochi?",
             "content" : "In Europa il costo dovuto alle giornate di lavoro perse a causa di malattie legate all'inquinamento dell'aria è pari a quasi 16 miliardi di euro"
         }, 
         {
