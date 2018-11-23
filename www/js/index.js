@@ -28,10 +28,10 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         //DANGER solo per android, decommentare!
-        checkConnection();
+        //checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        //getdatigrezzi();
-        //frasedelgiorno();
+        getdatigrezzi();
+        frasedelgiorno();
     },
 
 
@@ -736,8 +736,6 @@ var arrayno2 = [];
 var arrayo3 = [];
 var arraypm25 = [];
 
-var iqapm10;
-
 var datogpm10;
 var datogno2;
 var datogo3;
@@ -750,15 +748,13 @@ var datoppm25;
 
 
 function creanomistazioni() {
-    var i;
     var singolonome;
-    for (i = 0; i < bottonistazioni.length; i++) {
+    for (var i = 0; i < bottonistazioni.length; i++) {
         singolonome = $(bottonistazioni[i]);
         singolonome = $(singolonome).text().trim();
         nomistazioni.push(singolonome);
-
     }
-    //console.log(nomistazioni);
+    console.log(nomistazioni);
 };
 
 //calcolo inquinanti https://www.arpae.it/dettaglio_generale.asp?id=3883&idlivello=2074 
