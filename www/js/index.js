@@ -833,7 +833,7 @@ function printinquinanti(idstazione, numstazione) {
     if (isNaN(datogpm10)) {
         display_results(idstazione + " .pm10 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "pm10", 0);
-        datoppm25 = "n.d.";
+        datoppm10 = "n.d.";
         arraypm10.push(datoppm10);
         return
     };
