@@ -15,6 +15,11 @@ p.loghi{
 .page-content.crediti{
     /*background-color:#fff;*/
 }
+
+hr#more {
+    border: solid 1px rgba(0,0,0,0);
+}
+
 /*per frase RSS */
 #sottofraseiqa > p:nth-child(1) {
     margin: 0;

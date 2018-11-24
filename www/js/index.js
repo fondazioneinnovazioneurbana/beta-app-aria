@@ -145,14 +145,14 @@ function getdatiiqa() {
         var obj = jQuery.parseJSON(responseText);
         iqa = obj.dati.istat_037006.iqa;
         //console.log(iqa);
-      /* pm10 = obj.dati.istat_037006.pm10;
-        console.log("qui pm10iqa" + pm10);
-        pm2 = obj.dati.istat_037006.pm25;
-        console.log("qui pm2iqa" + pm2);
-        ozono = obj.dati.istat_037006.o3;
-        console.log("qui ozono" + o3);
-        no2 = obj.dati.istat_037006.no2;
-        console.log("qui pm10iqa" + pm10);*/
+        /* pm10 = obj.dati.istat_037006.pm10;
+          console.log("qui pm10iqa" + pm10);
+          pm2 = obj.dati.istat_037006.pm25;
+          console.log("qui pm2iqa" + pm2);
+          ozono = obj.dati.istat_037006.o3;
+          console.log("qui ozono" + o3);
+          no2 = obj.dati.istat_037006.no2;
+          console.log("qui pm10iqa" + pm10);*/
         stampaaggettivoiqa();
     };
 
@@ -811,15 +811,19 @@ function calcolagradienteinquinante(idstazione, nomeinq, inq, baseratioq, colorq
 
     nsu500 = (inq * 100) / 500;
     nsu500 = Math.trunc(nsu500);
-    console.log("nsu500 " + nsu500);
+    //console.log("nsu500 " + nsu500);
     //(x:100=inq:500) (inq*100)/500
 
-    console.log("inq rgb(" + r + "," + g + "," + b + ")");
+    //console.log("inq rgb(" + r + "," + g + "," + b + ")");
     $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
     $(idstazione + " ." + nomeinq + " .barrain").css("width", nsu500 + "%");
     //$("div.block.rainbow ").css("animation", "none");
 };
 
+var arraygpm10 = [];
+var arraygo3 = [];
+var arraygno2 = [];
+var arraygpm25 = [];
 
 /* scrivo il dato grezzo dei 4 */
 function printinquinanti(idstazione, numstazione) {
@@ -834,25 +838,28 @@ function printinquinanti(idstazione, numstazione) {
         display_results(idstazione + " .pm10 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "pm10", 0);
         datoppm10 = "n.d.";
+        arraygpm10.push(0);
         arraypm10.push(datoppm10);
         return
     };
     if (datogpm10 == 0) {
         display_results(idstazione + " .pm10 .tinq > span", 0);
-        stampacoloreiqainquinante(idstazione, "pm10", datoppm10);
+        stampacoloreiqainquinante(idstazione, "pm10", 0);
         datoppm10 = 0;
+        arraygpm10.push(0);
         arraypm10.push(datoppm10);
         return
     };
 
 
     //console.log("nessun caso speciale");
+    arraygpm10.push(datogpm10);
     datoppm10 = (datogpm10 / 50) * 100;
     datoppm10 = Math.trunc(datoppm10);
     arraypm10.push(datoppm10);
 
     stampacoloreiqainquinante(idstazione, "pm10", datoppm10);
-    display_results(idstazione + " .pm10 .tinq > span", datoppm10);
+    display_results(idstazione + " .pm10 .tinq > span", datogpm10);
     //console.log(idstazione, "pm10", datoppm10);
 };
 
@@ -869,6 +876,7 @@ function printinquinanti2(idstazione, numstazione) {
         display_results(idstazione + " .pm2 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "pm2", 0);
         datoppm25 = "n.d.";
+        arraygpm25.push(0);
         arraypm25.push(datoppm25);
         return
     };
@@ -876,17 +884,19 @@ function printinquinanti2(idstazione, numstazione) {
         display_results(idstazione + " .pm2 .tinq > span", 0);
         stampacoloreiqainquinante(idstazione, "pm2", 0);
         datoppm25 = 0;
+        arraygpm25.push(0);
         arraypm25.push(datoppm25);
         return
     };
     //console.log("nessun caso speciale");
+    arraygpm25.push(datogpm25);
     datoppm25 = (datogpm25 / 25) * 100;
     datoppm25 = Math.trunc(datoppm25);
 
     arraypm25.push(datoppm25);
     stampacoloreiqainquinante(idstazione, "pm2", datoppm25);
-    display_results(idstazione + " .pm2 .tinq > span", datoppm25);
-    console.log(idstazione, "pm2", datoppm25);
+    display_results(idstazione + " .pm2 .tinq > span", datogpm25);
+    //console.log(idstazione, "pm2", datoppm25);
 };
 
 function printinquinanti3(idstazione, numstazione) {
@@ -902,13 +912,15 @@ function printinquinanti3(idstazione, numstazione) {
         display_results(idstazione + " .o3 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "o3", 0);
         datopo3 = "n.d.";
+        arraygo3.push(0);
         arrayo3.push(datopo3);
         return
     };
     if (datogo3 == 0) {
         display_results(idstazione + " .o3 .tinq > span", 0);
-        stampacoloreiqainquinante(idstazione, "o3", datopo3);
+        stampacoloreiqainquinante(idstazione, "o3", 0);
         datopo3 = 0;
+        arraygo3.push(0);
         arrayo3.push(datopo3);
         return
     };
@@ -916,16 +928,18 @@ function printinquinanti3(idstazione, numstazione) {
         display_results(idstazione + " .o3 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "o3", 0);
         datopo3 = "n.d.";
+        arraygo3.push(0);
         arrayo3.push(datopo3);
         return
     };
     //console.log("nessun caso speciale");
-    arrayo3.push(datopo3);
+    arraygo3.push(datogo3);
     datopo3 = (datogo3 / 120) * 100;
     datopo3 = Math.trunc(datopo3);
 
+    arrayo3.push(datopo3);
     stampacoloreiqainquinante(idstazione, "o3", datopo3);
-    display_results(idstazione + " .o3 .tinq > span", datopo3);
+    display_results(idstazione + " .o3 .tinq > span", datogo3);
     console.log(idstazione, "o3", datopo3);
 };
 
@@ -940,68 +954,85 @@ function printinquinanti4(idstazione, numstazione) {
         display_results(idstazione + " .no2 .tinq > span", "n.d.");
         stampacoloreiqainquinante(idstazione, "no2", 0);
         datopno2 = "n.d.";
+        arraygno2.push(0);
         arrayno2.push(datopno2);
         return
     };
     if (datogno2 == 0) {
         display_results(idstazione + " .no2 .tinq > span", 0);
-        stampacoloreiqainquinante(idstazione, "no2", datopno2);
+        stampacoloreiqainquinante(idstazione, "no2", 0);
         datopno2 = 0;
+        arraygno2.push(0);
         arrayno2.push(datopno2);
         return
     };
+    arraygno2.push(datogno2);
+    
     datopno2 = (datogno2 / 200) * 100;
     datopno2 = Math.trunc(datopno2);
 
     //console.log("nessun caso speciale");
     arrayno2.push(datopno2);
     stampacoloreiqainquinante(idstazione, "no2", datopno2);
-    display_results(idstazione + " .no2 .tinq > span", datopno2);
+    display_results(idstazione + " .no2 .tinq > span", datogno2);
     console.log(idstazione, "no2", datopno2);
 };
-function pulisciarray(arrayvoluto){
 
-    for (var i=0;i<arrayvoluto.length;i++)
-         {
-             var unoperuno=arrayvoluto[i];
-             console.log("unoperuno"+unoperuno);
-             if(unoperuno=="n.d."){
-                unoperuno=0;
-               //  console.log("nd!");
-                 unoperuno[i]=unoperuno;
-                }
-             if(isNaN(unoperuno)){
-                unoperuno=0;
-               //  console.log("uno!");
-                 unoperuno[i]=unoperuno;
-                }
-           arrayvoluto[i]=unoperuno;
+function pulisciarray(arrayvoluto) {
+
+    for (var i = 0; i < arrayvoluto.length; i++) {
+        var unoperuno = arrayvoluto[i];
+        //console.log("unoperuno"+unoperuno);
+        if (unoperuno == "n.d.") {
+            unoperuno = 0;
+            //  console.log("nd!");
+            unoperuno[i] = unoperuno;
+        }
+        if (isNaN(unoperuno)) {
+            unoperuno = 0;
+            //  console.log("uno!");
+            unoperuno[i] = unoperuno;
+        }
+        arrayvoluto[i] = unoperuno;
     }
 }
 
 
-// agg arg per id div
-function trovamaggiore(idiqainq,classiqa,arrayinquinante) {
+// trova maggiore iqa ina e colora la barra
+function trovamaggiore(idiqainq, classiqa, arrayinquinante) {
     //trasforma in numeri!!
 
-   // console.log("array non pulito " + arrayinquinante);
-
+    // console.log("array non pulito " + arrayinquinante);
     pulisciarray(arrayinquinante);
-    
-    var maggiorinq = Math.max.apply(null, arrayinquinante);
-    // scriverlo come numero!
 
-    display_results(idiqainq+" div.tinq > span", maggiorinq);
+    var maggiorinq = Math.max.apply(null, arrayinquinante);
+    // scriverlo come numero! ma grezzo. l'indice mi dice il numero stazione,
+    // ho l'id dell'inquinante.lo devo ciclare solo nel giusto ordine: pm10
+
+    display_results(idiqainq + " div.tinq > span", maggiorinq);
     console.log("maggioreinquinante " + maggiorinq);
 
     //ricavo l'indice e l oprendo dai nomi e lo scrivo
     var indicenome = arrayinquinante.indexOf(maggiorinq);
     var testostazione = nomistazioni[indicenome];
-    display_results(idiqainq+" div.tstaz > span", testostazione);
+    display_results(idiqainq + " div.tstaz > span", testostazione);
     stampacoloreiqainquinante(idiqainq, classiqa, maggiorinq);
 
     console.log("maggioreindicenome " + indicenome);
     console.log("maggioretestostazione " + testostazione);
+};
+// trova maggiore iqa ina e colora la barra
+function trovagmaggiore(idiqainq, classiqa, arrayinquinante) {
+    //trasforma in numeri!!
+
+    // console.log("array non pulito " + arrayinquinante);
+    pulisciarray(arrayinquinante);
+
+    var maggiorinq = Math.max.apply(null, arrayinquinante);
+    // scriverlo come numero! ma grezzo. l'indice mi dice il numero stazione,
+    // ho l'id dell'inquinante.lo devo ciclare solo nel giusto ordine: pm10
+
+    display_results(idiqainq + " div.tinq > span", maggiorinq);
 };
 
 function getdatigrezzi() {
@@ -1046,10 +1077,15 @@ function getdatigrezzi() {
             printinquinanti4("#bfelice", 34);
             printinquinanti4("#slazzaro", 35);
             creanomistazioni();
-            trovamaggiore("#pm10","pm10", arraypm10);
-            trovamaggiore("#pm2","pm2",arraypm25);
-            trovamaggiore("#o3","o3",arrayo3);
-            trovamaggiore("#no2","no2",arrayno2);
+            trovamaggiore("#pm10", "pm10", arraypm10);
+            trovamaggiore("#pm2", "pm2", arraypm25);
+            trovamaggiore("#o3", "o3", arrayo3);
+            trovamaggiore("#no2", "no2", arrayno2);
+
+            trovagmaggiore("#pm10", "pm10", arraygpm10);
+            trovagmaggiore("#pm2", "pm2", arraygpm25);
+            trovagmaggiore("#o3", "o3", arraygo3);
+            trovagmaggiore("#no2", "no2", arraygno2);
         },
         error: function (b) {
             console.log(b, 2);
@@ -1084,7 +1120,7 @@ function shareMeNow(message, subject, files, url) {
 
 $('#shareiqa').click(function () {
     console.log("bottone_share");
-        
+
     shareMeNow("Che Aria è", "Lab Aria", ["../ariademo.png"], "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
 
 });
