@@ -27,11 +27,13 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
+
+        inithome();
         //DANGER solo per android, decommentare!
-        //checkConnection();
+        checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        getdatigrezzi();
-        frasedelgiorno();
+        //getdatigrezzi();
+        //frasedelgiorno();
     },
 
 
@@ -648,9 +650,9 @@ function scrivifrase(argomento) {
                     N = Array.apply(null, {
                         length: data.resources.length
                     }).map(Number.call, Number);
-                    console.log(N);
+                    //console.log(N);
                     arr = shuffle(N);
-                    console.log(arr);
+                    //console.log(arr);
 
                     localStorage.setItem("sequenza" + argomento, arr);
                     localStorage.setItem("mioindice" + argomento, 0);
@@ -722,7 +724,7 @@ function calcolagradiente() {
 
     var middle = hex(r) + hex(g) + hex(b);
 
-    console.log("rgb(" + r + "," + g + "," + b + ")");
+    //console.log("rgb(" + r + "," + g + "," + b + ")");
     $("div.block.rainbow ").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
     //$("div.block.rainbow ").css("animation", "none");
 };
@@ -754,7 +756,7 @@ function creanomistazioni() {
         singolonome = $(singolonome).text().trim();
         nomistazioni.push(singolonome);
     }
-    console.log(nomistazioni);
+    //console.log(nomistazioni);
 };
 
 //calcolo inquinanti https://www.arpae.it/dettaglio_generale.asp?id=3883&idlivello=2074 
@@ -967,7 +969,6 @@ function printinquinanti4(idstazione, numstazione) {
         return
     };
     arraygno2.push(datogno2);
-    
     datopno2 = (datogno2 / 200) * 100;
     datopno2 = Math.trunc(datopno2);
 
@@ -1119,28 +1120,16 @@ function shareMeNow(message, subject, files, url) {
 
 
 $('#shareiqa').click(function () {
-    console.log("bottone_share");
-
+    //console.log("bottone_share");
     shareMeNow("Che Aria è", "Lab Aria", ["../ariademo.png"], "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
-
-});
-
-//bottone apri tab inquinanti
-$('#altri').click(function () {
-    $('#tuttidati').toggleClass("hide")
 });
 
 
-function bottonipreferenze() {
 
-    $("ul.pulsantoni li").click(function () {
-        $(this).addClass("voted");
-    });
-
-    $('#portos').click(function () {
-        //   var dati;
-        var url = "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it";
-
+function bottonipreferenze(idbutton, url) {
+var bottone=idbutton;
+    $(bottone).click(function () {
+        var url = url;
         //bisogna aggiungergli la classe voted e togliergli una classe che permette di rivotare.
         $.ajax({
             dataType: "html",
@@ -1156,4 +1145,34 @@ function bottonipreferenze() {
             }
         });
     });
+      $(bottone).click(function () {
+        $(this).addClass("voted");
+    });
 };
+
+function inithome() {
+    $('#altri').click(function () {
+        $('#tuttidati').toggleClass("hide")
+    });
+    $('#shareiqa').click(function () {
+        //console.log("bottone_share");
+        shareMeNow("Che Aria è", "Lab Aria", ["../ariademo.png"], "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
+    });
+
+};
+function initpartecipazione() {
+bottonipreferenze("#borgo","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1852&Itemid=1119&lang=it");
+bottonipreferenze("#navile","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1843&Itemid=1110&lang=it");   
+bottonipreferenze('#portos',"http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it");
+bottonipreferenze("#sando","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1841&Itemid=1108&lang=it");   
+bottonipreferenze("#sanste","#");   
+bottonipreferenze("#savena","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1844&Itemid=1111&lang=it");   
+bottonipreferenze("#areame","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1845&Itemid=1112&lang=it");   
+bottonipreferenze("#sport","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1846&Itemid=1113&lang=it");   
+bottonipreferenze("#verde","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1848&Itemid=1115&lang=it");   
+bottonipreferenze("#bimbi","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1847&Itemid=1114&lang=it");   
+bottonipreferenze("#salute","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1849&Itemid=1116&lang=it");   
+bottonipreferenze("#mobi","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1850&Itemid=1117&lang=it");   
+bottonipreferenze("#ener","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1851&Itemid=1118&lang=it");   
+    
+}

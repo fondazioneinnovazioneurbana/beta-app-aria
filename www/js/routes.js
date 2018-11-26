@@ -24,7 +24,7 @@ routes = [
         url: './pages/partecipa.html',
          on: {
             pageAfterIn: function (event, page) {
-             bottonipreferenze();
+             initpartecipazione();
         }
         }
             },
