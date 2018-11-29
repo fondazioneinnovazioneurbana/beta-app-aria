@@ -30,10 +30,10 @@ var app = {
 
         inithome();
         //DANGER solo per android, decommentare!
-        checkConnection();
+        //checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        //getdatigrezzi();
-        //frasedelgiorno();
+        getdatigrezzi();
+        frasedelgiorno();
     },
 
 
@@ -130,7 +130,7 @@ function getdatiiqa() {
     display_results(".datatop h1 span#year", "20" + annok.slice(1));
 
 
-    var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?projection={"dati.istat_037006":1}';
+    var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?projection={\u0022dati.istat_037006\u0022:1}';
     //var urlC="https://www.arpae.it/qualita-aria/bollettino-qa/json"
 
     var method = 'GET';
