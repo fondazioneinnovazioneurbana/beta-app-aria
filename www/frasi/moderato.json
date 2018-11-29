@@ -26,7 +26,29 @@
             "content" : "Non bruciare nel tuo giardino nessun tipo di rifiuto (ad esempio legna, scarti vegetali, imballaggi, plastica, ecc.) perché produci e immetti nell'aria una grande quantità di sostanze tossiche."
         },   {
             "type": "text",
-            "name" : "A meno che tu non sia su un'isola deserta, non mandare segnali di fumo!",
-            "content" : "Non bruciare nel tuo giardino nessun tipo di rifiuto (ad esempio legna, scarti vegetali, imballaggi, plastica, ecc.) perché produci e immetti nell'aria una grande quantità di sostanze tossiche."
-        } ]
-                  }
+            "name" : "Portalo in alto!",
+            "content" : "Per il tuo bambino usa passeggini di altezza superiore ai 50 cm dal suolo oppure portalo in fascia o nel marsupio: sarà meno esposto all'inquinamento!"
+        }, {
+            "type": "text",
+            "name" : "Non perdere la retta via!",
+            "content" : "Se ami fare sport all'aperto, scegli il percorso giusto: evita le strade trafficate dove si concentrano le polveri sottili e privilegia parchi e aree verdi."
+        }, {
+            "type": "text",
+            "name" : "Studia bene il tuo percorso!",
+            "content" : "Segui a piedi o in bici i percorsi meno trafficati. Ad esempio evita se puoi gli incroci con i semafori dove l'inquinamento è più concentrato a causa della sosta delle auto."
+        }, {
+            "type": "text",
+            "name" : "Chi indossa la maglia nera dell'inquinamento?",
+            "content" : "Le principali fonti di emissioni che causano l'inquinamento diretto da polveri (PM10) sono il traffico su strada e il riscaldamento civile, seguiti dal trasporto non stradale e dall'industria. "
+        }, {
+            "type": "text",
+            "name" : "L'apparenza...imballa!",
+            "content" : "Quando acquisti un prodotto, non guardare la bellezza della confezione ma di cosa è fatta: preferisci i prodotti sfusi, senza confezione o con imballaggi riciclabili. Differenziare e riciclare i rifiuti significa produrre meno gas nocivi per l’ambiente. "
+        }]
+}
+
+ 
+
+ 
+
+ 
