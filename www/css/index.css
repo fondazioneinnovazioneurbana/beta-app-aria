@@ -167,7 +167,7 @@ img.iconcinamini {
 }
 
 h1 {
-    font-weight: 200;
+    font-weight: 500;
     font-size: 30px;
 }
 
@@ -235,7 +235,7 @@ h1 {
     font-family: 'Space Mono', monospace;
     font-weight: 400;
     line-height: 1.5;
-    word-break: break-word;
+    word-break: break-word !important;
 }
 
 h3,
@@ -277,6 +277,12 @@ h3,
 .tabella div.tinq {
     padding: 0 0.6em;
     font-weight: 400;
+}
+.tstaz {
+    margin-bottom: 10px;
+}
+.tinq{
+    line-height: 1;
 }
 
 .barra {

@@ -39,14 +39,16 @@ hr#more {
     margin: 0;
     padding: 0;
 }
-
+ul.pulsantoni {
+     padding: 0;
+}
 ul.pulsantoni li{
     cursor: pointer;
     padding: 10px 16px;
     list-style: none;
     border: solid 1px black;
-    margin: 0.5em;
-    width: 80%;
+   margin: 0.5em 0;
+width: 94%;
     border-radius: 25px;
     background: white;
 }

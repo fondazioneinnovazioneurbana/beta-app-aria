@@ -471,7 +471,7 @@ function noconnessione() {
     $("#connesso").addClass("hide");
     $("#noconnesso").removeClass("hide");
     $("#noconnessioneiqa").addClass("hide");
-    display_results("h1", "Errore");
+    display_results(".datatop h1", "Errore");
 }
 
 
@@ -492,7 +492,7 @@ function noconnessioneIQA() {
     $("#connesso").addClass("hide");
     $("#noconnesso").addClass("hide");
     $("#noconnessioneiqa").removeClass("hide");
-    display_results("h1", "Errore di lettura dati");
+    display_results(".datatop h1", "Errore di lettura dati");
 }
 
 function noconnessionegrezzi() {
@@ -501,7 +501,7 @@ function noconnessionegrezzi() {
     $("#connesso").addClass("hide");
     $("#noconnesso").addClass("hide");
     $("#noconnessioneiqa").removeClass("hide");
-    display_results("h1", "Errore di lettura");
+    display_results(".datatop h1", "Errore di lettura");
 }
 function noconnessioneserver() {
   display_results("#fraseiqa", "Non disponibile");
