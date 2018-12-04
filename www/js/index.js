@@ -31,10 +31,10 @@ var app = {
         inithome();
         initpartecipazione();
         //DANGER solo per android, decommentare!
-        //checkConnection();
+        checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        getdatigrezzi();
-        frasedelgiorno();
+        //getdatigrezzi();
+        //frasedelgiorno();
     },
 
 
