@@ -2,6 +2,20 @@
 #shareiqa img {
 
 }
+#shareiqa {
+    display: inline-block;
+    position: relative;
+    margin: 0 auto;
+}
+
+body
+.md body,
+.md .icon .badge,
+.md .f7-icons .badge,
+.md .framework7-icons .badge,
+.md .material-icons .badge {
+  font-family: Helvetica, Arial, sans-serif !important;
+}
 
 img.logoaria {
     width: 100%;
