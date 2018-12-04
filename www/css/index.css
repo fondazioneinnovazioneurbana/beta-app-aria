@@ -114,7 +114,7 @@ body {
 div.block.rainbow {
     height: auto;
     margin: 0;
-    background-color: lightpink;
+    background-color: #00E676;
     animation: example 6s infinite;
     animation-delay: 4s;
     animation-timing-function: ease-out;

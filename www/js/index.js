@@ -29,11 +29,12 @@ var app = {
     onDeviceReady: function () {
 
         inithome();
+        initpartecipazione();
         //DANGER solo per android, decommentare!
-        checkConnection();
+        //checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        //getdatigrezzi();
-        //frasedelgiorno();
+        getdatigrezzi();
+        frasedelgiorno();
     },
 
 
@@ -1128,16 +1129,18 @@ $('#shareiqa').click(function () {
 
 function bottonipreferenze(idbutton, url) {
 var bottone=idbutton;
+          var urlo = url;
     $(bottone).click(function () {
-        var url = url;
+        urlo = url;
         //bisogna aggiungergli la classe voted e togliergli una classe che permette di rivotare.
         $.ajax({
             dataType: "html",
-            url: url,
+            url: urlo,
             //  data: data,
             type: "GET",
             success: function (a) {
-                //console.log(a, 1);
+                console.log("yrlo"+urlo);
+                console.log(a, 1);
                 console.log("link x partecipa! ok");
             },
             error: function (b) {
@@ -1165,7 +1168,7 @@ bottonipreferenze("#borgo","http://www.fondazioneinnovazioneurbana.it/index.php?
 bottonipreferenze("#navile","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1843&Itemid=1110&lang=it");   
 bottonipreferenze('#portos',"http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it");
 bottonipreferenze("#sando","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1841&Itemid=1108&lang=it");   
-bottonipreferenze("#sanste","#");   
+bottonipreferenze("#sanste","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1852&Itemid=1119&lang=it");   
 bottonipreferenze("#savena","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1844&Itemid=1111&lang=it");   
 bottonipreferenze("#areame","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1845&Itemid=1112&lang=it");   
 bottonipreferenze("#sport","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1846&Itemid=1113&lang=it");   
