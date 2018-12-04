@@ -31,10 +31,10 @@ var app = {
         inithome();
         initpartecipazione();
         //DANGER solo per android, decommentare!
-        checkConnection();
+        //checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        //getdatigrezzi();
-        //frasedelgiorno();
+        getdatigrezzi();
+        frasedelgiorno();
     },
 
 
@@ -162,6 +162,9 @@ function getdatiiqa() {
     xhr.onerror = function () {
         //display_results("h3", 'There was an error!');
         console.log('There was an error!');
+        setTimeout(function () {
+            noconnessioneIQA();
+        }, 2000);
     };
 
 
@@ -467,8 +470,10 @@ function noconnessione() {
     $("div.block.rainbow ").css("animation", "none");
     $("#connesso").addClass("hide");
     $("#noconnesso").removeClass("hide");
+    $("#noconnessioneiqa").addClass("hide");
     display_results("h1", "Errore");
 }
+
 
 // arriva dal aver finito di stampare l'iqa
 function connesso() {
@@ -476,6 +481,31 @@ function connesso() {
     $("div.block.rainbow ").css("animation", "none");
     $("#connesso").removeClass("hide");
     $("#tabellainquinanti").removeClass("hide");
+    $("#noconnessioneiqa").addClass("hide");
+    $("#noconnesso").addClass("hide");
+}
+
+// arriva dal non aver finito di stampare l'IQA
+function noconnessioneIQA() {
+    $("div.block.rainbow ").css("background-color", "#E1E1E1");
+    $("div.block.rainbow ").css("animation", "none");
+    $("#connesso").addClass("hide");
+    $("#noconnesso").addClass("hide");
+    $("#noconnessioneiqa").removeClass("hide");
+    display_results("h1", "Errore di lettura dati");
+}
+
+function noconnessionegrezzi() {
+    $("div.block.rainbow ").css("background-color", "#E1E1E1");
+    $("div.block.rainbow ").css("animation", "none");
+    $("#connesso").addClass("hide");
+    $("#noconnesso").addClass("hide");
+    $("#noconnessioneiqa").removeClass("hide");
+    display_results("h1", "Errore di lettura");
+}
+function noconnessioneserver() {
+  display_results("#fraseiqa", "Non disponibile");
+  $("#sottofraseiqa").html("");
 }
 
 //var colori per ratio, per calcolare valore del gradiente di sfondo
@@ -565,6 +595,10 @@ function frasedelgiorno() {
             prime15oRSS = arrayoggiRSS.slice(0, 16);
             prime15dRSS = arraydataRSS.slice(0, 16);
 
+            getdatiiqa();
+        },
+        'error': function(){
+            noconnessioneserver();
             getdatiiqa();
         }
     });
@@ -1090,7 +1124,11 @@ function getdatigrezzi() {
             trovagmaggiore("#no2", "no2", arraygno2);
         },
         error: function (b) {
-            console.log(b, 2);
+            //console.log(b, 2);
+            //console.log("non arrivano dati grezzi!");
+            setTimeout(function () {
+                noconnessionegrezzi();
+            }, 2000);
         }
     });
 };
@@ -1128,8 +1166,8 @@ $('#shareiqa').click(function () {
 
 
 function bottonipreferenze(idbutton, url) {
-var bottone=idbutton;
-          var urlo = url;
+    var bottone = idbutton;
+    var urlo = url;
     $(bottone).click(function () {
         urlo = url;
         //bisogna aggiungergli la classe voted e togliergli una classe che permette di rivotare.
@@ -1139,7 +1177,7 @@ var bottone=idbutton;
             //  data: data,
             type: "GET",
             success: function (a) {
-                console.log("yrlo"+urlo);
+                console.log("yrlo" + urlo);
                 console.log(a, 1);
                 console.log("link x partecipa! ok");
             },
@@ -1148,7 +1186,7 @@ var bottone=idbutton;
             }
         });
     });
-      $(bottone).click(function () {
+    $(bottone).click(function () {
         $(this).addClass("voted");
     });
 };
@@ -1163,19 +1201,20 @@ function inithome() {
     });
 
 };
+
 function initpartecipazione() {
-bottonipreferenze("#borgo","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1852&Itemid=1119&lang=it");
-bottonipreferenze("#navile","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1843&Itemid=1110&lang=it");   
-bottonipreferenze('#portos',"http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it");
-bottonipreferenze("#sando","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1841&Itemid=1108&lang=it");   
-bottonipreferenze("#sanste","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1852&Itemid=1119&lang=it");   
-bottonipreferenze("#savena","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1844&Itemid=1111&lang=it");   
-bottonipreferenze("#areame","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1845&Itemid=1112&lang=it");   
-bottonipreferenze("#sport","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1846&Itemid=1113&lang=it");   
-bottonipreferenze("#verde","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1848&Itemid=1115&lang=it");   
-bottonipreferenze("#bimbi","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1847&Itemid=1114&lang=it");   
-bottonipreferenze("#salute","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1849&Itemid=1116&lang=it");   
-bottonipreferenze("#mobi","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1850&Itemid=1117&lang=it");   
-bottonipreferenze("#ener","http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1851&Itemid=1118&lang=it");   
-    
+    bottonipreferenze("#borgo", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1852&Itemid=1119&lang=it");
+    bottonipreferenze("#navile", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1843&Itemid=1110&lang=it");
+    bottonipreferenze('#portos', "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it");
+    bottonipreferenze("#sando", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1841&Itemid=1108&lang=it");
+    bottonipreferenze("#sanste", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1852&Itemid=1119&lang=it");
+    bottonipreferenze("#savena", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1844&Itemid=1111&lang=it");
+    bottonipreferenze("#areame", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1845&Itemid=1112&lang=it");
+    bottonipreferenze("#sport", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1846&Itemid=1113&lang=it");
+    bottonipreferenze("#verde", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1848&Itemid=1115&lang=it");
+    bottonipreferenze("#bimbi", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1847&Itemid=1114&lang=it");
+    bottonipreferenze("#salute", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1849&Itemid=1116&lang=it");
+    bottonipreferenze("#mobi", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1850&Itemid=1117&lang=it");
+    bottonipreferenze("#ener", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1851&Itemid=1118&lang=it");
+
 }
