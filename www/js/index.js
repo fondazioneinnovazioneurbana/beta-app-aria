@@ -491,8 +491,9 @@ function noconnessioneIQA() {
     $("div.block.rainbow ").css("animation", "none");
     $("#connesso").addClass("hide");
     $("#noconnesso").addClass("hide");
+    $("#noconnessionegrezzi").addClass("hide");
     $("#noconnessioneiqa").removeClass("hide");
-    display_results(".datatop h1", "Errore di lettura dati");
+    display_results(".datatop h1", "Ops!");
 }
 
 function noconnessionegrezzi() {
@@ -500,12 +501,14 @@ function noconnessionegrezzi() {
     $("div.block.rainbow ").css("animation", "none");
     $("#connesso").addClass("hide");
     $("#noconnesso").addClass("hide");
-    $("#noconnessioneiqa").removeClass("hide");
-    display_results(".datatop h1", "Errore di lettura");
+    $("#noconnessoiqa").addClass("hide");
+    $("#noconnessionegrezzi").removeClass("hide");
+    display_results(".datatop h1", "Ops!");
 }
+
 function noconnessioneserver() {
-  display_results("#fraseiqa", "Non disponibile");
-  $("#sottofraseiqa").html("");
+    display_results("#fraseiqa", "Non disponibile");
+    $("#sottofraseiqa").html("");
 }
 
 //var colori per ratio, per calcolare valore del gradiente di sfondo
@@ -597,7 +600,7 @@ function frasedelgiorno() {
 
             getdatiiqa();
         },
-        'error': function(){
+        'error': function () {
             noconnessioneserver();
             getdatiiqa();
         }
