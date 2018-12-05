@@ -56,3 +56,13 @@ ul.pulsantoni li.voted{
     color: white;
     background-color: black !important;
 }
+#invia {
+    border: solid 1px black;
+    border-radius: 25px;
+    padding: 10px 16px;
+    text-align: center;
+    width: 230px;
+    display: block;
+    margin: 0 50%;
+    transform: translate(-50%,0);
+}

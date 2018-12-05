@@ -770,7 +770,7 @@ function calcolagradiente() {
 var datigrezzi = ""
 var stazioni = [29, 30, 31, 32, 33, 34, 35];
 var bottonistazioni = $("#tuttidati .blackbutton");
-var nomistazioni = [ "Molinella - San Pietro Capofiume", "Porretta Terme - Castelluccio", "Bologna - via Chiarini", "Bologna - Giardini Margherita", "Imola - viale De Amicis", "Bologna - Porta San Felice", "San Lazzaro di Savena" ];
+var nomistazioni = ["Molinella - San Pietro Capofiume", "Porretta Terme - Castelluccio", "Bologna - via Chiarini", "Bologna - Giardini Margherita", "Imola - viale De Amicis", "Bologna - Porta San Felice", "San Lazzaro di Savena"];
 var arraypm10 = [];
 var arrayno2 = [];
 var arrayo3 = [];
@@ -1167,20 +1167,24 @@ $('#shareiqa').click(function () {
 });
 
 
+//bisogna aggiungergli la classe voted e riprenderle in mano al click, 
+//vagliare gli id e avere gli url da chiamare, scrivere grazie 
 
-function bottonipreferenze(idbutton, url) {
-    var bottone = idbutton;
-    var urlo = url;
-    $(bottone).click(function () {
-        urlo = url;
-        //bisogna aggiungergli la classe voted e togliergli una classe che permette di rivotare.
+function bottonipreferenze() {
+    var bottone = $(".preferenza li.voted");
+
+    console.log("bottoni" + bottone)
+
+    $(bottone).each(function (index) {
+        var urlo = $(this).attr("data-url");
+
         $.ajax({
             dataType: "html",
             url: urlo,
             //  data: data,
             type: "GET",
             success: function (a) {
-                console.log("yrlo" + urlo);
+                console.log("urlo" + urlo);
                 console.log(a, 1);
                 console.log("link x partecipa! ok");
             },
@@ -1189,9 +1193,10 @@ function bottonipreferenze(idbutton, url) {
             }
         });
     });
-    $(bottone).click(function () {
-        $(this).addClass("voted");
-    });
+
+$(".voted").removeClass("voted");
+    $("#invia").empty();
+$("#invia").text("Grazie");
 };
 
 function inithome() {
@@ -1206,18 +1211,10 @@ function inithome() {
 };
 
 function initpartecipazione() {
-    bottonipreferenze("#borgo", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1852&Itemid=1119&lang=it");
-    bottonipreferenze("#navile", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1843&Itemid=1110&lang=it");
-    bottonipreferenze('#portos', "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1840&Itemid=1107&lang=it");
-    bottonipreferenze("#sando", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1841&Itemid=1108&lang=it");
-    bottonipreferenze("#sanste", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1852&Itemid=1119&lang=it");
-    bottonipreferenze("#savena", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1844&Itemid=1111&lang=it");
-    bottonipreferenze("#areame", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1845&Itemid=1112&lang=it");
-    bottonipreferenze("#sport", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1846&Itemid=1113&lang=it");
-    bottonipreferenze("#verde", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1848&Itemid=1115&lang=it");
-    bottonipreferenze("#bimbi", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1847&Itemid=1114&lang=it");
-    bottonipreferenze("#salute", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1849&Itemid=1116&lang=it");
-    bottonipreferenze("#mobi", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1850&Itemid=1117&lang=it");
-    bottonipreferenze("#ener", "http://www.fondazioneinnovazioneurbana.it/index.php?option=com_content&view=article&id=1851&Itemid=1118&lang=it");
-
+    $(".preferenza li").click(function () {
+        $(this).toggleClass("voted");
+    });
+    $("#invia").click(function () {
+        bottonipreferenze();
+    });
 }
