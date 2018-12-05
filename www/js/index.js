@@ -770,7 +770,7 @@ function calcolagradiente() {
 var datigrezzi = ""
 var stazioni = [29, 30, 31, 32, 33, 34, 35];
 var bottonistazioni = $("#tuttidati .blackbutton");
-var nomistazioni = [];
+var nomistazioni = [ "Molinella - San Pietro Capofiume", "Porretta Terme - Castelluccio", "Bologna - via Chiarini", "Bologna - Giardini Margherita", "Imola - viale De Amicis", "Bologna - Porta San Felice", "San Lazzaro di Savena" ];
 var arraypm10 = [];
 var arrayno2 = [];
 var arrayo3 = [];
@@ -1115,7 +1115,7 @@ function getdatigrezzi() {
             printinquinanti4("#imola", 33);
             printinquinanti4("#bfelice", 34);
             printinquinanti4("#slazzaro", 35);
-            creanomistazioni();
+            // creanomistazioni();
             trovamaggiore("#pm10", "pm10", arraypm10);
             trovamaggiore("#pm2", "pm2", arraypm25);
             trovamaggiore("#o3", "o3", arrayo3);
