@@ -32,10 +32,10 @@ var app = {
         initpartecipazione();
         initdownloadimg();
         //DANGER solo per android, decommentare!
-        //checkConnection();
+        checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        getdatigrezzi();
-        frasedelgiorno();
+        //getdatigrezzi();
+        //frasedelgiorno();
     },
 
 
@@ -1235,7 +1235,7 @@ function initdownloadimg() {
 console.log("canvas" + canvas)
                 // Convert and download as image 
                 Canvas2Image.saveAsPNG(canvas); 
-                console.log("PNG" + canvas)
+                
 
                 $("#imgout").append(canvas);
                 // Clean up 
@@ -1246,9 +1246,10 @@ console.log("canvas" + canvas)
 //https://html2canvas.hertzen.com/
         
 html2canvas(document.querySelector("#connesso")).then(canvas => {
- 
-    $("#imgout").html(canvas)
-    
+   console.log("canvas" + canvas);
+ Canvas2Image.saveAsPNG(canvas); 
+    //$("#imgout").html(canvas)
+    console.log("PNG" + canvas);
 });
 
 
