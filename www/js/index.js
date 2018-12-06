@@ -30,6 +30,7 @@ var app = {
 
         inithome();
         initpartecipazione();
+        initdownloadimg();
         //DANGER solo per android, decommentare!
         //checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
@@ -466,7 +467,8 @@ function entityToHtml(string) {
 
 // arriva dal check connection plugin per android
 function noconnessione() {
-    $("div.block.rainbow ").css("background-color", "#E1E1E1");
+    $("div.block.rainbow").css("background-color", "#E1E1E1");
+    $("#connesso").css("background-color", "#E1E1E1");
     $("div.block.rainbow ").css("animation", "none");
     $("#connesso").addClass("hide");
     $("#noconnesso").removeClass("hide");
@@ -488,6 +490,7 @@ function connesso() {
 // arriva dal non aver finito di stampare l'IQA
 function noconnessioneIQA() {
     $("div.block.rainbow ").css("background-color", "#E1E1E1");
+     $("#connesso").css("background-color", "#E1E1E1");
     $("div.block.rainbow ").css("animation", "none");
     $("#connesso").addClass("hide");
     $("#noconnesso").addClass("hide");
@@ -557,6 +560,7 @@ function stampaaggettivoiqa() {
             display_results("#aggettivoiqa", "molto_alto");
             //molto alto
             changebackground("div.block.rainbow", "#9E005D");
+             $("#connesso").css("background-color", "#9E005D");
             scrivifrase("molto_alto");
             //
             break;
@@ -765,6 +769,7 @@ function calcolagradiente() {
     //console.log("rgb(" + r + "," + g + "," + b + ")");
     $("div.block.rainbow ").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
     //$("div.block.rainbow ").css("animation", "none");
+     $("#connesso").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
 };
 
 var datigrezzi = ""
@@ -1218,3 +1223,36 @@ function initpartecipazione() {
         bottonipreferenze();
     });
 }
+
+function initdownloadimg() { 
+    $("#btnsave").click(function() { 
+        
+       /* var divtarget = $("#connesso");
+        html2canvas($(divtarget), {
+            onrendered: function(canvas) {
+                theCanvas = canvas;
+                document.body.appendChild(canvas);
+console.log("canvas" + canvas)
+                // Convert and download as image 
+                Canvas2Image.saveAsPNG(canvas); 
+                console.log("PNG" + canvas)
+
+                $("#imgout").append(canvas);
+                // Clean up 
+                //document.body.removeChild(canvas);
+                      }
+        }); */
+        
+//https://html2canvas.hertzen.com/
+        
+html2canvas(document.querySelector("#connesso")).then(canvas => {
+ 
+    $("#imgout").html(canvas)
+    
+});
+
+
+    });
+}; 
+
+    
