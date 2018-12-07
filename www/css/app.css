@@ -8,6 +8,14 @@
     margin: 0 auto;
 }
 
+#btnsave img{
+    width: 90vw;
+}
+#btnsave {
+    height: auto;
+    display: block;
+}
+
 body
 .md body,
 .md .icon .badge,

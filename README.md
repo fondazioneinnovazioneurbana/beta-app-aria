@@ -150,6 +150,9 @@ quindi mi leggo a che punto sono, in base al punto in cui sono arrivata nell'arr
 
 * condivisione sui social dell'immagine della frase
 
+https://www.npmjs.com/package/html2canvas
+https://www.npmjs.com/package/canvas2image
+
 * frasi per uno specifico giorno da RSS
 
 * mettere degli hook per dividere il deploy android da browser e IOS 

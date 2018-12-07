@@ -30,12 +30,12 @@ var app = {
 
         inithome();
         initpartecipazione();
-        initdownloadimg();
+          initdownloadimg();
         //DANGER solo per android, decommentare!
-        checkConnection();
+        //checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        //getdatigrezzi();
-        //frasedelgiorno();
+        getdatigrezzi();
+        frasedelgiorno();
     },
 
 
@@ -132,8 +132,8 @@ function getdatiiqa() {
     display_results(".datatop h1 span#year", "20" + annok.slice(1));
 
 
-    var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?projection={\u0022dati.istat_037006\u0022:1}';
-    //var urlC="https://www.arpae.it/qualita-aria/bollettino-qa/json"
+    var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?nocache=123';
+    //var urlC="https://www.arpae.it/qualita-aria/bollettino-qa/json"  ?projection={\u0022dati.istat_037006\u0022:1}
 
     var method = 'GET';
     var xhr = createCORSRequest(method, url);
@@ -770,6 +770,7 @@ function calcolagradiente() {
     $("div.block.rainbow ").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
     //$("div.block.rainbow ").css("animation", "none");
      $("#connesso").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
+    
 };
 
 var datigrezzi = ""
@@ -1082,7 +1083,7 @@ function trovagmaggiore(idiqainq, classiqa, arrayinquinante) {
 function getdatigrezzi() {
     console.log("chiamo dati grezzi");
     //   var dati;
-    var url = "https://www.arpae.it/qualita-aria/bollettino-qa/json";
+    var url = "https://www.arpae.it/qualita-aria/bollettino-qa/json?nocache=123";
 
     $.ajax({
         dataType: "json",
@@ -1210,7 +1211,7 @@ function inithome() {
     });
     $('#shareiqa').click(function () {
         //console.log("bottone_share");
-        shareMeNow("Che Aria è", "Lab Aria", ["../ariademo.png"], "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
+        shareMeNow("Che Aria è", "Lab Aria", [], "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
     });
 
 };
@@ -1223,37 +1224,28 @@ function initpartecipazione() {
         bottonipreferenze();
     });
 }
+   var imgbase64;  
 
 function initdownloadimg() { 
-    $("#btnsave").click(function() { 
-        
-       /* var divtarget = $("#connesso");
-        html2canvas($(divtarget), {
-            onrendered: function(canvas) {
-                theCanvas = canvas;
-                document.body.appendChild(canvas);
-console.log("canvas" + canvas)
-                // Convert and download as image 
-                Canvas2Image.saveAsPNG(canvas); 
-                
-
-                $("#imgout").append(canvas);
-                // Clean up 
-                //document.body.removeChild(canvas);
-                      }
-        }); */
-        
+         
 //https://html2canvas.hertzen.com/
-        
-html2canvas(document.querySelector("#connesso")).then(canvas => {
-   console.log("canvas" + canvas);
- Canvas2Image.saveAsPNG(canvas); 
-    //$("#imgout").html(canvas)
-    console.log("PNG" + canvas);
+    $("#btnrender").click(function() {
+        //al click renderizzo e apro il popup con la immagine, al click download
+     
+html2canvas(document.querySelector("#primapagina")).then(canvas => {
+  // console.log("canvas" + canvas);
+    imgbase64=Canvas2Image.convertToPNG(canvas); 
+    $("#btnsave").html(imgbase64);
+    console.log("PNG" + imgbase64);
+    imgbase64=$(imgbase64).attr("src");
+   
+    
+    $("#btnsave").attr("href",imgbase64);
 });
-
-
     });
+
+//ourcodeworld.com/articles/read/150/how-to-create-an-image-file-from-a-base64-string-on-the-device-with-cordova
+    
 }; 
 
     

@@ -20,17 +20,12 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
 * {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+   /* -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+     make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
 body {
-    -webkit-touch-callout: none;
-    /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;
-    /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;
-    /* prevent copy paste, to allow, change 'none' to 'text' */
+
     background-color: #E4E4E4;
     font-family: Helvetica, Arial, sans-serif !important;
     font-size: 1.17em;
@@ -115,10 +110,10 @@ div.block.rainbow {
     height: auto;
     margin: 0;
     background-color: #00E676;
-    animation: example 6s infinite;
+    animation: example 10s infinite;
     animation-delay: 4s;
     animation-timing-function: ease-out;
-    min-height: 89%;
+    min-height: 110%;
 }
 
 div.block#noconnesso,
@@ -139,12 +134,23 @@ img.iconcina {
 img.iconcinamini {
     max-width: 25px;
     margin-top: 0.8em;
+    padding-right: 6px;
 }
-
-.md .block.datatop,
-.ios .block.datatop {
-    margin: 0;
-    padding: 6px 16px;
+.datatitle.block.block-strong {
+    display: inline-block;
+    padding: 4px 0;
+    margin: 5px 1em;
+}
+.md .datatop,
+.ios .datatop,
+.datatop {
+    background-color:#E1E1E1;
+    width: 114%;
+    position: relative;
+    margin-left: -1em;
+    padding: 2px 1em 15px 1em;
+    margin-top: -15px;
+    height: 56px;
 }
 
 .toolbar,
@@ -177,12 +183,11 @@ h1 {
 .md .messagebar::after,
 .ios .toolbar-bottom-ios::after,
 .ios .messagebar::after,
-.md .tabbar .tab-link-highlight, 
-.md .tabbar-labels .tab-link-highlight
-.ios .tabbar .tab-link-highlight, 
-.ios .tabbar-labels .tab-link-highlight{
+.md .tabbar .tab-link-highlight,
+.md .tabbar-labels .tab-link-highlight .ios .tabbar .tab-link-highlight,
+.ios .tabbar-labels .tab-link-highlight {
     background-color: rgba(0, 0, 0, 0) !important;
-    height:0px !important;
+    height: 0px !important;
     background: black !important;
 }
 
@@ -278,10 +283,12 @@ h3,
     padding: 0 0.6em;
     font-weight: 400;
 }
+
 .tstaz {
     margin-bottom: 10px;
 }
-.tinq{
+
+.tinq {
     line-height: 1;
 }
 
@@ -292,7 +299,7 @@ h3,
 
 .barrain {
     height: 100%;
-    background-color: grey;
+    background-color: #E1E1E1;
     width: 0%;
     display: inline-block;
 }
