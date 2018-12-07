@@ -132,7 +132,7 @@ function getdatiiqa() {
     display_results(".datatop h1 span#year", "20" + annok.slice(1));
 
 
-    var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?nocache=123';
+    var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?nocache='+(new Date()).getTime();;
     //var urlC="https://www.arpae.it/qualita-aria/bollettino-qa/json"  ?projection={\u0022dati.istat_037006\u0022:1}
 
     var method = 'GET';
@@ -532,7 +532,7 @@ function stampaaggettivoiqa() {
             colorealto = "FFEA00";
             baseratio = 0;
             break;
-        case (50 <= iqa <= 99):
+        case (iqa <= 99):
             display_results("#aggettivoiqa", "moderato");
             //moderato
             scrivifrase("moderato");
@@ -540,7 +540,7 @@ function stampaaggettivoiqa() {
             colorealto = "FFC600";
             baseratio = 50;
             break;
-        case (100 <= iqa <= 149):
+        case (iqa <= 149):
             display_results("#aggettivoiqa", "medio");
             //medio
             scrivifrase("medio");
@@ -548,7 +548,7 @@ function stampaaggettivoiqa() {
             colorealto = "FF5722";
             baseratio = 100;
             break;
-        case (150 <= iqa <= 199):
+        case (iqa <= 199):
             display_results("#aggettivoiqa", "alto");
             //alto
             scrivifrase("alto");
@@ -556,7 +556,7 @@ function stampaaggettivoiqa() {
             colorealto = "9E005D";
             baseratio = 150;
             break;
-        case (iqa >= 200):
+        case (iqa > 200):
             display_results("#aggettivoiqa", "molto_alto");
             //molto alto
             changebackground("div.block.rainbow", "#9E005D");
@@ -821,7 +821,12 @@ function stampacoloreiqainquinante(idstazione, nomeinq, inquinante) {
             calcolagradienteinquinante(idstazione, nomeinq, inquinante, 150, "FF5722", "9E005D");
             break;
         case (inquinante >= 200):
-
+  $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "#9E005D");
+              var nsu500 = 0;
+    nsu500 = (inq * 100) / 500;
+    nsu500 = Math.trunc(nsu500);
+  $(idstazione + " ." + nomeinq + " .barrain").css("width", nsu500 + "%");
+ 
             //
             break;
         default:
@@ -1083,7 +1088,7 @@ function trovagmaggiore(idiqainq, classiqa, arrayinquinante) {
 function getdatigrezzi() {
     console.log("chiamo dati grezzi");
     //   var dati;
-    var url = "https://www.arpae.it/qualita-aria/bollettino-qa/json?nocache=123";
+    var url = "https://www.arpae.it/qualita-aria/bollettino-qa/json?nocache="+(new Date()).getTime();
 
     $.ajax({
         dataType: "json",
