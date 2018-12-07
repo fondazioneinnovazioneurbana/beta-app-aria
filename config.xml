@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="it.fondazioneinnovazioneurbana.apparia" version="1.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="it.fondazioneinnovazioneurbana.apparia" version="1.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Che Aria è</name>
     <description>
-Laboratorio Aria - partecipazione urbana Bologna
+        Laboratorio Aria - partecipazione urbana Bologna
     </description>
     <author email="info@digitigrafo.it" href="http://www.digitigrafo.it">
         Fondazione Innovazione Urbana Bologna
@@ -16,6 +16,7 @@ Laboratorio Aria - partecipazione urbana Bologna
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <access origin="cdvfile://*" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="res/icon/android/icon-36-ldpi.png" />
@@ -32,6 +33,8 @@ Laboratorio Aria - partecipazione urbana Bologna
         <splash density="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
         <preference name="AutoHideSplashScreen" value="true" />
         <preference name="SplashScreenDelay" value="3000" />
+        <preference name="AndroidPersistentFileLocation" value="External" />
+        <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     </platform>
     <platform name="browser">
         <preference name="SplashScreen" value="./screen-xhdpi-landscape.png" />
@@ -50,6 +53,7 @@ Laboratorio Aria - partecipazione urbana Bologna
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.1" />
     <plugin name="cordova-plugin-compat" spec="^1.2.0" />
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <engine name="android" spec="^7.0.0" />
     <engine name="browser" spec="^5.0.4" />
 </widget>

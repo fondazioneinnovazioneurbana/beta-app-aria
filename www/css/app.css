@@ -4,12 +4,13 @@
 }
 #shareiqa {
     display: inline-block;
-    position: relative;
-    margin: 0 auto;
+   /* position: relative;
+    margin: 0 auto;*/
 }
 
 #btnsave img{
     width: 90vw;
+    border:solid 1px #FFF;
 }
 #btnsave {
     height: auto;

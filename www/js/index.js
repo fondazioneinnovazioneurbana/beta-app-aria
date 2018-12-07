@@ -30,12 +30,14 @@ var app = {
 
         inithome();
         initpartecipazione();
-          initdownloadimg();
+        initdownloadimg();
         //DANGER solo per android, decommentare!
-        //checkConnection();
+        checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
-        getdatigrezzi();
-        frasedelgiorno();
+        //getdatigrezzi();
+        //frasedelgiorno();
+
+        console.log("file" + cordova.file);
     },
 
 
@@ -85,6 +87,7 @@ var ozono;
 var no2;
 
 var iqa = 0;
+var dataarpa;
 
 function getdatiiqa() {
     var createCORSRequest = function (method, url) {
@@ -105,34 +108,7 @@ function getdatiiqa() {
 
     //var dataarpa = 20181010
 
-    /*ogni volta setto la data di oggi*/
-
-    var today = new Date();
-    var oggi = today.getDate();
-    oggi = oggi.toString();
-    var mese = today.getMonth() + 1;
-    var annon = today.getYear();
-    var annok = annon.toString();
-    var mesek = mese.toString();
-
-    if (oggi.length == 1) {
-        oggi = '0' + oggi;
-    }
-    if (mesek.length == 1) {
-        mesek = '0' + mesek;
-    }
-    // data per la query alle API arpa per IQA
-    var dataarpa = "20" + annok.slice(1) + mesek + oggi;
-
-    // data per umani
-    var mesi = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
-
-    display_results(".datatop h1 span#day", today.getDate());
-    display_results(".datatop h1 span#month", mesi[today.getMonth()]);
-    display_results(".datatop h1 span#year", "20" + annok.slice(1));
-
-
-    var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?nocache='+(new Date()).getTime();;
+    var url = 'https://apps.arpae.it/REST/qa_modello/' + dataarpa + '?nocache=' + (new Date()).getTime();;
     //var urlC="https://www.arpae.it/qualita-aria/bollettino-qa/json"  ?projection={\u0022dati.istat_037006\u0022:1}
 
     var method = 'GET';
@@ -490,7 +466,7 @@ function connesso() {
 // arriva dal non aver finito di stampare l'IQA
 function noconnessioneIQA() {
     $("div.block.rainbow ").css("background-color", "#E1E1E1");
-     $("#connesso").css("background-color", "#E1E1E1");
+    $("#connesso").css("background-color", "#E1E1E1");
     $("div.block.rainbow ").css("animation", "none");
     $("#connesso").addClass("hide");
     $("#noconnesso").addClass("hide");
@@ -560,7 +536,7 @@ function stampaaggettivoiqa() {
             display_results("#aggettivoiqa", "molto_alto");
             //molto alto
             changebackground("div.block.rainbow", "#9E005D");
-             $("#connesso").css("background-color", "#9E005D");
+            $("#connesso").css("background-color", "#9E005D");
             scrivifrase("molto_alto");
             //
             break;
@@ -769,8 +745,8 @@ function calcolagradiente() {
     //console.log("rgb(" + r + "," + g + "," + b + ")");
     $("div.block.rainbow ").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
     //$("div.block.rainbow ").css("animation", "none");
-     $("#connesso").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
-    
+    $("#connesso").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
+
 };
 
 var datigrezzi = ""
@@ -821,12 +797,12 @@ function stampacoloreiqainquinante(idstazione, nomeinq, inquinante) {
             calcolagradienteinquinante(idstazione, nomeinq, inquinante, 150, "FF5722", "9E005D");
             break;
         case (inquinante >= 200):
-  $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "#9E005D");
-              var nsu500 = 0;
-    nsu500 = (inq * 100) / 500;
-    nsu500 = Math.trunc(nsu500);
-  $(idstazione + " ." + nomeinq + " .barrain").css("width", nsu500 + "%");
- 
+            $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "#9E005D");
+            var nsu500 = 0;
+            nsu500 = (inq * 100) / 500;
+            nsu500 = Math.trunc(nsu500);
+            $(idstazione + " ." + nomeinq + " .barrain").css("width", nsu500 + "%");
+
             //
             break;
         default:
@@ -1088,7 +1064,7 @@ function trovagmaggiore(idiqainq, classiqa, arrayinquinante) {
 function getdatigrezzi() {
     console.log("chiamo dati grezzi");
     //   var dati;
-    var url = "https://www.arpae.it/qualita-aria/bollettino-qa/json?nocache="+(new Date()).getTime();
+    var url = "https://www.arpae.it/qualita-aria/bollettino-qa/json?nocache=" + (new Date()).getTime();
 
     $.ajax({
         dataType: "json",
@@ -1150,12 +1126,12 @@ function getdatigrezzi() {
 
 ///////////////share plugin ///////////////////
 
-function shareMeNow(message, subject, files, url) {
+function shareMeNow(message, subject, url) {
     // this is the complete list of currently supported params you can pass to the plugin (all optional) 
     var options = {
         message: message ? entityToHtml(message) : '', // not supported on some apps (Facebook, Instagram) 
         subject: subject ? entityToHtml(subject) : 'Share this:', // fi. for email 
-        files: files, // o NO, an array of filenames either locally or remotely 
+        // files: files, // o NO, an array of filenames either locally or remotely 
         url: url || 'http://fondazioneinnovazioneurbana.it/labaria/',
     };
 
@@ -1174,10 +1150,52 @@ function shareMeNow(message, subject, files, url) {
 
 $('#shareiqa').click(function () {
     //console.log("bottone_share");
-    shareMeNow("Che Aria è", "Lab Aria", ["../ariademo.png"], "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
+    shareMeNow("Che Aria è", "Lab Aria", "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
 });
 
 
+
+
+function inithome() {
+
+    /*ogni volta setto la data di oggi*/
+
+    var today = new Date();
+    var oggi = today.getDate();
+    oggi = oggi.toString();
+    var mese = today.getMonth() + 1;
+    var annon = today.getYear();
+    var annok = annon.toString();
+    var mesek = mese.toString();
+
+    if (oggi.length == 1) {
+        oggi = '0' + oggi;
+    }
+    if (mesek.length == 1) {
+        mesek = '0' + mesek;
+    }
+    // data per la query alle API arpa per IQA
+    dataarpa = "20" + annok.slice(1) + mesek + oggi;
+
+    // data per umani
+    var mesi = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
+
+    display_results(".datatop h1 span#day", today.getDate());
+    display_results(".datatop h1 span#month", mesi[today.getMonth()]);
+    display_results(".datatop h1 span#year", "20" + annok.slice(1));
+
+
+    $('#altri').click(function () {
+        $('#tuttidati').toggleClass("hide")
+    });
+    $('#shareiqa').click(function () {
+        //console.log("bottone_share");
+        shareMeNow("Che Aria è", "Lab Aria", "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
+    });
+
+};
+
+//////////////////////PARTECIPAZIONE
 //bisogna aggiungergli la classe voted e riprenderle in mano al click, 
 //vagliare gli id e avere gli url da chiamare, scrivere grazie 
 
@@ -1205,20 +1223,9 @@ function bottonipreferenze() {
         });
     });
 
-$(".voted").removeClass("voted");
+    $(".voted").removeClass("voted");
     $("#invia").empty();
-$("#invia").text("Grazie");
-};
-
-function inithome() {
-    $('#altri').click(function () {
-        $('#tuttidati').toggleClass("hide")
-    });
-    $('#shareiqa').click(function () {
-        //console.log("bottone_share");
-        shareMeNow("Che Aria è", "Lab Aria", [], "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
-    });
-
+    $("#invia").text("Grazie");
 };
 
 function initpartecipazione() {
@@ -1229,28 +1236,124 @@ function initpartecipazione() {
         bottonipreferenze();
     });
 }
-   var imgbase64;  
 
-function initdownloadimg() { 
-         
-//https://html2canvas.hertzen.com/
-    $("#btnrender").click(function() {
+
+////////////////SAVE THE IMG IN THE DEVICE
+
+/**
+ * Convert a base64 string in a Blob according to the data and contentType.
+ * 
+ * @param b64Data {String} Pure base64 string without contentType
+ * @param contentType {String} the content type of the file i.e (image/jpeg - image/png - text/plain)
+ * @param sliceSize {Int} SliceSize to process the byteCharacters
+ * @see http://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
+ * @return Blob
+ */
+function b64toBlob(b64Data, contentType, sliceSize) {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
+
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        var byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+    }
+
+    var blob = new Blob(byteArrays, {
+        type: contentType
+    });
+    return blob;
+}
+
+/**
+ * Create a Image file according to its database64 content only.
+ * 
+ * @param folderpath {String} The folder where the file will be created
+ * @param filename {String} The name of the file that will be created
+ * @param content {Base64 String} Important : The content can't contain the following string (data:image/png[or any other format];base64,). Only the base64 string is expected.
+ */
+function savebase64AsImageFile(folderpath, filename, content, contentType) {
+    // Convert the base64 string in a Blob
+    var DataBlob = b64toBlob(content, contentType);
+
+    console.log("Starting to write the file :3");
+
+    window.resolveLocalFileSystemURL(folderpath, function (dir) {
+        console.log("Access to the directory granted succesfully");
+        dir.getFile(filename, {
+            create: true
+        }, function (file) {
+            console.log("File created succesfully.");
+            file.createWriter(function (fileWriter) {
+                console.log("Writing content to file");
+
+                fileWriter.write(DataBlob);
+                console.log("got the file: " + file.name + ', ' + file.fullPath);
+            }, function () {
+                alert('Unable to save file in path ' + folderpath);
+            });
+        });
+    });
+}
+var myBaseString;
+var block;
+var dataType;
+var realData;
+// The path where the file will be created
+//var folderpath = "file:///storage/emulated/0/"; cordova.file.externalDataDirectory o cordova.file.cacheDirectory ?
+
+var folderpath = "file:///storage/emulated/0/Download/";
+// The name of your file, note that you need to know if is .png,.jpeg etc
+var filename;
+
+
+var imgbase64;
+
+function initdownloadimg() {
+
+    //https://html2canvas.hertzen.com/
+    $("#btnrender").click(function () {
         //al click renderizzo e apro il popup con la immagine, al click download
-     
-html2canvas(document.querySelector("#primapagina")).then(canvas => {
-  // console.log("canvas" + canvas);
-    imgbase64=Canvas2Image.convertToPNG(canvas); 
-    $("#btnsave").html(imgbase64);
-    console.log("PNG" + imgbase64);
-    imgbase64=$(imgbase64).attr("src");
-   
-    
-    $("#btnsave").attr("href",imgbase64);
-});
+
+        html2canvas(document.querySelector("#primapagina")).then(canvas => {
+            // console.log("canvas" + canvas);
+            imgbase64 = Canvas2Image.convertToPNG(canvas);
+            $("#btnsave").html(imgbase64);
+            console.log("PNG" + imgbase64);
+            imgbase64 = $(imgbase64).attr("src");
+
+            setTimeout(function () {
+                myBaseString = imgbase64;
+                /** Process the type1 base64 string **/
+                // Split the base64 string in data and contentType
+                block = myBaseString.split(";");
+                // Get the content type
+                dataType = block[0].split(":")[1]; // In this case "image/png"
+                // get the real base64 content of the file
+                realData = block[1].split(",")[1]; // In this case "iVBORw0KGg...."
+                
+                filename = "Aria_" + dataarpa + ".png";
+
+                savebase64AsImageFile(folderpath, filename, realData, dataType);
+
+                console.log("path" + folderpath);
+                $("#btnsave").attr("href", folderpath + filename);
+                //$("#btnsave img").attr("src", folderpath + "myimage.png");
+                display_results("#savedownload", "Immagine creata nella cartella Download.");
+            }, 2000);
+        });
     });
 
-//ourcodeworld.com/articles/read/150/how-to-create-an-image-file-from-a-base64-string-on-the-device-with-cordova
-    
-}; 
+    //ourcodeworld.com/articles/read/150/how-to-create-an-image-file-from-a-base64-string-on-the-device-with-cordova
 
-    
+};

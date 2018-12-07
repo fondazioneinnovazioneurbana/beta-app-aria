@@ -135,6 +135,7 @@ img.iconcinamini {
     max-width: 25px;
     margin-top: 0.8em;
     padding-right: 6px;
+    padding-left: 6px;
 }
 .datatitle.block.block-strong {
     display: inline-block;
@@ -145,7 +146,7 @@ img.iconcinamini {
 .ios .datatop,
 .datatop {
     background-color:#E1E1E1;
-    width: 114%;
+    width: 100%;
     position: relative;
     margin-left: -1em;
     padding: 2px 1em 15px 1em;
