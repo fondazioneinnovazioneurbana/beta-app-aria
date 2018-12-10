@@ -500,7 +500,7 @@ var colorealto = "";
 
 function stampaaggettivoiqa() {
     switch (true) {
-        case (iqa < 50):
+        case (iqa <= 50):
             display_results("#aggettivoiqa", "basso");
             //basso
             scrivifrase("basso");

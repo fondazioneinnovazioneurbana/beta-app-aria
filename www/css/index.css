@@ -110,7 +110,7 @@ div.block.rainbow {
     height: auto;
     margin: 0;
     background-color: #00E676;
-    animation: example 10s infinite;
+    animation: example 15s infinite;
     animation-delay: 4s;
     animation-timing-function: ease-out;
     min-height: 110%;
