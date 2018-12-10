@@ -611,7 +611,7 @@ function scrivifrase(argomento) {
         $.ajax({
             'async': true,
             'global': false,
-            'url': "frasi/" + argomento + ".json",
+            'url': "http://www.fondazioneinnovazioneurbana.it/browser/www/frasi/" + argomento + ".json",
             'dataType': "json",
             'success': function (data) {
                 //console.log(data.resources.length);
