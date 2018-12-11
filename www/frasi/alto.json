@@ -1,5 +1,5 @@
 ﻿{
-    "description": "moderato",
+    "description": "alto",
     "resources": [{
             "type": "text",
             "name" : "139 persone ti sembrano poche?",
@@ -23,6 +23,6 @@
         {
             "type": "text",
             "name" : "Non puoi vivere senza Serie A? Portatela anche in casa!",
-            "content" : " Acquista una lavatrice o l'asciugatrice di classe "A". Le puoi riconoscere grazie ad apposite targhette presenti sull'elettrodomestico. Consumerai meno energia e immetterai nell'aria quantità minori di anidride carbonica.  "
+            "content" : "Acquista una lavatrice o l'asciugatrice di classe 'A'. Le puoi riconoscere grazie ad apposite targhette presenti sull'elettrodomestico. Consumerai meno energia e immetterai nell'aria quantità minori di anidride carbonica.  "
         }]
 }

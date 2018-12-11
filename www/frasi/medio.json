@@ -1,5 +1,5 @@
 ﻿{
-    "description": "moderato",
+    "description": "medio",
     "resources": [{
             "type": "text",
             "name" : "Aspetta prima di aprire le finestre! C'è un momento giusto per tutto",
@@ -17,7 +17,7 @@
         }, 
         {
             "type": "text",
-            "name" : "Non rischiare di bruciare Babbo Natale, inizia a spegnere il camino!,
+            "name" : "Non rischiare di bruciare Babbo Natale, inizia a spegnere il camino!",
             "content" : "Se abiti a Bologna o in un altro Comune che si trova a meno di 300 metri di altezza e in una casa con un sistema di riscaldamento multicombustibile, dal 1 ottobre al 31 marzo è vietato utilizzare camini “aperti” alimentati a legna e con efficienza energetica inferiore al 75%."
         }, 
         {
