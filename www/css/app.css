@@ -1,29 +1,29 @@
 /* Your app styles here */
-#shareiqa img {
 
-}
+#shareiqa img {}
+
 #shareiqa {
     display: inline-block;
-   /* position: relative;
-    margin: 0 auto;*/
+    position:relative;
+    left: 88%;
 }
 
-#btnsave img{
+#btnsave img {
     width: 90vw;
-    border:solid 1px #FFF;
+    border: solid 1px #FFF;
 }
+
 #btnsave {
     height: auto;
     display: block;
 }
 
-body
-.md body,
+body .md body,
 .md .icon .badge,
 .md .f7-icons .badge,
 .md .framework7-icons .badge,
 .md .material-icons .badge {
-  font-family: Helvetica, Arial, sans-serif !important;
+    font-family: Helvetica, Arial, sans-serif !important;
 }
 
 img.logoaria {
@@ -32,39 +32,46 @@ img.logoaria {
     max-width: 640px;
     display: block;
 }
-p.loghi{
-    margin-top:1em;
+
+p.loghi {
+    margin-top: 1em;
 }
-.page-content.crediti{
+
+.page-content.crediti {
     /*background-color:#fff;*/
 }
 
 hr#more {
-    border: solid 1px rgba(0,0,0,0);
+    border: solid 1px rgba(0, 0, 0, 0);
 }
 
 /*per frase RSS */
+
 #sottofraseiqa > p:nth-child(1) {
     margin: 0;
     padding: 0;
 }
+
 ul.pulsantoni {
-     padding: 0;
+    padding: 0;
 }
-ul.pulsantoni li{
+
+ul.pulsantoni li {
     cursor: pointer;
     padding: 10px 16px;
     list-style: none;
     border: solid 1px black;
-   margin: 0.5em 0;
-width: 94%;
+    margin: 0.5em 0;
+    width: 94%;
     border-radius: 25px;
     background: white;
 }
-ul.pulsantoni li.voted{
+
+ul.pulsantoni li.voted {
     color: white;
     background-color: black !important;
 }
+
 #invia {
     border: solid 1px black;
     border-radius: 25px;
@@ -73,5 +80,5 @@ ul.pulsantoni li.voted{
     width: 230px;
     display: block;
     margin: 0 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
 }

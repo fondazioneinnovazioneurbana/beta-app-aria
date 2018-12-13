@@ -533,7 +533,7 @@ function stampaaggettivoiqa() {
             baseratio = 150;
             break;
         case (iqa > 200):
-            display_results("#aggettivoiqa", "molto_alto");
+            display_results("#aggettivoiqa", "molto alto");
             //molto alto
             changebackground("div.block.rainbow", "#9E005D");
             $("#connesso").css("background-color", "#9E005D");

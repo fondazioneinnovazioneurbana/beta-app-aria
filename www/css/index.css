@@ -127,6 +127,11 @@ div.block#connesso {
     display: none;
 }
 
+#manuale {
+    padding-left: 13px;
+    margin-bottom: -6px;
+}
+
 img.iconcina {
     max-width: 40px;
 }
