@@ -127,9 +127,9 @@ div.block#connesso {
     display: none;
 }
 
-#manuale {
-    padding-left: 13px;
-    margin-bottom: -6px;
+.manuale {
+    padding-left: 5px;
+    margin-bottom: -4px;
 }
 
 img.iconcina {
@@ -225,7 +225,6 @@ h1 {
 
 .block.block-strong.sotto {
     padding: 0 0 1em 0;
-    ;
 }
 
 .rigacorta {

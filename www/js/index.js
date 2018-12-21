@@ -448,6 +448,7 @@ function noconnessione() {
     $("div.block.rainbow ").css("animation", "none");
     $("#connesso").addClass("hide");
     $("#noconnesso").removeClass("hide");
+    $("#caricando").addClass("hide");
     $("#noconnessioneiqa").addClass("hide");
     display_results(".datatop h1", "Errore");
 }
@@ -461,6 +462,7 @@ function connesso() {
     $("#tabellainquinanti").removeClass("hide");
     $("#noconnessioneiqa").addClass("hide");
     $("#noconnesso").addClass("hide");
+    $("#caricando").addClass("hide");
 }
 
 // arriva dal non aver finito di stampare l'IQA
@@ -470,6 +472,7 @@ function noconnessioneIQA() {
     $("div.block.rainbow ").css("animation", "none");
     $("#connesso").addClass("hide");
     $("#noconnesso").addClass("hide");
+    $("#caricando").addClass("hide");
     $("#noconnessionegrezzi").addClass("hide");
     $("#noconnessioneiqa").removeClass("hide");
     display_results(".datatop h1", "Ops!");
@@ -480,14 +483,15 @@ function noconnessionegrezzi() {
     $("div.block.rainbow ").css("animation", "none");
     $("#connesso").addClass("hide");
     $("#noconnesso").addClass("hide");
+    $("#caricando").addClass("hide");
     $("#noconnessoiqa").addClass("hide");
     $("#noconnessionegrezzi").removeClass("hide");
     display_results(".datatop h1", "Ops!");
 }
 
 function noconnessioneserver() {
-    display_results("#fraseiqa", "Non disponibile");
-    $("#sottofraseiqa").html("");
+    display_results("#fraseiqa", "46 miliardi di euro ti sembrano pochi?");
+    $("#sottofraseiqa").html("In Europa, i costi che derivano dall'inquinamento atmosferico causato dagli automezzi pesanti dei paesi membri sono di 43-46 miliardi di euro all'anno.");
 }
 
 //var colori per ratio, per calcolare valore del gradiente di sfondo
@@ -1148,14 +1152,6 @@ function shareMeNow(message, subject, url) {
 }
 
 
-$('#shareiqa').click(function () {
-    //console.log("bottone_share");
-    shareMeNow("Che Aria è", "Lab Aria", "http://www.fondazioneinnovazioneurbana.it/progetto/laboratorioaria");
-});
-
-
-
-
 function inithome() {
 
     /*ogni volta setto la data di oggi*/
@@ -1341,7 +1337,7 @@ function initdownloadimg() {
                 dataType = block[0].split(":")[1]; // In this case "image/png"
                 // get the real base64 content of the file
                 realData = block[1].split(",")[1]; // In this case "iVBORw0KGg...."
-                
+
                 filename = "Aria_" + dataarpa + ".png";
 
                 savebase64AsImageFile(folderpath, filename, realData, dataType);

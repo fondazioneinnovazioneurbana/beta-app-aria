@@ -5,7 +5,7 @@
 #shareiqa {
     display: inline-block;
     position:relative;
-    left: 88%;
+    left: 77%;
 }
 
 #btnsave img {
@@ -62,7 +62,7 @@ ul.pulsantoni li {
     list-style: none;
     border: solid 1px black;
     margin: 0.5em 0;
-    width: 94%;
+    width: 86%;
     border-radius: 25px;
     background: white;
 }
