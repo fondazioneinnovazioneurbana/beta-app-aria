@@ -82,3 +82,12 @@ ul.pulsantoni li.voted {
     margin: 0 50%;
     transform: translate(-50%, 0);
 }
+/*popup inquinanti*/
+
+.popup ul {
+    list-style: none;
+    padding-left:0px;
+}
+.popup ul li{
+padding-top:10px;
+}
