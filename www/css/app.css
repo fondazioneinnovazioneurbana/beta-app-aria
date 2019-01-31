@@ -4,10 +4,12 @@
 
 #shareiqa {
     display: inline-block;
-    position:relative;
-    left: 77%;
+ 
 }
-
+#btnrender{
+   /* position:relative;
+    left: 33%;*/
+}
 #btnsave img {
     width: 90vw;
     border: solid 1px #FFF;

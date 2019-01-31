@@ -31,6 +31,7 @@ var app = {
         inithome();
         initpartecipazione();
         initdownloadimg();
+        initrefresh();
         //DANGER solo per android, decommentare!
         checkConnection();
         /* DANGER: solo per browser, dopo togliere!*/
@@ -1232,8 +1233,26 @@ function initpartecipazione() {
         bottonipreferenze();
     });
 }
+//////////////////////////////refresh
 
 
+function initrefresh() {
+    $("#refresh").click(function () {
+
+    $("#caricando").removeClass("hide");
+    $("div.block.rainbow ").css("min-height", "120%");
+    $("div.block.rainbow ").css("animation", "example 15s infinite");
+      //nascondi il resto  
+    $("#connesso").addClass("hide");
+    $("#tabellainquinanti").addClass("hide");
+    $("#noconnessioneiqa").addClass("hide");
+    $("#noconnesso").addClass("hide");
+        
+        $(".page-content").scrollTop(0);
+       getdatigrezzi();
+       frasedelgiorno();
+    });
+};
 ////////////////SAVE THE IMG IN THE DEVICE
 
 /**

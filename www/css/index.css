@@ -17,6 +17,15 @@
  * under the License.
  */
 
+
+/*////////////manca///////////////*/
+/*
+.block#primapagina{
+     margin-bottom:0px !important;
+}
+*/
+
+
 @import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
 * {
@@ -113,7 +122,7 @@ div.block.rainbow {
     animation: example 15s infinite;
     animation-delay: 4s;
     animation-timing-function: ease-out;
-    min-height: 110%;
+    min-height: 100%;
 }
 
 div.block#noconnesso,
@@ -134,6 +143,10 @@ div.block#connesso {
 
 img.iconcina {
     max-width: 40px;
+}
+.bordini {
+    padding-right: 6px;
+    padding-left: 6px;
 }
 
 img.iconcinamini {
