@@ -117,7 +117,7 @@ body {
 
 div.block.rainbow {
     height: auto;
-    margin: 0;
+  /*  margin: 0;*/
     background-color: #00E676;
     animation: example 15s infinite;
     animation-delay: 4s;
@@ -169,7 +169,12 @@ img.iconcinamini {
     margin-left: -1em;
     padding: 2px 1em 15px 1em;
     margin-top: -15px;
-    height: 56px;
+    height: 33px;
+}
+.md .datatop h1,
+.ios .datatop h1,
+.datatop h1{
+    margin:0 !important;
 }
 
 .toolbar,
