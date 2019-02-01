@@ -787,7 +787,7 @@ function creanomistazioni() {
 //calcolo inquinanti https://www.arpae.it/dettaglio_generale.asp?id=3883&idlivello=2074 
 
 function stampacoloreiqainquinante(idstazione, nomeinq, inquinante) {
-    console.log("stampa iqa inquinante " + nomeinq + inquinante);
+    // console.log("stampa iqa inquinante " + nomeinq + inquinante);
     switch (true) {
         case (inquinante < 50):
             calcolagradienteinquinante(idstazione, nomeinq, inquinante, 0, "00E676", "FFEA00");
@@ -847,17 +847,57 @@ function calcolagradienteinquinante(idstazione, nomeinq, inq, baseratioq, colorq
     //(x:100=inq:500) (inq*100)/500
 
     //console.log("inq rgb(" + r + "," + g + "," + b + ")");
-    $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
+    //NO, ORA BINARIO GRIGIO-ROSSO $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
     $(idstazione + " ." + nomeinq + " .barrain").css("width", nsu500 + "%");
     //$("div.block.rainbow ").css("animation", "none");
 };
+
+function stampacolorebinario(idstazione, nomeinq, inquinante) {
+
+    //COLORE BINARIO ROSSO-GRIGIO
+    switch (true) {
+        case (nomeinq == "pm10"):
+            if (inquinante < 50) {
+                $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "#A0A0A0");
+            } else {
+                $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "#FC5830");
+            };
+            break;
+        case (nomeinq == "pm2"):
+            if (inquinante < 25) {
+                $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "#A0A0A0");
+            } else {
+                $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "#FC5830");
+            };
+            break;
+        case (nomeinq == "no2"):
+            if (inquinante < 200) {
+                $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "#A0A0A0");
+            } else {
+                $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "#FC5830");
+            };
+            break;
+        case (nomeinq == "o3"):
+            if (inquinante < 120) {
+                $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "#A0A0A0");
+            } else {
+                $(idstazione + " ." + nomeinq + " .barrain").css("background-color", "#FC5830");
+            };
+            break;
+        default:
+            console.log("inquinantebinario nd");
+            break;
+    };
+
+}
+
 
 var arraygpm10 = [];
 var arraygo3 = [];
 var arraygno2 = [];
 var arraygpm25 = [];
 
-/* scrivo il dato grezzo dei 4 */
+/* scrivo il dato grezzo dei 4 inq maggiori*/
 function printinquinanti(idstazione, numstazione) {
     var filagrezza = datigrezzi[numstazione];
     //mi scrive i 4 singoli inquinanti
@@ -892,8 +932,10 @@ function printinquinanti(idstazione, numstazione) {
 
     stampacoloreiqainquinante(idstazione, "pm10", datoppm10);
     display_results(idstazione + " .pm10 .tinq > span", datogpm10);
+    stampacolorebinario(idstazione, "pm10", datogpm10);
     //console.log(idstazione, "pm10", datoppm10);
 };
+
 
 function printinquinanti2(idstazione, numstazione) {
     var filagrezza = datigrezzi[numstazione];
@@ -928,6 +970,7 @@ function printinquinanti2(idstazione, numstazione) {
     arraypm25.push(datoppm25);
     stampacoloreiqainquinante(idstazione, "pm2", datoppm25);
     display_results(idstazione + " .pm2 .tinq > span", datogpm25);
+    stampacolorebinario(idstazione, "pm2", datogpm25);
     //console.log(idstazione, "pm2", datoppm25);
 };
 
@@ -972,7 +1015,8 @@ function printinquinanti3(idstazione, numstazione) {
     arrayo3.push(datopo3);
     stampacoloreiqainquinante(idstazione, "o3", datopo3);
     display_results(idstazione + " .o3 .tinq > span", datogo3);
-    console.log(idstazione, "o3", datopo3);
+    stampacolorebinario(idstazione, "o3", datogo3);
+    //console.log(idstazione, "o3", datopo3);
 };
 
 function printinquinanti4(idstazione, numstazione) {
@@ -1006,7 +1050,8 @@ function printinquinanti4(idstazione, numstazione) {
     arrayno2.push(datopno2);
     stampacoloreiqainquinante(idstazione, "no2", datopno2);
     display_results(idstazione + " .no2 .tinq > span", datogno2);
-    console.log(idstazione, "no2", datopno2);
+    //console.log(idstazione, "no2", datopno2);
+    stampacolorebinario(idstazione, "no2", datogno2);
 };
 
 function pulisciarray(arrayvoluto) {
@@ -1041,16 +1086,15 @@ function trovamaggiore(idiqainq, classiqa, arrayinquinante) {
     // ho l'id dell'inquinante.lo devo ciclare solo nel giusto ordine: pm10
 
     display_results(idiqainq + " div.tinq > span", maggiorinq);
-    console.log("maggioreinquinante " + maggiorinq);
+    //console.log("maggioreinquinante " + maggiorinq);
 
     //ricavo l'indice e l oprendo dai nomi e lo scrivo
     var indicenome = arrayinquinante.indexOf(maggiorinq);
     var testostazione = nomistazioni[indicenome];
     display_results(idiqainq + " div.tstaz > span", testostazione);
     stampacoloreiqainquinante(idiqainq, classiqa, maggiorinq);
-
-    console.log("maggioreindicenome " + indicenome);
-    console.log("maggioretestostazione " + testostazione);
+    //console.log("maggioreindicenome " + indicenome);
+    //console.log("maggioretestostazione " + testostazione);
 };
 // trova maggiore iqa ina e colora la barra
 function trovagmaggiore(idiqainq, classiqa, arrayinquinante) {
@@ -1062,8 +1106,48 @@ function trovagmaggiore(idiqainq, classiqa, arrayinquinante) {
     var maggiorinq = Math.max.apply(null, arrayinquinante);
     // scriverlo come numero! ma grezzo. l'indice mi dice il numero stazione,
     // ho l'id dell'inquinante.lo devo ciclare solo nel giusto ordine: pm10
-
+   
     display_results(idiqainq + " div.tinq > span", maggiorinq);
+     //colore binario per i maggior inquinanti grezzi
+            //ESEMPIO trovagmaggiore("#pm10", "pm10", arraygpm10);
+   switch (true) {
+        case (classiqa == "pm10"):
+            if (maggiorinq < 50) {
+                $(idiqainq + " ." + classiqa + " .barrain").css("background-color", "#A0A0A0");
+            } else {
+                $(idiqainq + " ." + classiqa + " .barrain").css("background-color", "#FC5830");
+            };
+            break;
+        case (classiqa == "pm2"):
+            if (maggiorinq < 25) {
+                $(idiqainq + " ." + classiqa + " .barrain").css("background-color", "#A0A0A0");
+            } else {
+                $(idiqainq + " ." + classiqa + " .barrain").css("background-color", "#FC5830");
+            };
+            break;
+        case (classiqa == "no2"):
+            if (maggiorinq < 200) {
+                $(idiqainq + " ." + classiqa + " .barrain").css("background-color", "#A0A0A0");
+            } else {
+                $(idiqainq + " ." + classiqa + " .barrain").css("background-color", "#FC5830");
+            };
+            break;
+        case (classiqa == "o3"):
+            if (maggiorinq < 120) {
+                $(idiqainq + " ." + classiqa + " .barrain").css("background-color", "#A0A0A0");
+            } else {
+                $(idiqainq + " ." + classiqa + " .barrain").css("background-color", "#FC5830");
+            };
+            break;
+        default:
+            console.log("inquinantebinariomaggiore nd");
+            break;
+    };
+
+};
+function colorebinariomaggioreinq(idstazione, nomeinq, inquinante){
+      //COLORE BINARIO ROSSO-GRIGIO
+    
 };
 
 function getdatigrezzi() {
@@ -1117,6 +1201,8 @@ function getdatigrezzi() {
             trovagmaggiore("#pm2", "pm2", arraygpm25);
             trovagmaggiore("#o3", "o3", arraygo3);
             trovagmaggiore("#no2", "no2", arraygno2);
+            
+            
         },
         error: function (b) {
             //console.log(b, 2);
@@ -1239,18 +1325,18 @@ function initpartecipazione() {
 function initrefresh() {
     $("#refresh").click(function () {
 
-    $("#caricando").removeClass("hide");
-    $("div.block.rainbow ").css("min-height", "120%");
-    $("div.block.rainbow ").css("animation", "example 15s infinite");
-      //nascondi il resto  
-    $("#connesso").addClass("hide");
-    $("#tabellainquinanti").addClass("hide");
-    $("#noconnessioneiqa").addClass("hide");
-    $("#noconnesso").addClass("hide");
-        
+        $("#caricando").removeClass("hide");
+        $("div.block.rainbow ").css("min-height", "120%");
+        $("div.block.rainbow ").css("animation", "example 15s infinite");
+        //nascondi il resto  
+        $("#connesso").addClass("hide");
+        $("#tabellainquinanti").addClass("hide");
+        $("#noconnessioneiqa").addClass("hide");
+        $("#noconnesso").addClass("hide");
+
         $(".page-content").scrollTop(0);
-       getdatigrezzi();
-       frasedelgiorno();
+        getdatigrezzi();
+        frasedelgiorno();
     });
 };
 ////////////////SAVE THE IMG IN THE DEVICE
