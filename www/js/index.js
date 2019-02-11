@@ -142,7 +142,7 @@ function getdatiiqa() {
         console.log('There was an error!');
         setTimeout(function () {
             noconnessioneIQA();
-        }, 2000);
+        }, 10000);
     };
 
 
@@ -468,9 +468,7 @@ function connesso() {
 
 // arriva dal non aver finito di stampare l'IQA
 function noconnessioneIQA() {
-    $("div.block.rainbow ").css("background-color", "#E1E1E1");
     $("#connesso").css("background-color", "#E1E1E1");
-    $("div.block.rainbow ").css("animation", "none");
     $("#connesso").addClass("hide");
     $("#noconnesso").addClass("hide");
     $("#caricando").addClass("hide");
@@ -480,9 +478,7 @@ function noconnessioneIQA() {
 }
 
 function noconnessionegrezzi() {
-    $("div.block.rainbow ").css("background-color", "#E1E1E1");
-    $("div.block.rainbow ").css("animation", "none");
-    $("#connesso").addClass("hide");
+    $("#tabellainquinanti").addClass("hide");
     $("#noconnesso").addClass("hide");
     $("#caricando").addClass("hide");
     $("#noconnessoiqa").addClass("hide");
@@ -1209,7 +1205,7 @@ function getdatigrezzi() {
             //console.log("non arrivano dati grezzi!");
             setTimeout(function () {
                 noconnessionegrezzi();
-            }, 2000);
+            }, 10000);
         }
     });
 };
